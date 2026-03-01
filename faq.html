@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliSpec | FAQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .faq-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #000000;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .faq-container {
+            margin-top: 0; /* Ensures no extra gap above first item */
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 18px 0; /* Slightly reduced padding */
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #002145;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            color: #4a4a4a;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1500px;
+            margin-top: 15px;
+        }
+
+        .icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+            color: #6EC4E8;
+            font-weight: 700;
+        }
+
+        .faq-item.active .icon {
+            transform: rotate(45deg);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+          background-color: #6EC4E8;
+          color: #002145;
+          border: 2px solid #002145;
+          padding: 1.2rem 1.5rem;
+          font-size: 1.05rem;
+          font-weight: 700;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease-out;
+          text-decoration: none;
+          flex: 1;
+          min-width: 200px;
+          max-width: 300px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background-color: #002145;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 700px) {
+            .btn-container { flex-direction: column; }
+            .nav-btn { width: 100%; max-width: 400px; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="faq-card">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">
+                I don't think my test result is accurate.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                This test is designed as a global approximation of political positions as opposed to a country-specific
+                one, based largely off the common discourses in Western political circles. The political median may vary
+                greatly by country. For example, what's considered standard or "moderate" in one country might be
+                considered "right-wing" in another. Because this test uses a universal scale to allow for comparisons
+                between people of different nationalities, your result reflects where you stand on a global spectrum
+                rather than where you fit within your local political landscape. The key advantage of this approach
+                is comparability. By using a global scale, you can directly compare your results with peers
+                across the political aisle or from different countries to see exactly how far apart your positions
+                are on a standardized spectrum.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Why are there only two axes? There are many other dimensions of political thought.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes, that's correct. Political thought is highly qualitative and can be measured across
+                    dozens of dimensions, such as Globalism vs. Nationalism or Secularism vs. Theocracy. While other tests
+                    explore these many facets to provide a more granular metric, this test is intentionally designed for
+                    simplicity and clarity. Generality necessarily comes at the cost of specificity.</p>
+
+                <p>Whenever people discuss their political leanings, they typically categorize themselves in two
+                    primary ways: "I am socially [X] and economically [Y]". By focusing on these two fundamental pillars,
+                    this test provides a result that is immediately interpretable and easy to communicate. This two-axis approach
+                    ensures that your results remain clear, useful, and communicable for broad comparisons.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Why is there no neutral/unsure option.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Having a neutral option would necessarily skew the final score. If someone answered all the immigration
+                questions as neutral or unsure, it would give a skewed reading of the users political leaning.
+                Furthermore, the aim of the test is allow people to form opinions on tough and relevant propositions.
+                Encouraging people to lean in a direction, as opposed to staying on the fence, achieves that goal. </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                How were the question topics chosen?
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>The guiding principle was modernity. What is being actively discussed by politicians and political
+                    candidates in the western world. Immigration, environmental issues, LGBTQ issues, income inequality
+                    are all extremely common themes in political parlance and are topics which are hotly contested, so there
+                    were many questions associated with these topics.</p>
+
+                <p>In other tests, such as the Political Compass test,
+                    there are many outlandish or outdated questions that a near complete majority of the population would have an identical
+                    position on. These questions often result in "clumping" of political scores. In the Political Compass
+                    test, approxiamtely 90% of the people fall in the bottom left corner, and hence make it difficult
+                    to distinguish political leanings amongst peers.</p>
+
+                <p>By choosing highly relevant questions and topics, this test is designed to avoid those dead zones,
+                    making it easier to distinguish meaningful differences in political leanings among your peers.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                The questions are framed in biased manner.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes, they are, because it is impossible to frame a question in a completely unbiased manner. Every
+                    possible variant of a question can bias an individual in a particular way.</p>
+
+                <p>Let's take the question: <strong>Gender transitioning care should be permissible for minors.</strong>
+                    This question can be framed in many ways:
+                </p>
+                <ul>
+                    <li>Minors should have the right to gender transitioning care.</li>
+                    <li>Minors should have the right to gender affirming care.</li>
+                    <li>A minor can consent to procedures involving physiological changes pertaining to their gender identity.</li>
+                    <li>A minor cannot consent to procedures involving physiological changes pertaining to their gender identity.</li>
+                    <li>It is unethical to provide gender transitioning care to minors.</li>
+                    <li>Gender transitioning care for children is reprehensive and unethical.</li>
+                </ul>
+
+                <p>Each of these question variants can bias an individual in varied ways, so coming up with one that has
+                    zero bias whatsoever is impossible.</p>
+
+                <p>However, in the test I did make a sustained effort in keeping bias to a minumum. Approximately half the
+                    questions are framed where Strongly Agree is linked to right-leaning positions, and the other half towards
+                    left-leaning positions. For the sake of consistency, for most of the questions, I avoided questions
+                    with negation vocabulary such as "not", "un-", or "dis-."</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                The questions are Western-centric.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes, it's nearly impossible to have a global left and global right that fits into the a vast
+                    majority of countries. Developed countries and developing countries fundamentally face different
+                    challenges and have a vast array of governance styles. The political parlance of developing countries
+                    will necessarily be vastly different, and hence the political left and right.</p>
+
+                <p>To provide a consistent and meaningful benchmark, I chose to focus on the common issues currently
+                    facing major Western countries. It allows
+                    for a more accurate approximation of political tensions within the contexts where these
+                    specific discourse topics—such as immigration, environment, and social justice—are most actively
+                    debated and polarized.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                The norms of my country don't fit the categorization of left and right in this test.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>This is a common and valid observation. Political norms vary significantly by nation; for example,
+                    government provided healthcare might be a polarized "left vs. right" issue in the US, but enjoys
+                    nearly universal support in a country like the UK or France. In this case, someone might feel
+                    that supporting a universal government funded healthcare doesn't make them "right-wing" within their
+                    own country's context.
+                </p>
+
+                <p>However, to provide results that are comparable across countries, it is necessary to establish
+                    relatively fixed definitions and a universal benchmark. This allows us to account for
+                    "country-fixed effects"—the reality that the average political position in one country,
+                    like the UK, may be naturally further to the left than that of another, like the US.
+                    By using a standardized scale, the test measures where you stand on a global spectrum rather than
+                    adjusting for the specific cultural shifts of every individual nation.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                How are the politician scores generated.
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>They're generated by prompting AI to respond to the questions from the point of view of the
+                    individual. However, AI is imperfect and different AIs generate different answers, so these scores
+                    are an approximation.
+                </p>
+
+                <p>It's also worth mentioning that there will naturally be differences between political candidates and
+                    elected politicians. After entering office, politicians often moderate their positions to be
+                    more pallatable to the general popualtion. For example, Giorgia Meloni (PM of Italy) was often
+                    labelled to be a "far-right" politician on the campaign trail due to her espousing strong euroskeptic
+                    and anti-migrant views. However, after entering office she has drastically moderated her tune by cooperating
+                    significantly with the EU and authorized many non-EU work visas.
+                    Naturally, when the scores are being generated, it will assign positions based off their track record
+                    in office, and hence some politicians will have more moderate scores than expected.
+
+                </p>
+
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                In the graphic, why are right-leaning positions represented as blue and left-leaning as red?
+                <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>This is a toss-up choice based on varying global conventions. In most of the world—including
+                    the UK, Canada, France, and Germany—red is traditionally associated with left-leaning parties
+                    and blue with the right. However, in the United States, this convention is reversed:
+                    red is synonymous with Republican conservatism, while blue represents
+                    Democratic liberalism.</p>
+
+                <p><small> -- RD.SPLH.UBC. </small></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="btn-container">
+        <button class="nav-btn" onclick="window.location.href='egpoliticians.html'">Example Politician Scores</button>
+        <button class="nav-btn" onclick="window.location.href='index.html'">Return to Home</button>
+        <button class="nav-btn" onclick="window.location.href='results.html'">Return to Results</button>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

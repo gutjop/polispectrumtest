@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliSpec | Example Politicians</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 750px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            text-align: center;
+            color: #000;
+        }
+
+        .selection-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group { flex: 1; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: #636e72; font-size: 0.9rem; }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #dfe6e9;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            background: white;
+            outline: none;
+        }
+
+        .viewing-pane {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .info-header { margin-bottom: 25px; }
+        .info-header h2 { margin: 0 0 10px 0; font-size: 2rem; color: #2d3436; }
+
+        .party-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: #002145;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .spectrum-container { text-align: left; margin-top: 20px; }
+
+        .score-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 5px;
+        }
+
+        .score-num {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #002145;
+        }
+
+        .spectrum-bar {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .zone {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: rgba(0,0,0,0.5);
+            text-align: center;
+            line-height: 1;
+            padding: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Zone Background Colors */
+        .far-left { background-color: #1a3d6e; color: #FFFFFF; }
+        .strong-left { background-color: #1a8cff; color: #FFFFFF; }
+        .mod-left { background-color: #80bfff; color: #000000; }
+        .centre-left { background-color: #a8b9ff; color: #000000; }
+        .centre { background-color: #d1b3ff; color: #000000; }
+        .centre-right { background-color: #e8b3d0; color: #000000; }
+        .mod-right { background-color: #ffb3a1; color: #000000; }
+        .strong-right { background-color: #ff5e5e; color: #FFFFFF; }
+        .far-right { background-color: #ee2d35; color: #FFFFFF; }
+
+        /* Active State Highlighting */
+        .zone.active {
+            outline: 4px solid #f1c40f;
+            outline-offset: -2px;
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(241, 196, 15, 0.6);
+        }
+
+        /* Ensure text visibility remains correct when zone is active */
+        .far-left.active, .strong-left.active, .strong-right.active, .far-right.active {
+            color: #FFFFFF !important;
+        }
+
+        .mod-left.active, .centre-left.active, .centre.active, .centre-right.active, .mod-right.active {
+            color: #000000 !important;
+        }
+
+        .axis-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #636e72;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .disclaimer-note {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff9db;
+            border-left: 4px solid #f1c40f;
+            border-radius: 4px;
+            color: #856404;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-style: italic;
+            text-align: left;
+        }
+
+        /* Bottom Navigation Styling matching index.html */
+        .nav-links {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .nav-btn {
+            background-color: #6EC4E8;
+            color: #002145;
+            border: 2px solid #002145;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            text-decoration: none;
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background-color: #002145;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 700px) {
+            .selection-area { flex-direction: column; }
+            .nav-links { flex-direction: column; }
+            .nav-btn { width: 100%; max-width: 400px; }
+            .zone { font-size: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Politician Profiles</h1>
+
+    <div class="selection-area">
+        <div class="input-group">
+            <label>Select Country</label>
+            <select id="countrySelect" onchange="updatePoliticianList()">
+                <option value="">-- Choose --</option>
+                <option value="USA">USA</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="European Union">European Union</option>
+                <option value="France">France</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Misc">Other Leaders</option>
+                <option value="Influencers">Influencers</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Select Politician</label>
+            <select id="politicianSelect" onchange="displayPolitician()" disabled>
+                <option value="">-- Select Country --</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="viewing-pane" id="viewingPane">
+        <div class="info-header">
+            <h2 id="polName">Example Comparisons</h2>
+            <div id="polParty" class="party-tag" style="display:none;">Party</div>
+        </div>
+
+        <div class="spectrum-container">
+            <div class="score-display">
+                <span class="axis-label">Social Axis</span>
+                <span id="socialScore" class="score-num">--</span>
+            </div>
+            <div class="spectrum-bar" id="socialBar">
+                <div class="zone far-left" id="s-z1">Hard Left</div>
+                <div class="zone strong-left" id="s-z2">Strong Left</div>
+                <div class="zone mod-left" id="s-z3">Mod. Left</div>
+                <div class="zone centre-left" id="s-z4">Centre Left</div>
+                <div class="zone centre" id="s-z5">Centre</div>
+                <div class="zone centre-right" id="s-z6">Centre Right</div>
+                <div class="zone mod-right" id="s-z7">Mod. Right</div>
+                <div class="zone strong-right" id="s-z8">Strong Right</div>
+                <div class="zone far-right" id="s-z9">Hard Right</div>
+            </div>
+
+            <div class="score-display">
+                <span class="axis-label">Economic Axis</span>
+                <span id="econScore" class="score-num">--</span>
+            </div>
+            <div class="spectrum-bar" id="econBar">
+                <div class="zone far-left" id="e-z1">Hard Left</div>
+                <div class="zone strong-left" id="e-z2">Strong Left</div>
+                <div class="zone mod-left" id="e-z3">Mod. Left</div>
+                <div class="zone centre-left" id="e-z4">Centre Left</div>
+                <div class="zone centre" id="e-z5">Centre</div>
+                <div class="zone centre-right" id="e-z6">Centre Right</div>
+                <div class="zone mod-right" id="e-z7">Mod. Right</div>
+                <div class="zone strong-right" id="e-z8">Strong Right</div>
+                <div class="zone far-right" id="e-z9">Hard Right</div>
+            </div>
+        </div>
+
+        <div class="disclaimer-note">
+            * All scores are generated by prompting AI to answer questions from the POV of the individual. (more in FAQ)
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <button class="nav-btn" onclick="window.location.href='results.html'">Go to Results</button>
+        <button class="nav-btn" onclick="window.location.href='faq.html'">FAQ Section</button>
+        <button class="nav-btn" onclick="window.location.href='index.html'">Return Home</button>
+    </div>
+</div>
+
+<script>
+    const data = {
+        "USA": [
+            { name: "Donald Trump", party: "Republican", social: 6.70, econ: 5.15 },
+            { name: "Kamala Harris", party: "Democrat", social: -5.64, econ: -5.15 },
+            { name: "Bernie Sanders", party: "Independent", social: -8.14, econ: -8.79 },
+            { name: "Gavin Newsom", party: "Democrat", social: -6.86, econ: -5.03 },
+            { name: "Ron DeSantis", party: "Republican", social: 6.23, econ: 7.70 }
+        ],
+        "United Kingdom": [
+            { name: "Keir Starmer", party: "Labour", social: -2.33, econ: -0.18 },
+            { name: "Rishi Sunak", party: "Conservative", social: 1.67, econ: 6.36 },
+            { name: "Kemi Badenoch", party: "Conservative", social: 2.48, econ: 6.73 },
+            { name: "Nigel Farage", party: "Reform UK", social: 5.84, econ: 6.36 },
+            { name: "Jeremy Corbyn", party: "Independent", social: -8.71, econ: -9.15 },
+            { name: "Zack Polanski", party: "Green", social: -8.54, econ: -9.15 }
+        ],
+        "Canada": [
+            { name: "Mark Carney", party: "Liberal", social: -3.78, econ: 2.97 },
+            { name: "Pierre Poilievre", party: "Conservative", social: 3.70, econ: 4.18 },
+            { name: "Don Davies", party: "NDP", social: -7.68, econ: -6.00 }
+        ],
+        "European Union": [
+            { name: "Ursula von der Leyen", party: "EU Commission President", social: -2.67, econ: 0.42 },
+            { name: "Emmanuel Macron", party: "President of France", social: -2.35, econ: 5.03 },
+            { name: "Friedrich Merz", party: "Chancellor of Germany", social: 1.68, econ: 5.15 },
+            { name: "Pedro Sanchez", party: "President of Spain", social: -3.86, econ: -5.76 },
+            { name: "Giorgia Meloni", party: "President of Italy", social: 3.94, econ: 2.00},
+            { name: "Donald Tusk", party: "Prime Minister of Poland", social: 0.46, econ: 2.48},
+            { name: "Mette Frederiksen", party: "Prime Minister of Denmark", social: -1.42, econ: -2.73}
+        ],
+        "France": [
+            { name: "Emmanuel Macron", party: "Renaissance", social: -2.35, econ: 5.03 },
+            { name: "Marine Le Pen", party: "Rassemblement National", social: 4.55, econ: -3.94 },
+            { name: "Jean Luc Melanchon", party: "La France Insoumise", social: -6.70, econ: -8.18 }
+        ],
+        "Australia": [
+            { name: "Anthony Albanese", party: "Labor", social: -3.72, econ: -2.24 },
+            { name: "Angus Taylor", party: "Liberal", social: 3.41, econ: 7.09 }
+        ],
+        "Misc": [
+            { name: "Javier Milei", party: "President of Argentina", social: 5.42, econ: 8.79 },
+            { name: "Nayyib Bukele", party: "El Savador President", social: 6.96, econ: 4.30 },
+            { name: "Lawrence Wong", party: "President of Singapore", social: 0.57, econ: 3.09 },
+            { name: "Jacinda Ardern", party: "Former Prime Minister of New Zealand", social: -6.29, econ: -3.09 }
+        ],
+        "Influencers": [
+            { name: "Ben Shapiro", party: "Daily Wire Host", social: 6.00, econ: 8.18 },
+            { name: "Mehdi Hasan", party: "Zeteo Founder", social: -7.03, econ: -8.06 },
+            { name: "Piers Morgan", party: "Piers Morgan Uncensored Host", social: 2.12, econ: 2.16 },
+            { name: "Elon Musk", party: "Tesla/SpaceX CEO", social: 4.84, econ: 8.67 }
+        ]
+    };
+
+    function updatePoliticianList() {
+        const country = document.getElementById('countrySelect').value;
+        const polSelect = document.getElementById('politicianSelect');
+        polSelect.innerHTML = '<option value="">-- Choose a Politician --</option>';
+        if (country && data[country]) {
+            polSelect.disabled = false;
+            data[country].forEach((pol, index) => {
+                polSelect.innerHTML += `<option value="${index}">${pol.name}</option>`;
+            });
+        } else {
+            polSelect.disabled = true;
+        }
+    }
+
+    function displayPolitician() {
+        const countrySelect = document.getElementById('countrySelect');
+        const polSelect = document.getElementById('politicianSelect');
+        const country = countrySelect.value;
+        const index = polSelect.value;
+
+        if (index === "" || index === null) return;
+
+        const pol = data[country][index];
+        document.getElementById('polName').innerText = pol.name;
+
+        const partyTag = document.getElementById('polParty');
+        partyTag.innerText = pol.party;
+        partyTag.style.display = 'inline-block';
+
+        document.getElementById('socialScore').innerText = (pol.social > 0 ? "+" : "") + pol.social.toFixed(2);
+        document.getElementById('econScore').innerText = (pol.econ > 0 ? "+" : "") + pol.econ.toFixed(2);
+
+        // Clear all previous active states
+        document.querySelectorAll('.zone').forEach(z => z.classList.remove('active'));
+
+        highlightZone('s', pol.social);
+        highlightZone('e', pol.econ);
+    }
+
+    function highlightZone(prefix, score) {
+        let zoneNum;
+
+        // Correct range logic
+        if (score <= -7.50) zoneNum = 1;
+        else if (score > -7.50 && score <= -5.00) zoneNum = 2;
+        else if (score > -5.00 && score <= -2.50) zoneNum = 3;
+        else if (score > -2.50 && score <= -1.01) zoneNum = 4;
+        else if (score > -1.01 && score <= 1.00) zoneNum = 5;
+        else if (score > 1.00 && score <= 2.50) zoneNum = 6;
+        else if (score > 2.50 && score <= 5.00) zoneNum = 7;
+        else if (score > 5.00 && score <= 7.50) zoneNum = 8;
+        else zoneNum = 9;
+
+        const target = document.getElementById(`${prefix}-z${zoneNum}`);
+        if (target) {
+            target.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>

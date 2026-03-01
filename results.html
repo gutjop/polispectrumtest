@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliSpec | Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .results-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2d3436;
+            margin-top: 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .axis-section {
+            margin-bottom: 45px;
+        }
+
+        .score-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .axis-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3436;
+        }
+
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6c5ce7;
+        }
+
+        .spectrum-bar {
+            display: flex;
+            width: 100%;
+            height: 55px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .zone {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.1;
+            padding: 2px;
+            color: rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Vibrant and Blended Colors */
+        .far-left      { background-color: #1a3d6e; color: white; }
+        .strong-left   { background-color: #1a8cff; color: white; }
+        .mod-left      { background-color: #80bfff; }
+        .centre-left   { background-color: #a8b9ff; }
+        .centre        { background-color: #d1b3ff; }
+        .centre-right  { background-color: #e8b3d0; }
+        .mod-right     { background-color: #ffb3a1; }
+        .strong-right  { background-color: #ff5e5e; color: white; }
+        .far-right     { background-color: #ee2d35; color: white; }
+
+        /* Highlight Style: Outline Only */
+        .zone.active {
+            outline: 5px solid #ffff00;
+            outline-offset: -5px;
+            z-index: 5;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .sub-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #88807B;
+            margin-top: 5px;
+        }
+
+        .version-tag {
+            position: absolute;
+            bottom: 25px;
+            left: 40px;
+            font-size: 0.85rem;
+            color: #88807B;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .watermark {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #000000;
+            margin-top: 25px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap; /* Ensures buttons look good on mobile */
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-blue  { background: #6EC4E8; color: 000000; border: 1px solid #002145; }
+        .btn-blue:hover { background: #002145; color: white; transform: translateY(-2px); }
+
+        .btn-dark  { background: #6EC4E8; color: 000000; border: 1px solid #002145;}
+        .btn-dark:hover { background: #002145; color: white; transform: translateY(-2px); }
+
+        .btn-light { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
+        .btn-light:hover { background: #002145; color: #FFFFFF; transform: translateY(-2px); }
+
+        #copyToast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 700;
+        }
+        #copyToast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+
+<div class="results-card">
+    <h1>Political Spectrum Test Results</h1>
+
+    <div class="axis-section">
+        <div class="score-header">
+            <span class="axis-label">Social Score</span>
+            <span class="score-value" id="social-val">Calculating...</span>
+        </div>
+        <div class="spectrum-bar" id="social-bar">
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+        </div>
+        <div class="sub-labels">
+            <span>Progressive</span>
+            <span>Conservative</span>
+        </div>
+    </div>
+
+    <div class="axis-section">
+        <div class="score-header">
+            <span class="axis-label">Economic Score</span>
+            <span class="score-value" id="econ-val">Calculating...</span>
+        </div>
+        <div class="spectrum-bar" id="econ-bar">
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+        </div>
+        <div class="sub-labels">
+            <span>Collectivist</span>
+            <span>Capitalist</span>
+        </div>
+    </div>
+
+    <div class="version-tag">v1.01</div>
+    <div class="watermark">polispectrumtest.com</div>
+</div>
+
+<div class="actions">
+    <button class="btn btn-blue" id="shareBtn" onclick="shareResults()">Share Result</button>
+    <button class="btn btn-dark" onclick="downloadResults()">Save as Image</button>
+    <a href="faq.html" class="btn btn-light">Go to FAQ</a>
+    <a href="index.html" class="btn btn-light">Retake Test</a>
+    <a href="egpoliticians.html" class="btn btn-light">See Politician Scores</a>
+</div>
+
+<div id="copyToast">Link Copied to Clipboard!</div>
+
+<script src="scoring.js"></script>
+
+<script>
+    window.onload = () => {
+        if (typeof runAllCalculations === 'function') {
+            runAllCalculations();
+            document.getElementById('social-val').innerText = (finalSocialScore > 0 ? "+" : "") + Number(finalSocialScore).toFixed(2);
+            document.getElementById('econ-val').innerText = (finalEconScore > 0 ? "+" : "") + Number(finalEconScore).toFixed(2);
+            highlightZones();
+        }
+    };
+
+    function highlightZones() {
+        const updateBar = (barId, scoreVal) => {
+            const score = parseFloat(scoreVal);
+            const zones = document.querySelectorAll(`#${barId} .zone`);
+            zones.forEach(zone => {
+                const min = parseFloat(zone.dataset.min);
+                const max = parseFloat(zone.dataset.max);
+
+                zone.classList.remove('active');
+                if (score >= min && score <= max) {
+                    zone.classList.add('active');
+                }
+            });
+        };
+
+        if (typeof finalSocialScore !== 'undefined' && typeof finalEconScore !== 'undefined') {
+            updateBar('social-bar', finalSocialScore);
+            updateBar('econ-bar', finalEconScore);
+        }
+    }
+
+    function downloadResults() {
+        const card = document.querySelector('.results-card');
+        html2canvas(card, {
+            scale: 2,
+            backgroundColor: "#f0f2f5"
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'PoliSpec_Results.png';
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    }
+
+    function shareResults() {
+        const shareData = {
+            title: 'PoliSpec Results',
+            text: 'Check out my political spectrum results!',
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch(err => console.log('Error sharing', err));
+        } else {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const toast = document.getElementById("copyToast");
+                toast.className = "show";
+                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
