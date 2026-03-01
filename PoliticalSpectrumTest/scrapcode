@@ -1,0 +1,295 @@
+
+
+
+function runAllCalculations() {
+    // A. Grab the string from the browser's memory
+    const rawData = localStorage.getItem('poliTestAnswers');
+    if (!rawData) return console.error("No answers found in storage.");
+
+    // B. Turn that string back into an Object (the "answers" object)
+    const userAnswers = JSON.parse(rawData);
+
+    // C. PASS the object into your specific functions
+    finalSocialScore = calcSocialScore(userAnswers);
+    finalEconScore = calcEconScore(userAnswers);
+
+    // 2. Mark as done
+    isCalculationComplete = true;
+
+    // 3. THE HTML UPDATE: This sends the data to your page
+    document.getElementById('social-val').innerText = finalSocialScore;
+    document.getElementById('econ-val').innerText = finalEconScore;
+
+    console.log("UI Updated with scores:", finalSocialScore, finalEconScore);
+}
+
+function calcSocialScore(answers) {
+    let subtotal = 0;
+    console.log("%c--- SOCIAL AXIS CALCULATION ---", "color: purple; font-weight: bold;");
+
+    for (let i = 1; i <= 35; i++) {
+        const qKey = `q${i}a`;
+        const choice = answers[qKey];
+        const mapName = questionConfig[qKey];
+
+        if (choice && mapName) {
+            const points = weightmaps[mapName][choice];
+            subtotal += points;
+            console.log(`[SOCIAL] ${qKey}: ${points}pts (Total: ${subtotal})`);
+        } else {
+                console.warn(`[SOCIAL] Missing data for ${qKey}`);
+                }
+    }
+
+    return normalize10(subtotal, maxSocialScore);
+}
+
+// We pass 'answers' as the dictionary/object to be audited
+function calcEconScore(answers) {
+    let subtotal = 0;
+    console.log("%c--- ECONOMIC AXIS CALCULATION ---", "color: blue; font-weight: bold;");
+
+    // The loop starts at 36 and goes until 48
+    for (let i = econIndexStart; i <= econIndexEnd; i++) {
+        const qKey = `q${i}a`;
+        const choice = answers[qKey];
+        const mapName = questionConfig[qKey];
+
+        // Ensure the question was actually answered and has a weightmap
+        if (choice && mapName) {
+            const points = weightmaps[mapName][choice];
+            subtotal += points;
+
+            // Helpful logging to see the econ score climb
+            console.log(`[ECON] ${qKey}: ${choice} -> ${points}pts (Subtotal: ${subtotal})`);
+        } else {
+            console.warn(`[ECON] Missing data for ${qKey}`);
+        }
+    }
+    return normalize10(subtotal, maxEconScore);
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliSpec | Your Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-color);
+        }
+
+        .results-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 50px;
+        }
+
+        .axis-section {
+            margin-bottom: 60px;
+        }
+
+        .score-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .score-value {
+            color: #741b47; /* Matching the purple/maroon in your image */
+        }
+
+        /* Spectrum Bar Layout */
+        .spectrum-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .limit-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .spectrum-bar {
+            display: flex;
+            flex: 1;
+            height: 60px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .zone {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.1;
+            padding: 5px;
+            border-right: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+
+        /* Background Colors from your image */
+        .far-left      { background-color: #cc0000; }
+        .strong-left   { background-color: #ea9999; }
+        .mod-left      { background-color: #f4cccc; }
+        .centre-left   { background-color: #fce5cd; }
+        .centre        { background-color: #b6d7a8; }
+        .centre-right  { background-color: #cfe2f3; }
+        .mod-right     { background-color: #9fc5e8; }
+        .strong-right  { background-color: #6fa8dc; }
+        .far-right     { background-color: #3d85c6; }
+
+        /* Highlight Style matching the yellow selection in your image */
+        .zone.active {
+            outline: 4px solid #ffff00;
+            z-index: 10;
+            color: #ffff00; /* Yellow text for contrast */
+            text-shadow: 1px 1px 2px #000;
+            transform: scale(1.02);
+        }
+
+        .actions {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-retry {
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="results-container">
+    <h1>Your Political Compass Results</h1>
+
+    <div class="axis-section">
+        <div class="score-header">
+            <span>Social Score:</span>
+            <span class="score-value" id="social-val">Calculating...</span>
+        </div>
+        <div class="spectrum-wrapper">
+            <span class="limit-label">-10</span>
+            <div class="spectrum-bar" id="social-bar">
+                <div class="zone far-left" data-min="-10" data-max="-7.50">Hard Left</div>
+                <div class="zone strong-left" data-min="-7.49" data-max="-5.00">Strong Left</div>
+                <div class="zone mod-left" data-min="-4.99" data-max="-2.50">Moderate Left</div>
+                <div class="zone centre-left" data-min="-2.49" data-max="-1.01">Centre Left</div>
+                <div class="zone centre" data-min="-1.00" data-max="1.00">Centre</div>
+                <div class="zone centre-right" data-min="1.01" data-max="2.50">Centre Right</div>
+                <div class="zone mod-right" data-min="2.51" data-max="5.00">Moderate Right</div>
+                <div class="zone strong-right" data-min="5.01" data-max="7.50">Strong Right</div>
+                <div class="zone far-right" data-min="7.51" data-max="10">Hard Right</div>
+            </div>
+            <span class="limit-label">+10</span>
+        </div>
+    </div>
+
+    <div class="axis-section">
+        <div class="score-header">
+            <span>Economic Score:</span>
+            <span class="score-value" id="econ-val">Calculating...</span>
+        </div>
+        <div class="spectrum-wrapper">
+            <span class="limit-label">-10</span>
+            <div class="spectrum-bar" id="econ-bar">
+                <div class="zone far-left" data-min="-10" data-max="-7.50">Hard Left</div>
+                <div class="zone strong-left" data-min="-7.49" data-max="-5.00">Strong Left</div>
+                <div class="zone mod-left" data-min="-4.99" data-max="-2.50">Moderate Left</div>
+                <div class="zone centre-left" data-min="-2.49" data-max="-1.01">Centre Left</div>
+                <div class="zone centre" data-min="-1.00" data-max="1.00">Centre</div>
+                <div class="zone centre-right" data-min="1.01" data-max="2.50">Centre Right</div>
+                <div class="zone mod-right" data-min="2.51" data-max="5.00">Moderate Right</div>
+                <div class="zone strong-right" data-min="5.01" data-max="7.50">Strong Right</div>
+                <div class="zone far-right" data-min="7.51" data-max="10">Hard Right</div>
+            </div>
+            <span class="limit-label">+10</span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="index.html" class="btn-retry">Retake Test</a>
+    </div>
+</div>
+
+<script src="scoring.js"></script>
+
+<script>
+    // Ensure the calculations run immediately on load
+    window.onload = () => {
+        if (typeof runAllCalculations === 'function') {
+            // 1. Run the math first to set global variables
+            runAllCalculations();
+            // 2. Run the highlight using those variables
+            highlightZones();
+        }
+    };
+
+    function highlightZones() {
+    const updateBar = (barId, score) => {
+        const zones = document.querySelectorAll(`#${barId} .zone`);
+        zones.forEach(zone => {
+            const min = parseFloat(zone.dataset.min);
+            const max = parseFloat(zone.dataset.max);
+
+            // Highlight the zone if the score is within range
+            if (score >= min && score <= max) {
+                zone.classList.add('active');
+            } else {
+                zone.classList.remove('active');
+            }
+        });
+    };
+
+    // Use the global variables calculated in scoring.js
+    updateBar('social-bar', finalSocialScore);
+    updateBar('econ-bar', finalEconScore);
+}
+</script>
+
+</body>
+</html>
+
+        /* Vibrant and Blended Colors */
+        .far-left      { background-color: #ee2d35; color: white; }
+        .strong-left   { background-color: #ff5e5e; color: white; }
+        .mod-left      { background-color: #ffb3a1; }
+        .centre-left   { background-color: #e8b3d0; } /* Blended */
+        .centre        { background-color: #d1b3ff; }
+        .centre-right  { background-color: #a8b9ff; } /* Blended */
+        .mod-right     { background-color: #80bfff; }
+        .strong-right  { background-color: #1a8cff; color: white; }
+        .far-right     { background-color: #1a3d6e; color: white; }
