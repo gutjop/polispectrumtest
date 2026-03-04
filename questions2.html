@@ -36,6 +36,7 @@
             position: relative;
             text-align: center;
             box-sizing: border-box;
+            margin: 20px 0; /* Added margin for spacing on the page */
         }
 
         #progress {
@@ -80,7 +81,6 @@
             font-size: 1rem;
         }
 
-        /* FIXED: This class now allows full-width expansion */
         .grid-layout {
             flex: 1 1 30% !important;
             min-height: 80px !important;
@@ -112,7 +112,6 @@
         .btn-next { background: #dcdde1; color: #2d3436; cursor: not-allowed; border: 2px solid #ff3232; }
         .btn-next.active { background: #0055B7; color: #FFFFFF; cursor: pointer; border: 2px solid #000000;}
 
-        /* --- MOBILE RESPONSIVE STYLES --- */
         @media (max-width: 600px) {
             .test-container {
                 width: 100%;
@@ -122,6 +121,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                margin: 0;
             }
 
             #progress { top: 20px; right: 20px; }
@@ -142,7 +142,7 @@
                 min-width: unset;
                 padding: 18px;
                 font-size: 1.1rem;
-                flex: 1 1 100% !important; /* Ensures grid buttons also take full width */
+                flex: 1 1 100% !important;
             }
 
             .grid-layout {
@@ -159,13 +159,15 @@
             .btn-nav { width: 100%; padding: 18px; }
         }
 
+        /* Updated: Styled for inside the card */
         .site-footer {
             text-align: center;
-            padding: 20px;
+            padding: 20px 0 0 0;
             width: 100%;
             color: #666;
             font-size: 0.9rem;
-            margin-top: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
         }
 
         .site-footer a {
@@ -188,6 +190,10 @@
             <button class="btn-nav btn-next" id="next-btn" onclick="goNext()" disabled>Next Question</button>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
 </div>
 
 <script src="questions.js"></script>
@@ -267,10 +273,6 @@
         }
     };
 </script>
-
-<footer class="site-footer">
-    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
 
 </body>
 </html>

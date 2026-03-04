@@ -6,11 +6,14 @@
     <title>Political Spectrum Test</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #f0f2f5;
+        }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-color);
             display: flex;
-            flex-direction: column; /* This forces the footer below the test box */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -21,13 +24,15 @@
             padding: 3rem;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            max-width: 950px; /* Slightly wider to accommodate three large buttons */
+            max-width: 950px;
             width: 100%;
+            box-sizing: border-box;
+            margin: 20px 0;
         }
         h1 {
             font-size: 2.8rem;
             margin-bottom: 2rem;
-            color: #000000; /* Solid Black Title */
+            color: #000000;
             text-align: center;
             border-bottom: 2px solid #eee;
             padding-bottom: 1rem;
@@ -54,36 +59,34 @@
             margin-bottom: 10px;
         }
 
-        /* Side-by-Side-by-Side Button Layout */
         .btn-container {
             text-align: center;
             margin-top: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; /* Spacing between buttons */
-            flex-wrap: wrap; /* Allows stacking on small mobile screens */
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        /* Identical formatting for all three buttons */
         .nav-btn {
-          background-color: #6EC4E8; /* */
+          background-color: #6EC4E8;
           color: #002145;
           border: 2px solid #002145;
-          padding: 1.2rem 1.5rem; /* Adjusted horizontal padding to fit 3 in a row */
+          padding: 1.2rem 1.5rem;
           font-size: 1.05rem;
           font-weight: 700;
           border-radius: 8px;
           cursor: pointer;
           transition: all 0.3s ease-out;
           text-decoration: none;
-          flex: 1; /* Makes buttons grow equally */
-          min-width: 200px; /* Prevents buttons from getting too squished */
+          flex: 1;
+          min-width: 200px;
           max-width: 300px;
           display: flex;
           justify-content: center;
           align-items: center;
-          white-space: nowrap; /* Keeps text on one line */
+          white-space: nowrap;
         }
 
         .nav-btn:hover {
@@ -93,7 +96,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Mobile adjustment for smaller screens */
         @media (max-width: 700px) {
             .btn-container {
                 flex-direction: column;
@@ -104,17 +106,19 @@
             }
         }
 
+        /* Updated: Now styled for inside the container */
         .site-footer {
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 1px solid #eee; /* Light line for separation */
+            padding: 20px 0 0 0;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
             font-family: sans-serif;
             color: #666;
+            font-size: 0.9rem;
         }
 
         .site-footer a {
-            color: #007bff; /* Standard link blue or your signature yellow */
+            color: #007bff;
             text-decoration: none;
             margin: 0 10px;
         }
@@ -179,11 +183,11 @@
         <button class="nav-btn" onclick="window.location.href='questions2.html'">Start Test</button>
         <button class="nav-btn" onclick="window.location.href='faq.html'">FAQ Section</button>
     </div>
-</div>
 
-<footer class="site-footer">
-    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
+    <footer class="site-footer">
+        <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+</div>
 
 </body>
 </html>

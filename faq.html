@@ -42,12 +42,12 @@
         }
 
         .faq-container {
-            margin-top: 0; /* Ensures no extra gap above first item */
+            margin-top: 0;
         }
 
         .faq-item {
             border-bottom: 1px solid #eee;
-            padding: 18px 0; /* Slightly reduced padding */
+            padding: 18px 0;
         }
 
         .faq-question {
@@ -127,6 +127,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* Updated: Now styled for inside the card */
+        .site-footer {
+            text-align: center;
+            padding: 20px 0 0 0;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            font-family: sans-serif;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .site-footer a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
         @media (max-width: 700px) {
             .btn-container { flex-direction: column; }
             .nav-btn { width: 100%; max-width: 400px; }
@@ -184,9 +201,10 @@
             </button>
             <div class="faq-answer">
                 <p>Having a neutral option would necessarily skew the final score. If someone answered all the immigration
-                questions as neutral or unsure, it would give a skewed reading of the users political leaning.
-                Furthermore, the aim of the test is allow people to form opinions on tough and relevant propositions.
-                Encouraging people to lean in a direction, as opposed to staying on the fence, achieves that goal. </p>
+                    questions as neutral or unsure, it would give a skewed reading of the users political leaning.
+                    Furthermore, the aim of the test is allow people to form opinions on tough and relevant propositions.
+                    Encouraging people to lean in a direction, as opposed to staying on the fence, achieves that goal. </p>
+
             </div>
         </div>
 
@@ -209,6 +227,7 @@
 
                 <p>By choosing highly relevant questions and topics, this test is designed to avoid those dead zones,
                     making it easier to distinguish meaningful differences in political leanings among your peers.</p>
+
             </div>
         </div>
 
@@ -240,6 +259,7 @@
                     questions are framed where Strongly Agree is linked to right-leaning positions, and the other half towards
                     left-leaning positions. For the sake of consistency, for most of the questions, I avoided questions
                     with negation vocabulary such as "not", "un-", or "dis-."</p>
+
             </div>
         </div>
 
@@ -252,7 +272,7 @@
                 <p>Yes, it's nearly impossible to have a global left and global right that fits into the a vast
                     majority of countries. Developed countries and developing countries fundamentally face different
                     challenges and have a vast array of governance styles. The political parlance of developing countries
-                    will necessarily be vastly different, and hence the political left and right.</p>
+                    will necessarily be vastly different, ergo the political left and right will also be vastly different.</p>
 
                 <p>To provide a consistent and meaningful benchmark, I chose to focus on the common issues currently
                     facing major Western countries. It allows
@@ -260,6 +280,7 @@
                     specific discourse topics—such as immigration, environment, and social justice—are most actively
                     debated and polarized.
                 </p>
+
             </div>
         </div>
 
@@ -282,6 +303,7 @@
                     like the UK, may be naturally further to the left than that of another, like the US.
                     By using a standardized scale, the test measures where you stand on a global spectrum rather than
                     adjusting for the specific cultural shifts of every individual nation.</p>
+
             </div>
         </div>
 
@@ -314,7 +336,6 @@
                     significantly with the EU and authorized many non-EU work visas.
                     Naturally, when the scores are being generated, it will assign positions based off their track record
                     in office, and hence some politicians will have more moderate scores than expected.
-
                 </p>
 
             </div>
@@ -342,7 +363,7 @@
             </button>
             <div class="faq-answer">
                 <p>I wanted to keep the test at 50 questions exactly and avoid too much overlap with the existing questions.
-                But these are some of the questions that were not included, if you're curious.</p>
+                    But these are some of the questions that were not included, if you're curious.</p>
 
                 <ul>
                     <li>The government should hold a monopoly on the provision of key public goods such as water and electricity.</li>
@@ -357,8 +378,6 @@
 
             </div>
         </div>
-
-
     </div>
 
     <div class="btn-container">
@@ -366,6 +385,10 @@
         <button class="nav-btn" onclick="window.location.href='index.html'">Return to Home</button>
         <button class="nav-btn" onclick="window.location.href='results.html'">Return to Results</button>
     </div>
+
+    <footer class="site-footer">
+        <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
 </div>
 
 <script>
@@ -381,10 +404,6 @@
         });
     });
 </script>
-
-<footer class="site-footer">
-    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
 
 </body>
 </html>
