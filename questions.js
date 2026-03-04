@@ -51,7 +51,7 @@
     },
     {
         id: 11,
-        text: "Transgender men should be allowed to compete in women's sports.",
+        text: "Transgender women should be allowed to compete in women's sports.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -66,8 +66,8 @@
     }, // Added comma here
     {
         id: 14,
-        text: "Abortion should be legal uptil:",
-        options: ["Never Legal", "6 weeks", "12 weeks", "16 weeks", "24 weeks", "No gestational limit"]
+        text: "In normal circumstances, abortion should be legal uptil:",
+        options: ["Never Legal", "6 weeks (Fetal Heartbeat)", "12 weeks (First Trimester)", "16 weeks (EU Average)", "24 weeks (Fetal Viability)", "No gestational limit"]
     },
     {
         id: 15,

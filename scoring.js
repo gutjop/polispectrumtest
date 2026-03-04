@@ -5,7 +5,7 @@ let isCalculationComplete = false;
 let socialIndexEnd = 35;
 let econIndexStart = 36;
 let econIndexEnd = 48;
-let maxSocialScore = 69;
+let maxSocialScore = 71;
 let maxEconScore = 33;
 
 const weightmaps = {
@@ -25,10 +25,10 @@ const weightmaps = {
     // Special map for the 6-option abortion question
     abortMap: {
         "Never Legal": 3,
-        "6 weeks": 1.8,
-        "12 weeks": 0,
-        "16 weeks": -1.8,
-        "24 weeks": -2.5,
+        "6 weeks (Fetal Heartbeat)": 1.8,
+        "12 weeks (First Trimester)": 0,
+        "16 weeks (EU Average)": -1.8,
+        "24 weeks (Fetal Viability)": -2.5,
         "No gestational limit": -3
     }
 };

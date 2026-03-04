@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoliSpec Test | 48 Questions</title>
+    <title>PoliSpectrumTest</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,6 +19,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-color);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -54,7 +55,6 @@
             line-height: 1.2;
         }
 
-        /* Desktop: Horizontal Layout */
         #options-container {
             display: flex;
             justify-content: center;
@@ -80,16 +80,15 @@
             font-size: 1rem;
         }
 
-        /* This new class is ONLY for the abortion question */
+        /* FIXED: This class now allows full-width expansion */
         .grid-layout {
-            width: 30% !important;
-            height: 80px !important;
-            flex: none !important;
-}
+            flex: 1 1 30% !important;
+            min-height: 80px !important;
+            width: auto !important;
+        }
 
         .option-btn:hover { border-color: #fdf8f1; background: var(--btn-hover); }
 
-        /* Highlight for previous answers */
         .option-btn.selected {
             border-color: var(--text-color);
             background: #FFFFFF;
@@ -112,18 +111,6 @@
         .btn-back { background: #dcdde1; color: #2d3436; }
         .btn-next { background: #dcdde1; color: #2d3436; cursor: not-allowed; border: 2px solid #ff3232; }
         .btn-next.active { background: #0055B7; color: #FFFFFF; cursor: pointer; border: 2px solid #000000;}
-
-        /* Review Screen Row Style */
-        .review-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-            gap: 20px;
-        }
-        .review-row span { flex: 2; }
-        .review-row strong { flex: 1; text-align: right; color: var(--accent); }
 
         /* --- MOBILE RESPONSIVE STYLES --- */
         @media (max-width: 600px) {
@@ -151,10 +138,16 @@
             }
 
             .option-btn {
-                width: 100%;
+                width: 100% !important;
                 min-width: unset;
                 padding: 18px;
                 font-size: 1.1rem;
+                flex: 1 1 100% !important; /* Ensures grid buttons also take full width */
+            }
+
+            .grid-layout {
+                width: 100% !important;
+                flex: 1 1 100% !important;
             }
 
             .controls {
@@ -164,6 +157,20 @@
             }
 
             .btn-nav { width: 100%; padding: 18px; }
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .site-footer a {
+            color: #0055B7;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -181,18 +188,17 @@
             <button class="btn-nav btn-next" id="next-btn" onclick="goNext()" disabled>Next Question</button>
         </div>
     </div>
-
 </div>
 
 <script src="questions.js"></script>
 
 <script>
     let currentIndex = 0;
-    let userAnswers = {}; // Stores q1a, q2a, etc.
+    let userAnswers = {};
 
     function renderQuestion() {
         const q = questions[currentIndex];
-        const qKey = `q${currentIndex + 1}a`; // Set custom variable name
+        const qKey = `q${currentIndex + 1}a`;
 
         document.getElementById('question-text').innerText = q.text;
         document.getElementById('progress').innerText = `${currentIndex + 1} / ${questions.length}`;
@@ -209,19 +215,17 @@
                 btn.classList.add('grid-layout');
             }
 
-            // Back button memory: highlight if already answered
             if (userAnswers[qKey] === opt) {
                 btn.classList.add('selected');
             }
 
             btn.onclick = () => {
-                userAnswers[qKey] = opt; // Save the raw answer
+                userAnswers[qKey] = opt;
                 renderQuestion();
             };
             container.appendChild(btn);
         });
 
-        // Toggle Next button state
         const nextBtn = document.getElementById('next-btn');
         if (userAnswers[qKey]) {
             nextBtn.disabled = false;
@@ -251,11 +255,10 @@
     }
 
     function submitFinal() {
-        localStorage.setItem('poliTestAnswers', JSON.stringify(userAnswers)); // Deploy logic
+        localStorage.setItem('poliTestAnswers', JSON.stringify(userAnswers));
         window.location.href = 'results.html';
     }
 
-    // Initial load
     window.onload = () => {
         if (typeof questions !== 'undefined') {
             renderQuestion();
@@ -264,5 +267,10 @@
         }
     };
 </script>
+
+<footer class="site-footer">
+    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
 </body>
 </html>
