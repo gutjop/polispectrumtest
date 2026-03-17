@@ -85,11 +85,9 @@
             line-height: 1.1;
             padding: 2px;
             color: rgba(0, 0, 0, 0.7);
-            transition: all 0.3s ease;
             position: relative;
         }
 
-        /* Vibrant and Blended Colors */
         .far-left      { background-color: #1a3d6e; color: white; }
         .strong-left   { background-color: #1a8cff; color: white; }
         .mod-left      { background-color: #80bfff; }
@@ -100,7 +98,6 @@
         .strong-right  { background-color: #ff5e5e; color: white; }
         .far-right     { background-color: #ee2d35; color: white; }
 
-        /* Highlight Style: Outline Only */
         .zone.active {
             outline: 5px solid #ffff00;
             outline-offset: -5px;
@@ -125,7 +122,6 @@
             font-size: 0.85rem;
             color: #88807B;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         .watermark {
@@ -134,7 +130,6 @@
             color: #000000;
             margin-top: 25px;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         .actions {
@@ -142,7 +137,7 @@
             display: flex;
             gap: 15px;
             justify-content: center;
-            flex-wrap: wrap; /* Ensures buttons look good on mobile */
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -156,36 +151,33 @@
             border: none;
             display: inline-block;
             text-align: center;
+            min-width: 160px;
         }
 
-        .btn-blue  { background: #6EC4E8; color: 000000; border: 1px solid #002145; }
-        .btn-blue:hover { background: #002145; color: white; transform: translateY(-2px); }
-
-        .btn-dark  { background: #6EC4E8; color: 000000; border: 1px solid #002145;}
-        .btn-dark:hover { background: #002145; color: white; transform: translateY(-2px); }
-
+        .btn-blue  { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
+        .btn-dark  { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
         .btn-light { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
-        .btn-light:hover { background: #002145; color: #FFFFFF; transform: translateY(-2px); }
+
+        .btn:hover { background: #002145; color: white; transform: translateY(-2px); }
+
+        .site-footer {
+            text-align: center;
+            padding: 20px 0 0 0;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            font-family: sans-serif;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .site-footer a { color: #0055B7; text-decoration: none; margin: 0 10px; }
 
         #copyToast {
-            visibility: hidden;
-            min-width: 200px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-weight: 700;
+            visibility: hidden; min-width: 250px; background-color: #333; color: #fff;
+            text-align: center; border-radius: 8px; padding: 16px; position: fixed;
+            z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: 700;
         }
-        #copyToast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
+        #copyToast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
@@ -246,10 +238,14 @@
 <div class="actions">
     <button class="btn btn-blue" id="shareBtn" onclick="shareResults()">Share Result</button>
     <button class="btn btn-dark" onclick="downloadResults()">Save as Image</button>
-    <a href="faq.html" class="btn btn-light">Go to FAQ</a>
+    <a href="egpoliticians.html" class="btn btn-light">Politician Scores</a>
+    <a href="faq.html" class="btn btn-light">FAQ</a>
     <a href="index.html" class="btn btn-light">Retake Test</a>
-    <a href="egpoliticians.html" class="btn btn-light">See Politician Scores</a>
 </div>
+
+<footer class="site-footer">
+    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
+</footer>
 
 <div id="copyToast">Link Copied to Clipboard!</div>
 
@@ -272,55 +268,61 @@
             zones.forEach(zone => {
                 const min = parseFloat(zone.dataset.min);
                 const max = parseFloat(zone.dataset.max);
-
                 zone.classList.remove('active');
-                if (score >= min && score <= max) {
-                    zone.classList.add('active');
-                }
+                if (score >= min && score <= max) zone.classList.add('active');
             });
         };
+        updateBar('social-bar', finalSocialScore);
+        updateBar('econ-bar', finalEconScore);
+    }
 
-        if (typeof finalSocialScore !== 'undefined' && typeof finalEconScore !== 'undefined') {
-            updateBar('social-bar', finalSocialScore);
-            updateBar('econ-bar', finalEconScore);
+    async function shareResults() {
+        const card = document.querySelector('.results-card');
+        const shareBtn = document.getElementById('shareBtn');
+        const originalText = shareBtn.innerText;
+        shareBtn.innerText = "Generating...";
+
+        try {
+            const canvas = await html2canvas(card, { scale: 2, backgroundColor: "#f0f2f5" });
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], 'PoliSpectrum_Results.png', { type: 'image/png' });
+                const shareData = {
+                    title: 'My PoliSpectrum Results',
+                    text: 'You can take this test at polispectrumtest.com',
+                    files: [file]
+                };
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText("I just took the political spectrum test! Take it here: https://polispectrumtest.com");
+                    showToast("Sharing not supported on this browser. Link copied!");
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            shareBtn.innerText = originalText;
         }
     }
 
     function downloadResults() {
         const card = document.querySelector('.results-card');
-        html2canvas(card, {
-            scale: 2,
-            backgroundColor: "#f0f2f5"
-        }).then(canvas => {
+        html2canvas(card, { scale: 2, backgroundColor: "#f0f2f5" }).then(canvas => {
             const link = document.createElement('a');
-            link.download = 'PoliSpec_Results.png';
+            link.download = 'PoliSpectrum_Results.png';
             link.href = canvas.toDataURL("image/png");
             link.click();
         });
     }
 
-    function shareResults() {
-        const shareData = {
-            title: 'PoliSpec Results',
-            text: 'Check out my political spectrum results!',
-            url: window.location.href
-        };
-
-        if (navigator.share) {
-            navigator.share(shareData).catch(err => console.log('Error sharing', err));
-        } else {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                const toast = document.getElementById("copyToast");
-                toast.className = "show";
-                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-            });
-        }
+    function showToast(msg) {
+        const toast = document.getElementById("copyToast");
+        toast.innerText = msg;
+        toast.className = "show";
+        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
     }
 </script>
-
-<footer class="site-footer">
-    <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
     {
         id: 1,
         text: "My country should put significant effort into bringing legal economic migrants.",
-        options: ["Strongly Disgree", "Disagree", "Agree", "Strongly Agree"]
+        options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 2,
@@ -16,12 +16,12 @@
     },
     {
         id: 4,
-        text: "It is the responsibility of a migrant to assimilate into a new home country (i.e. by learning the language and integrating with the community)",
+        text: "If a migrant is in my country, I expect them to assimilate into my country by learning the language and meaningfully integrating with the community",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
-    {
+    { //Immigrants should be given the same access to social services as citizens/PRs.
         id: 5,
-        text: "Immigrants should be given the same access to social services as citizens and permanent residents",
+        text: "Government money should be used to provide significant support to refugees in my country.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -41,7 +41,7 @@
     }, // Added comma here
     {
         id: 9,
-        text: "Same sex marriage should be legal",
+        text: "Same sex marriage should be legal.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -72,7 +72,7 @@
     {
         id: 15,
         text: "Abortion laws should have greater flexibility in cases of rape or incest.",
-        options: ["Strongly Disgree", "Disagree", "Agree", "Strongly Agree"]
+        options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 16,
@@ -106,7 +106,7 @@
     },
     {
         id: 22,
-        text: "The government should prioritize environmental protection and climate action, even if it results in slower economic growth",
+        text: "The government should prioritize environmental protection and climate action, even if it results in slower economic growth.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -156,12 +156,12 @@
     },
     {
         id: 32,
-        text: "Merit is the only factor that should be taken into account for a persons acceptance into an institution. (not diversity)",
+        text: "Alongside merit, diversity should also be taken into account for an individual's acceptance into an institution.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 33,
-        text: "It is an unacceptable infringement on free speech to prohibit hate speech.",
+        text: "It is an acceptable infringement on free speech to prohibit hate speech.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -176,9 +176,9 @@
     },
     {
         id: 36,
-        text: "Criminal justice should be rehabilitative as opposed to punitive.",
+        text: "It is beneficial for public safety when the criminal justice system focuses on punishing criminals more than rehabilitating them.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
-    }, // Added comma here
+    },
     {
         id: 37,
         text: "Healthcare should be primarily funded and run by the government.",
@@ -216,12 +216,12 @@
     },
     {
         id: 44,
-        text: "A significant number of societies problems would be solved by increasing taxes on the rich.",
+        text: "The first step to solving many of societies' problems is to significantly increase taxes on the rich.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
-    {
+    {// If my standard of living is low, the government is mostly to blame.
         id: 45,
-        text: "If my standard of living is low, the government is mostly to blame.",
+        text: "It is likely that if someone's standard of living is low, it is more the result of inadequate government policy than individual choices.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
