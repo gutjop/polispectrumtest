@@ -276,31 +276,52 @@
         updateBar('econ-bar', finalEconScore);
     }
 
-    async function shareResults() {
+        async function shareResults() {
         const card = document.querySelector('.results-card');
         const shareBtn = document.getElementById('shareBtn');
         const originalText = shareBtn.innerText;
         shareBtn.innerText = "Generating...";
 
         try {
-            const canvas = await html2canvas(card, { scale: 2, backgroundColor: "#f0f2f5" });
-            canvas.toBlob(async (blob) => {
-                const file = new File([blob], 'PoliSpectrum_Results.png', { type: 'image/png' });
-                const shareData = {
-                    title: 'My PoliSpectrum Results',
-                    text: 'You can take this test at polispectrumtest.com',
-                    files: [file]
-                };
-
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share(shareData);
-                } else {
-                    await navigator.clipboard.writeText("I just took the political spectrum test! Take it here: https://polispectrumtest.com");
-                    showToast("Sharing not supported on this browser. Link copied!");
-                }
+            // 1. Capture the card as a canvas
+            const canvas = await html2canvas(card, {
+                scale: 2,
+                backgroundColor: "#f0f2f5",
+                useCORS: true // Ensures external fonts/images are captured
             });
+
+            // 2. Convert canvas to a Blob
+            canvas.toBlob(async (blob) => {
+                if (!blob) {
+                    showToast("Failed to generate image.");
+                    return;
+                }
+
+                // 3. Create a File object from the Blob
+                const file = new File([blob], 'PoliSpectrum_Results.png', { type: 'image/png' });
+
+                // 4. Check if the browser supports sharing this specific file
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            files: [file],
+                            title: 'My PoliSpectrum Results',
+                            text: 'Check out my political spectrum analysis!'
+                        });
+                    } catch (shareErr) {
+                        // User cancelled or share failed
+                        console.log("Share failed:", shareErr);
+                    }
+                } else {
+                    // Fallback: If direct image sharing isn't supported, download it
+                    downloadResults();
+                    showToast("Direct sharing not supported. Image downloaded instead!");
+                }
+            }, 'image/png');
+
         } catch (err) {
-            console.error(err);
+            console.error("Capture Error:", err);
+            showToast("Error generating shareable image.");
         } finally {
             shareBtn.innerText = originalText;
         }
