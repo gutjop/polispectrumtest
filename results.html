@@ -277,47 +277,45 @@
     }
 
     async function shareResults() {
-        const card = document.querySelector('.results-card');
         const shareBtn = document.getElementById('shareBtn');
+        const card = document.querySelector('.results-card');
         const originalText = shareBtn.innerText;
-        
-        shareBtn.innerText = "Capturing...";
+
+        shareBtn.innerText = "Generating Image...";
 
         try {
-            // 1. Capture the image
+            // 1. Create the canvas
             const canvas = await html2canvas(card, {
-                scale: 2,
+                scale: 2, // High res for clear text
                 backgroundColor: "#ffffff",
-                logging: false,
                 useCORS: true
             });
 
-            // 2. Convert to Blob then to File immediately
+            // 2. Wrap the Blob conversion in a Promise for better timing
             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-            if (!blob) return;
 
-            const file = new File([blob], 'PoliSpectrum_Result.png', { type: 'image/png' });
+            if (!blob) throw new Error("Canvas to Blob failed");
 
-            // 3. Define the share data
-            const shareData = {
-                files: [file],
-                title: 'PoliSpectrum Results',
-                text: 'Check out my political spectrum analysis!'
-            };
+            // 3. The "Photo" Magic: Create a File object with a .png extension
+            const file = new File([blob], 'PoliSpectrum_Results.png', { type: 'image/png' });
 
-            // 4. CHROME CHECK: Validate before sharing
-            if (navigator.canShare && navigator.canShare(shareData)) {
-                // This MUST be the very next thing after the click logic
-                await navigator.share(shareData);
+            // 4. Check if the browser is "Share-Ready"
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file], // This triggers the photo preview in the menu
+                    title: 'PoliSpectrum Results',
+                    text: 'My political spectrum analysis!'
+                });
             } else {
-                throw new Error("Cannot share files on this browser");
+                // Fallback: If the menu can't handle files, just download it
+                downloadResults();
+                alert("Direct sharing not supported. Image saved to your gallery!");
             }
 
         } catch (err) {
-            console.error("Share failed:", err);
-            // Fallback: If it's a desktop or Chrome blocks the file, download it.
+            console.error("Share Error:", err);
+            // If everything fails, fallback to download so the user isn't stuck
             downloadResults();
-            showToast("Image saved! You can now paste it into your chat.");
         } finally {
             shareBtn.innerText = originalText;
         }
