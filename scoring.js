@@ -120,8 +120,7 @@ function calcSocialScore(answers) {
             // Added '|| 0' to prevent NaN if a choice doesn't match the map
             const points = weightmaps[mapName][choice] || 0;
             subtotal += points;
-            console.log("Question", `q${i}a`, points)
-            console.log("Subtotal ", subtotal)
+
         }
     }
     console.log("Subtotal before normalization:", subtotal)
@@ -139,8 +138,7 @@ function calcEconScore(answers) {
             // Added '|| 0' to prevent NaN
             const points = weightmaps[mapName][choice] || 0;
             subtotal += points;
-            console.log("Question", `q${i}a`, points)
-            console.log("Subtotal ", subtotal)
+
         }
     }
     console.log("Econ Subtotal before normalization:", subtotal)

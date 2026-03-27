@@ -11,7 +11,6 @@
             background-color: #f0f2f5;
             display: flex;
             flex-direction: column;
-            flex-direction: column;
             align-items: center;
             padding: 40px 20px;
             margin: 0;
@@ -84,13 +83,13 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .score-num {
             font-weight: 900;
             font-size: 1.2rem;
-            color: #002145;
+            color: #6c5ce7; /* Updated to requested color */
         }
 
         .spectrum-bar {
@@ -98,9 +97,10 @@
             width: 100%;
             height: 45px;
             border-radius: 6px;
-            overflow: hidden;
             margin-bottom: 25px;
             border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            overflow: visible;
         }
 
         .zone {
@@ -115,6 +115,7 @@
             line-height: 1;
             padding: 2px;
             text-transform: uppercase;
+            position: relative;
         }
 
         /* Zone Background Colors */
@@ -128,15 +129,34 @@
         .strong-right { background-color: #ff5e5e; color: #FFFFFF; }
         .far-right { background-color: #ee2d35; color: #FFFFFF; }
 
-        /* Active State Highlighting */
+        /* Adjusted Active Highlighting - Removed glow and toned down yellow */
         .zone.active {
-            outline: 4px solid #efde00;
+            outline: 5px solid #ffff00;
             outline-offset: -2px;
-            z-index: 5;
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.6);
+            z-index: 10;
+            transform: scale(1.05);
         }
 
-        /* Ensure text visibility remains correct when zone is active */
+        /* Proportional Triangle Marker with black outline */
+        .proportional-marker {
+            position: absolute;
+            top: -9px;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 11px solid #ffff00;
+            display: none;
+            transform: translateX(-50%);
+            z-index: 25;
+            /* Added thin black outline via drop-shadow */
+            filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000);
+        }
+
+        .zone.active .proportional-marker {
+            display: block;
+        }
+
         .far-left.active, .strong-left.active, .strong-right.active, .far-right.active {
             color: #FFFFFF !important;
         }
@@ -166,7 +186,6 @@
             text-align: left;
         }
 
-        /* Bottom Navigation Styling matching index.html */
         .nav-links {
             margin-top: 3rem;
             display: flex;
@@ -253,15 +272,15 @@
                 <span id="socialScore" class="score-num">--</span>
             </div>
             <div class="spectrum-bar" id="socialBar">
-                <div class="zone far-left" id="s-z1">Hard Left</div>
-                <div class="zone strong-left" id="s-z2">Strong Left</div>
-                <div class="zone mod-left" id="s-z3">Mod. Left</div>
-                <div class="zone centre-left" id="s-z4">Centre Left</div>
-                <div class="zone centre" id="s-z5">Centre</div>
-                <div class="zone centre-right" id="s-z6">Centre Right</div>
-                <div class="zone mod-right" id="s-z7">Mod. Right</div>
-                <div class="zone strong-right" id="s-z8">Strong Right</div>
-                <div class="zone far-right" id="s-z9">Hard Right</div>
+                <div class="zone far-left" id="s-z1">Hard Left<div class="proportional-marker"></div></div>
+                <div class="zone strong-left" id="s-z2">Strong Left<div class="proportional-marker"></div></div>
+                <div class="zone mod-left" id="s-z3">Mod. Left<div class="proportional-marker"></div></div>
+                <div class="zone centre-left" id="s-z4">Centre Left<div class="proportional-marker"></div></div>
+                <div class="zone centre" id="s-z5">Centre<div class="proportional-marker"></div></div>
+                <div class="zone centre-right" id="s-z6">Centre Right<div class="proportional-marker"></div></div>
+                <div class="zone mod-right" id="s-z7">Mod. Right<div class="proportional-marker"></div></div>
+                <div class="zone strong-right" id="s-z8">Strong Right<div class="proportional-marker"></div></div>
+                <div class="zone far-right" id="s-z9">Hard Right<div class="proportional-marker"></div></div>
             </div>
 
             <div class="score-display">
@@ -269,15 +288,15 @@
                 <span id="econScore" class="score-num">--</span>
             </div>
             <div class="spectrum-bar" id="econBar">
-                <div class="zone far-left" id="e-z1">Hard Left</div>
-                <div class="zone strong-left" id="e-z2">Strong Left</div>
-                <div class="zone mod-left" id="e-z3">Mod. Left</div>
-                <div class="zone centre-left" id="e-z4">Centre Left</div>
-                <div class="zone centre" id="e-z5">Centre</div>
-                <div class="zone centre-right" id="e-z6">Centre Right</div>
-                <div class="zone mod-right" id="e-z7">Mod. Right</div>
-                <div class="zone strong-right" id="e-z8">Strong Right</div>
-                <div class="zone far-right" id="e-z9">Hard Right</div>
+                <div class="zone far-left" id="e-z1">Hard Left<div class="proportional-marker"></div></div>
+                <div class="zone strong-left" id="e-z2">Strong Left<div class="proportional-marker"></div></div>
+                <div class="zone mod-left" id="e-z3">Mod. Left<div class="proportional-marker"></div></div>
+                <div class="zone centre-left" id="e-z4">Centre Left<div class="proportional-marker"></div></div>
+                <div class="zone centre" id="e-z5">Centre<div class="proportional-marker"></div></div>
+                <div class="zone centre-right" id="e-z6">Centre Right<div class="proportional-marker"></div></div>
+                <div class="zone mod-right" id="e-z7">Mod. Right<div class="proportional-marker"></div></div>
+                <div class="zone strong-right" id="e-z8">Strong Right<div class="proportional-marker"></div></div>
+                <div class="zone far-right" id="e-z9">Hard Right<div class="proportional-marker"></div></div>
             </div>
         </div>
 
@@ -309,7 +328,7 @@
             { name: "Rishi Sunak", party: "Conservative", social: 1.67, econ: 6.36 },
             { name: "Kemi Badenoch", party: "Conservative", social: 2.48, econ: 6.73 },
             { name: "Nigel Farage", party: "Reform UK", social: 5.84, econ: 6.36 },
-            { name: "Jeremy Corbyn", party: "Independent", social: -8.71, econ: -9.15 },
+            { name: "Jeremy Corbyn", party: "Your Party", social: -8.71, econ: -9.15 },
             { name: "Zack Polanski", party: "Green", social: -8.54, econ: -9.15 }
         ],
         "Canada": [
@@ -383,7 +402,6 @@
         document.getElementById('socialScore').innerText = (pol.social > 0 ? "+" : "") + pol.social.toFixed(2);
         document.getElementById('econScore').innerText = (pol.econ > 0 ? "+" : "") + pol.econ.toFixed(2);
 
-        // Clear all previous active states
         document.querySelectorAll('.zone').forEach(z => z.classList.remove('active'));
 
         highlightZone('s', pol.social);
@@ -392,21 +410,27 @@
 
     function highlightZone(prefix, score) {
         let zoneNum;
+        let min, max;
 
-        // Correct range logic
-        if (score <= -7.50) zoneNum = 1;
-        else if (score > -7.50 && score <= -5.00) zoneNum = 2;
-        else if (score > -5.00 && score <= -2.50) zoneNum = 3;
-        else if (score > -2.50 && score <= -1.01) zoneNum = 4;
-        else if (score > -1.01 && score <= 1.00) zoneNum = 5;
-        else if (score > 1.00 && score <= 2.50) zoneNum = 6;
-        else if (score > 2.50 && score <= 5.00) zoneNum = 7;
-        else if (score > 5.00 && score <= 7.50) zoneNum = 8;
-        else zoneNum = 9;
+        if (score <= -7.50) { zoneNum = 1; min = -10; max = -7.50; }
+        else if (score <= -5.00) { zoneNum = 2; min = -7.50; max = -5.00; }
+        else if (score <= -2.50) { zoneNum = 3; min = -5.00; max = -2.50; }
+        else if (score <= -1.01) { zoneNum = 4; min = -2.50; max = -1.01; }
+        else if (score <= 1.00) { zoneNum = 5; min = -1.01; max = 1.00; }
+        else if (score <= 2.50) { zoneNum = 6; min = 1.00; max = 2.50; }
+        else if (score <= 5.00) { zoneNum = 7; min = 2.50; max = 5.00; }
+        else if (score <= 7.50) { zoneNum = 8; min = 5.00; max = 7.50; }
+        else { zoneNum = 9; min = 7.50; max = 10; }
 
         const target = document.getElementById(`${prefix}-z${zoneNum}`);
         if (target) {
             target.classList.add('active');
+            const range = max - min;
+            const progress = (score - min) / range;
+            const marker = target.querySelector('.proportional-marker');
+            if (marker) {
+                marker.style.left = (progress * 100) + "%";
+            }
         }
     }
 </script>

@@ -9,6 +9,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
+        :root {
+            --highlight-yellow: #ffff00;
+            --outline-black: #000000;
+            --text-main: #2d3436;
+            --sub-label-gray: #88807B;
+            --btn-blue: #6EC4E8;
+            --btn-dark: #002145;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5;
@@ -21,6 +30,8 @@
             padding: 20px;
         }
 
+
+
         .results-card {
             background: white;
             padding: 40px;
@@ -29,12 +40,14 @@
             width: 100%;
             max-width: 850px;
             position: relative;
+            box-sizing: border-box;
+            overflow: visible; /* Required for triangle to overflow bar */
         }
 
         h1 {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #2d3436;
+            color: var(--text-main);
             margin-top: 0;
             margin-bottom: 40px;
             border-bottom: 1px solid #eee;
@@ -42,7 +55,7 @@
         }
 
         .axis-section {
-            margin-bottom: 45px;
+            margin-bottom: 25px;
         }
 
         .score-header {
@@ -55,7 +68,7 @@
         .axis-label {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #2d3436;
+            color: var(--text-main);
         }
 
         .score-value {
@@ -69,8 +82,8 @@
             width: 100%;
             height: 55px;
             border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 10px;
+            position: relative;
+            overflow: visible;
             border: 1px solid rgba(0,0,0,0.1);
         }
 
@@ -88,7 +101,7 @@
             position: relative;
         }
 
-        .far-left      { background-color: #1a3d6e; color: white; }
+        .far-left      { background-color: #1a3d6e; color: white; border-radius: 11px 0 0 11px; }
         .strong-left   { background-color: #1a8cff; color: white; }
         .mod-left      { background-color: #80bfff; }
         .centre-left   { background-color: #a8b9ff; }
@@ -96,44 +109,69 @@
         .centre-right  { background-color: #e8b3d0; }
         .mod-right     { background-color: #ffb3a1; }
         .strong-right  { background-color: #ff5e5e; color: white; }
-        .far-right     { background-color: #ee2d35; color: white; }
+        .far-right     { background-color: #ee2d35; color: white; border-radius: 0 11px 11px 0; }
 
+        /* ACTIVE ZONE OUTLINE */
         .zone.active {
-            outline: 5px solid #ffff00;
-            outline-offset: -5px;
+            outline: 5px solid var(--highlight-yellow);
+            outline-offset: -2px;
             z-index: 5;
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
+
+        /* SMALL TRIANGLE MARKER */
+        .proportional-marker {
+            position: absolute;
+            top: -10px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid var(--highlight-yellow);
+            display: none;
+            transform: translateX(-50%);
+            z-index: 30;
+            /* Thin black outline for the triangle */
+            filter: drop-shadow(1px 0 0 var(--outline-black))
+                    drop-shadow(-1px 0 0 var(--outline-black))
+                    drop-shadow(0 1px 0 var(--outline-black))
+                    drop-shadow(0 -1px 0 var(--outline-black));
+        }
+
+        .zone.active .proportional-marker { display: block; }
 
         .sub-labels {
             display: flex;
             justify-content: space-between;
             font-size: 0.9rem;
             font-weight: 700;
-            color: #88807B;
-            margin-top: 5px;
+            color: var(--sub-label-gray);
+            margin-top: 15px;
+        }
+
+        /* FOOTER BRANDING ADJUSTMENTS */
+        .footer-branding {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-bottom: 10px;
         }
 
         .version-tag {
-            position: absolute;
-            bottom: 25px;
-            left: 40px;
             font-size: 0.85rem;
-            color: #88807B;
+            color: var(--sub-label-gray);
             font-weight: 800;
         }
 
         .watermark {
-            text-align: right;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #000000;
-            margin-top: 25px;
-            font-weight: 800;
+            font-weight: 900;
+            text-decoration: none;
         }
 
         .actions {
-            margin-top: 30px;
+            margin-top: 40px;
             display: flex;
             gap: 15px;
             justify-content: center;
@@ -141,36 +179,32 @@
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
             cursor: pointer;
-            border: none;
+            border: 2px solid var(--btn-dark);
             display: inline-block;
             text-align: center;
-            min-width: 160px;
+            min-width: 180px;
+            background: var(--btn-blue);
+            color: var(--btn-dark);
         }
 
-        .btn-blue  { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
-        .btn-dark  { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
-        .btn-light { background: #6EC4E8; color: #000000; border: 1px solid #002145; }
-
-        .btn:hover { background: #002145; color: white; transform: translateY(-2px); }
+        .btn:hover { background: var(--btn-dark); color: white; transform: translateY(-2px); }
 
         .site-footer {
             text-align: center;
             padding: 20px 0 0 0;
-            margin-top: 40px;
-            border-top: 1px solid #eee;
-            font-family: sans-serif;
-            color: #666;
+            margin-top: 50px;
             font-size: 0.9rem;
+            color: #666;
         }
 
-        .site-footer a { color: #0055B7; text-decoration: none; margin: 0 10px; }
+        .site-footer a { color: #0055B7; text-decoration: none; font-weight: 600; }
 
         #copyToast {
             visibility: hidden; min-width: 250px; background-color: #333; color: #fff;
@@ -180,9 +214,67 @@
         #copyToast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-    </style>
+
+        /* Mobile-Specific Logic */
+        @media (max-width: 600px) and (orientation: portrait) {
+            /* 1. Show the orientation tip */
+            .landscape-tip {
+                display: block;
+            }
+
+            /* 2. Hide text for all zones by default */
+            .zone {
+                color: transparent !important;
+                font-size: 0 !important;
+            }
+
+            /* 3. Only show text for the active highlighted box */
+            .zone.active {
+                color: #2d3436 !important; /* Adjust based on your text color */
+                font-size: 0.6rem !important;
+                font-weight: 900;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* 4. Ensure the active box scales slightly to fit the text better */
+            .zone.active {
+                transform: scale(1.1);
+                z-index: 10;
+                outline: 4px solid #ffff00;
+            }
+        }
+
+        /* Hidden by default */
+        .landscape-tip {
+            display: none;
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #ffeeba;
+            text-align: center;
+            width: 100%;
+            max-width: 850px;
+        }
+
+        /* Only shows on mobile (max-width 600px) AND in Portrait orientation */
+        @media (max-width: 600px) and (orientation: portrait) {
+            .landscape-tip {
+                display: block;
+            }
+        }
+            </style>
 </head>
 <body>
+
+<div class="landscape-tip">
+    <span>🔄 Tip: For a better view of the labels, rotate your phone to landscape mode.</span>
+</div>
 
 <div class="results-card">
     <h1>Political Spectrum Test Results</h1>
@@ -193,15 +285,15 @@
             <span class="score-value" id="social-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="social-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
         </div>
         <div class="sub-labels">
             <span>Progressive</span>
@@ -215,15 +307,15 @@
             <span class="score-value" id="econ-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="econ-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
         </div>
         <div class="sub-labels">
             <span>Collectivist</span>
@@ -231,16 +323,16 @@
         </div>
     </div>
 
-    <div class="version-tag">v1.01</div>
-    <div class="watermark">polispectrumtest.com</div>
+    <div class="footer-branding">
+        <div class="version-tag">v1.01</div>
+        <a href="#" class="watermark">polispectrumtest.com</a>
+    </div>
 </div>
 
 <div class="actions">
-    <button class="btn btn-blue" id="shareBtn" onclick="shareResults()">Share Result</button>
-    <button class="btn btn-dark" onclick="downloadResults()">Save as Image</button>
-    <a href="egpoliticians.html" class="btn btn-light">Politician Scores</a>
-    <a href="faq.html" class="btn btn-light">FAQ</a>
-    <a href="index.html" class="btn btn-light">Retake Test</a>
+    <a href="egpoliticians.html" class="btn">Politician Scores</a>
+    <a href="faq.html" class="btn">FAQ</a>
+    <a href="index.html" class="btn">Retake Test</a>
 </div>
 
 <footer class="site-footer">
@@ -257,87 +349,31 @@
             runAllCalculations();
             document.getElementById('social-val').innerText = (finalSocialScore > 0 ? "+" : "") + Number(finalSocialScore).toFixed(2);
             document.getElementById('econ-val').innerText = (finalEconScore > 0 ? "+" : "") + Number(finalEconScore).toFixed(2);
-            highlightZones();
+            highlightZones('social-bar', finalSocialScore);
+            highlightZones('econ-bar', finalEconScore);
         }
     };
 
-    function highlightZones() {
-        const updateBar = (barId, scoreVal) => {
-            const score = parseFloat(scoreVal);
-            const zones = document.querySelectorAll(`#${barId} .zone`);
-            zones.forEach(zone => {
-                const min = parseFloat(zone.dataset.min);
-                const max = parseFloat(zone.dataset.max);
-                zone.classList.remove('active');
-                if (score >= min && score <= max) zone.classList.add('active');
-            });
-        };
-        updateBar('social-bar', finalSocialScore);
-        updateBar('econ-bar', finalEconScore);
-    }
+    function highlightZones(barId, scoreVal) {
+        const score = parseFloat(scoreVal);
+        const zones = document.querySelectorAll(`#${barId} .zone`);
+        zones.forEach(zone => {
+            const min = parseFloat(zone.dataset.min);
+            const max = parseFloat(zone.dataset.max);
+            zone.classList.remove('active');
+            if (score >= min && score <= max) {
+                zone.classList.add('active');
 
-    async function shareResults() {
-        const shareBtn = document.getElementById('shareBtn');
-        const card = document.querySelector('.results-card');
-        const originalText = shareBtn.innerText;
-
-        shareBtn.innerText = "Generating Image...";
-
-        try {
-            // 1. Create the canvas
-            const canvas = await html2canvas(card, {
-                scale: 2, // High res for clear text
-                backgroundColor: "#ffffff",
-                useCORS: true
-            });
-
-            // 2. Wrap the Blob conversion in a Promise for better timing
-            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-
-            if (!blob) throw new Error("Canvas to Blob failed");
-
-            // 3. The "Photo" Magic: Create a File object with a .png extension
-            const file = new File([blob], 'PoliSpectrum_Results.png', { type: 'image/png' });
-
-            // 4. Check if the browser is "Share-Ready"
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    files: [file], // This triggers the photo preview in the menu
-                    title: 'PoliSpectrum Results',
-                    text: 'My political spectrum analysis!'
-                });
-            } else {
-                // Fallback: If the menu can't handle files, just download it
-                downloadResults();
-                alert("Direct sharing not supported. Image saved to your gallery!");
+                // Calculate position relative to the zone's specific width
+                const range = max - min;
+                const progress = (score - min) / range;
+                const marker = zone.querySelector('.proportional-marker');
+                if (marker) marker.style.left = (progress * 100) + "%";
             }
-
-        } catch (err) {
-            console.error("Share Error:", err);
-            // If everything fails, fallback to download so the user isn't stuck
-            downloadResults();
-        } finally {
-            shareBtn.innerText = originalText;
-        }
-    }
-
-    function downloadResults() {
-        const card = document.querySelector('.results-card');
-        html2canvas(card, { scale: 2, backgroundColor: "#f0f2f5" }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'PoliSpectrum_Results.png';
-            link.href = canvas.toDataURL("image/png");
-            link.click();
         });
     }
 
-    function showToast(msg) {
-        const toast = document.getElementById("copyToast");
-        toast.innerText = msg;
-        toast.className = "show";
-        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-    }
-</script>
 
+</script>
 </body>
 </html>

@@ -131,7 +131,7 @@
     },
     {
         id: 27,
-        text: "The sale and purchase of sexual services should be legal.",
+        text: "The sale and purchase of prostitution should be legal.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
