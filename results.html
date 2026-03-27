@@ -30,8 +30,6 @@
             padding: 20px;
         }
 
-
-
         .results-card {
             background: white;
             padding: 40px;
@@ -41,7 +39,7 @@
             max-width: 850px;
             position: relative;
             box-sizing: border-box;
-            overflow: visible; /* Required for triangle to overflow bar */
+            overflow: visible;
         }
 
         h1 {
@@ -111,14 +109,12 @@
         .strong-right  { background-color: #ff5e5e; color: white; }
         .far-right     { background-color: #ee2d35; color: white; border-radius: 0 11px 11px 0; }
 
-        /* ACTIVE ZONE OUTLINE */
         .zone.active {
             outline: 5px solid var(--highlight-yellow);
             outline-offset: -2px;
             z-index: 5;
         }
 
-        /* SMALL TRIANGLE MARKER */
         .proportional-marker {
             position: absolute;
             top: -10px;
@@ -130,7 +126,6 @@
             display: none;
             transform: translateX(-50%);
             z-index: 30;
-            /* Thin black outline for the triangle */
             filter: drop-shadow(1px 0 0 var(--outline-black))
                     drop-shadow(-1px 0 0 var(--outline-black))
                     drop-shadow(0 1px 0 var(--outline-black))
@@ -148,7 +143,6 @@
             margin-top: 15px;
         }
 
-        /* FOOTER BRANDING ADJUSTMENTS */
         .footer-branding {
             display: flex;
             justify-content: space-between;
@@ -206,43 +200,34 @@
 
         .site-footer a { color: #0055B7; text-decoration: none; font-weight: 600; }
 
-        #copyToast {
-            visibility: hidden; min-width: 250px; background-color: #333; color: #fff;
-            text-align: center; border-radius: 8px; padding: 16px; position: fixed;
-            z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: 700;
-        }
-        #copyToast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-
-        /* Mobile-Specific Logic */
+        /* PORTRAIT MODE COLOR FIX */
         @media (max-width: 600px) and (orientation: portrait) {
-            /* 1. Show the orientation tip */
-            .landscape-tip {
-                display: block;
-            }
+            .landscape-tip { display: block; }
 
-            /* 2. Hide text for all zones by default */
             .zone {
                 color: transparent !important;
                 font-size: 0 !important;
             }
 
-            /* 3. Only show text for the active highlighted box */
             .zone.active {
-                color: #2d3436 !important; /* Adjust based on your text color */
+                /* Default active color for middle zones */
+                color: #2d3436 !important;
                 font-size: 0.6rem !important;
                 font-weight: 900;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-            }
-
-            /* 4. Ensure the active box scales slightly to fit the text better */
-            .zone.active {
                 transform: scale(1.1);
                 z-index: 10;
                 outline: 4px solid #ffff00;
+            }
+
+            /* NEW: Force white text on dark active zones in portrait */
+            .zone.active.far-left,
+            .zone.active.strong-left,
+            .zone.active.strong-right,
+            .zone.active.far-right {
+                color: #ffffff !important;
             }
         }
 
@@ -268,7 +253,7 @@
                 display: block;
             }
         }
-            </style>
+    </style>
 </head>
 <body>
 
@@ -339,8 +324,6 @@
     <p>© 2026 PoliSpectrum | <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
-<div id="copyToast">Link Copied to Clipboard!</div>
-
 <script src="scoring.js"></script>
 
 <script>
@@ -363,8 +346,6 @@
             zone.classList.remove('active');
             if (score >= min && score <= max) {
                 zone.classList.add('active');
-
-                // Calculate position relative to the zone's specific width
                 const range = max - min;
                 const progress = (score - min) / range;
                 const marker = zone.querySelector('.proportional-marker');
@@ -372,8 +353,6 @@
             }
         });
     }
-
-
 </script>
 </body>
 </html>
