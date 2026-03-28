@@ -242,6 +242,17 @@
         });
 
         const nextBtn = document.getElementById('next-btn');
+
+        // --- NEW LOGIC STARTS HERE ---
+        // If it's the last question, change the text to Submit Test
+        if (currentIndex === questions.length - 1) {
+            nextBtn.innerText = "Submit Test";
+        } else {
+            nextBtn.innerText = "Next Question";
+        }
+        // --- NEW LOGIC ENDS HERE ---
+
+
         if (userAnswers[qKey]) {
             nextBtn.disabled = false;
             nextBtn.classList.add('active');
