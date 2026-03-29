@@ -36,7 +36,7 @@
     },
     {
         id: 8,
-        text: "Any immigrant found to have committed a serious crime should be deported.",
+        text: "An immigrant found to have committed a serious crime should be deported.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     }, // Added comma here
     {
