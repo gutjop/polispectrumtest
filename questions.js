@@ -1,7 +1,7 @@
   const questions = [
-    {
+    { // My country should make an effort into bringing legal economic migrants.
         id: 1,
-        text: "My country should put significant effort into bringing legal economic migrants.",
+        text: "My country should promote legal economic migration.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -11,7 +11,7 @@
     }, // Added comma here
     {
         id: 3,
-        text: "My country benefits from having illegal immigrants/refugees",
+        text: "My country benefits from having unauthorized immigrants/refugees",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -21,17 +21,17 @@
     },
     { //Immigrants should be given the same access to social services as citizens/PRs.
         id: 5,
-        text: "Government money should be used to provide significant support to refugees in my country.",
+        text: "The government should provide support to refugees in my country.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 6,
-        text: "If a migrant entered my country illegally today, I would want them deported as soon as possible.",
+        text: "If a migrant entered my country without proper authorization today, I would want them deported as soon as possible.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 7,
-        text: "An illegal immigrant who has already integrated themselves in my country and has not caused any serious issues should be given a path to citizenship.",
+        text: "An unauthorized immigrant who has already integrated themselves in my country and has not caused any serious issues should be given a path to citizenship.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         id: 10,
-        text: "Gender transitioning care should be permissible for minors.",
+        text: "Medical gender transitioning care should be permissible for minors.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -86,14 +86,14 @@
     },
     {
         id: 18,
-        text: "Significant financial reparations are necessary to make peace with past transgressions and injustices that may have persisted through society",
+        text: "Financial reparations are necessary to make peace with past transgressions and injustices that may have persisted through society",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 19,
         text: "The Western world has too much influence on global politics.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
-    }, // Added comma here
+    },
     {
         id: 20,
         text: "My country has just found a vast oil deposit. It is imperative that my country should start drilling and selling oil on the global markets.",
@@ -101,7 +101,7 @@
     },
     {
         id: 21,
-        text: "The environmental transition should be accomplished with investments in technology as opposed to regulation.",
+        text: "The move towards a more environmentally friendly society should be achieved more through investments in technology than regulation. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -191,7 +191,7 @@
     },
     {
         id: 39,
-        text: "The government should provide significant social services for foreign nationals residing in my country.",
+        text: "Foreign nationals residing in my country should receive a similar level of social services from the government.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
@@ -211,12 +211,12 @@
     },
     {
         id: 43,
-        text: "Strong anti-trust regulations are necessary to regulate large firms, for the ultimate benefit of the consumer.",
+        text: "Strong anti-trust regulations for large corporations are ultimately beneficial for the consumer.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {
         id: 44,
-        text: "The first step to solving many of societies' problems is to significantly increase taxes on the rich.",
+        text: "The first step to solving many of societies' problems is to significantly increase tax revenue from the rich.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
     {// If my standard of living is low, the government is mostly to blame.
@@ -229,7 +229,7 @@
         text: "Inheritance tax should be low.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
-    {
+    { // A top priority for the government should be to avoid regularly taking on public debt.
         id: 47,
         text: "A top priority of the government should be to avoid sustained large fiscal deficits.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
@@ -250,6 +250,7 @@
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"]
     },
   ];
+
 
 
 
