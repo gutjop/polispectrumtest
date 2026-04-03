@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ6D29Q4VV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-VJ6D29Q4VV');
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2475534598881586"
-            crossorigin="anonymous"></script>
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2475534598881586" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-2475534598881586">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoliSpec | Results</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
@@ -31,6 +26,27 @@
             --sub-label-gray: #88807B;
             --btn-blue: #6EC4E8;
             --btn-dark: #002145;
+
+            /* USA Default Colors */
+            --col-far-left: #1a3d6e;
+            --col-strong-left: #1a8cff;
+            --col-mod-left: #80bfff;
+            --col-centre-left: #a8b9ff;
+            --col-far-right: #ee2d35;
+            --col-strong-right: #ff5e5e;
+            --col-mod-right: #ffb3a1;
+            --col-centre-right: #e8b3d0;
+        }
+
+        body.mode-row {
+            --col-far-left: #ee2d35;
+            --col-strong-left: #ff5e5e;
+            --col-mod-left: #ffb3a1;
+            --col-centre-left: #e8b3d0;
+            --col-far-right: #1a3d6e;
+            --col-strong-right: #1a8cff;
+            --col-mod-right: #80bfff;
+            --col-centre-right: #a8b9ff;
         }
 
         body {
@@ -54,7 +70,6 @@
             max-width: 850px;
             position: relative;
             box-sizing: border-box;
-            overflow: visible;
         }
 
         h1 {
@@ -67,9 +82,7 @@
             padding-bottom: 20px;
         }
 
-        .axis-section {
-            margin-bottom: 25px;
-        }
+        .axis-section { margin-bottom: 25px; }
 
         .score-header {
             display: flex;
@@ -78,17 +91,8 @@
             margin-bottom: 20px;
         }
 
-        .axis-label {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .score-value {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #6c5ce7;
-        }
+        .axis-label { font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
+        .score-value { font-size: 1.5rem; font-weight: 900; color: #6c5ce7; }
 
         .spectrum-bar {
             display: flex;
@@ -96,7 +100,6 @@
             height: 55px;
             border-radius: 12px;
             position: relative;
-            overflow: visible;
             border: 1px solid rgba(0,0,0,0.1);
         }
 
@@ -114,50 +117,35 @@
             position: relative;
         }
 
-        .far-left      { background-color: #1a3d6e; color: white; border-radius: 11px 0 0 11px; }
-        .strong-left   { background-color: #1a8cff; color: white; }
-        .mod-left      { background-color: #80bfff; }
-        .centre-left   { background-color: #a8b9ff; }
+        .far-left      { background-color: var(--col-far-left); color: white; border-radius: 11px 0 0 11px; }
+        .strong-left   { background-color: var(--col-strong-left); color: white; }
+        .mod-left      { background-color: var(--col-mod-left); }
+        .centre-left   { background-color: var(--col-centre-left); }
         .centre        { background-color: #d1b3ff; }
-        .centre-right  { background-color: #e8b3d0; }
-        .mod-right     { background-color: #ffb3a1; }
-        .strong-right  { background-color: #ff5e5e; color: white; }
-        .far-right     { background-color: #ee2d35; color: white; border-radius: 0 11px 11px 0; }
+        .centre-right  { background-color: var(--col-centre-right); }
+        .mod-right     { background-color: var(--col-mod-right); }
+        .strong-right  { background-color: var(--col-strong-right); color: white; }
+        .far-right     { background-color: var(--col-far-right); color: white; border-radius: 0 11px 11px 0; }
 
-        .zone.active {
-            outline: 5px solid var(--highlight-yellow);
-            outline-offset: -2px;
-            z-index: 5;
-        }
+        .zone.active { outline: 5px solid var(--highlight-yellow); outline-offset: -2px; z-index: 5; }
 
         .proportional-marker {
             position: absolute;
             top: -10px;
-            width: 0;
-            height: 0;
+            width: 0; height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
             border-top: 10px solid var(--highlight-yellow);
             display: none;
             transform: translateX(-50%);
             z-index: 30;
-            filter: drop-shadow(1px 0 0 var(--outline-black))
-                    drop-shadow(-1px 0 0 var(--outline-black))
-                    drop-shadow(0 1px 0 var(--outline-black))
-                    drop-shadow(0 -1px 0 var(--outline-black));
+            filter: drop-shadow(1px 0 0 var(--outline-black)) drop-shadow(-1px 0 0 var(--outline-black)) drop-shadow(0 1px 0 var(--outline-black)) drop-shadow(0 -1px 0 var(--outline-black));
         }
 
         .zone.active .proportional-marker { display: block; }
+        .sub-labels { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; color: var(--sub-label-gray); margin-top: 15px; }
 
-        .sub-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--sub-label-gray);
-            margin-top: 15px;
-        }
-
+        /* FOOTER BRANDING */
         .footer-branding {
             display: flex;
             justify-content: space-between;
@@ -165,115 +153,77 @@
             margin-top: 30px;
             padding-bottom: 10px;
         }
+        .version-tag { font-size: 0.9rem; color: var(--sub-label-gray); font-weight: 800; }
+        .watermark { font-size: 0.9rem; color: #000000; font-weight: 900; text-decoration: none; }
 
-        .version-tag {
-            font-size: 0.85rem;
-            color: var(--sub-label-gray);
-            font-weight: 800;
-        }
-
-        .watermark {
-            font-size: 0.9rem;
-            color: #000000;
-            font-weight: 900;
-            text-decoration: none;
-        }
-
-        .actions {
-            margin-top: 40px;
+        /* TOGGLE STYLING - Fixed for Phone */
+        .toggle-container {
             display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 15px;
         }
 
-        .btn {
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
+        .toggle-label-main {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: black;
+            letter-spacing: 0.5px;
+        }
+
+        .toggle-switch-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 2px solid var(--btn-dark);
-            display: inline-block;
-            text-align: center;
-            min-width: 180px;
-            background: var(--btn-blue);
-            color: var(--btn-dark);
+            font-size: 0.75rem;
+            color: var(--text-main);
         }
 
-        .btn:hover { background: var(--btn-dark); color: white; transform: translateY(-2px); }
-
-        .site-footer {
-            text-align: center;
-            padding: 20px 0 0 0;
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #666;
+        .switch { position: relative; display: inline-block; width: 34px; height: 18px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--btn-dark); transition: .4s; border-radius: 20px;
         }
-
-        .site-footer a { color: #0055B7; text-decoration: none; font-weight: 600; }
-
-        /* PORTRAIT MODE COLOR FIX */
-        @media (max-width: 600px) and (orientation: portrait) {
-            .landscape-tip { display: block; }
-
-            .zone {
-                color: transparent !important;
-                font-size: 0 !important;
-            }
-
-            .zone.active {
-                /* Default active color for middle zones */
-                color: #2d3436 !important;
-                font-size: 0.6rem !important;
-                font-weight: 900;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transform: scale(1.1);
-                z-index: 10;
-                outline: 4px solid #ffff00;
-            }
-
-            /* NEW: Force white text on dark active zones in portrait */
-            .zone.active.far-left,
-            .zone.active.strong-left,
-            .zone.active.strong-right,
-            .zone.active.far-right {
-                color: #ffffff !important;
-            }
+        .slider:before {
+            position: absolute; content: ""; height: 12px; width: 12px;
+            left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;
         }
+        input:checked + .slider:before { transform: translateX(16px); }
 
-        /* Hidden by default */
-        .landscape-tip {
-            display: none;
-            background: #fff3cd;
-            color: #856404;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid #ffeeba;
-            text-align: center;
-            width: 100%;
-            max-width: 850px;
-        }
+        .actions { margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; border: 2px solid var(--btn-dark); min-width: 180px; background: var(--btn-blue); color: var(--btn-dark); text-align: center; }
 
-        /* Only shows on mobile (max-width 600px) AND in Portrait orientation */
-        @media (max-width: 600px) and (orientation: portrait) {
-            .landscape-tip {
-                display: block;
+        .landscape-tip { display: none; background: #fff3cd; color: #856404; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid #ffeeba; text-align: center; width: 100%; max-width: 850px; }
+
+        /* Phone Fixes */
+        @media (max-width: 600px) {
+            .results-card { padding: 25px 15px; }
+            h1 { font-size: 1.6rem; margin-bottom: 25px; }
+            .axis-label { font-size: 1.1rem; }
+            .score-value { font-size: 1.2rem; }
+            .btn { width: 100%; }
+            .toggle-container { justify-content: center; margin-top: 25px; }
+
+            @media (orientation: portrait) {
+                .landscape-tip { display: block; }
+                .zone { color: transparent !important; font-size: 0 !important; }
+                .zone.active {
+                    color: #2d3436 !important; font-size: 0.6rem !important;
+                    transform: scale(1.05); outline: 3px solid #ffff00;
+                }
+                .zone.active.far-left, .zone.active.strong-left, .zone.active.strong-right, .zone.active.far-right { color: #ffffff !important; }
             }
         }
     </style>
 </head>
-<body>
+<body class="mode-usa">
 
 <div class="landscape-tip">
-    <span>🔄 Tip: For a better view of the labels, rotate your phone to landscape mode.</span>
+    <span>🔄 Tip: Rotate phone for full labels.</span>
 </div>
 
 <div class="results-card">
@@ -285,15 +235,16 @@
             <span class="score-value" id="social-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="social-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+            <div class="proportional-marker"></div>
         </div>
         <div class="sub-labels">
             <span>Progressive</span>
@@ -307,15 +258,16 @@
             <span class="score-value" id="econ-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="econ-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
+            <div class="proportional-marker"></div>
         </div>
         <div class="sub-labels">
             <span>Collectivist</span>
@@ -326,6 +278,18 @@
     <div class="footer-branding">
         <div class="version-tag">v1.01</div>
         <a href="#" class="watermark">polispectrumtest.com</a>
+    </div>
+
+    <div class="toggle-container">
+        <span class="toggle-label-main">Color Scheme</span>
+        <div class="toggle-switch-row">
+            <span>USA</span>
+            <label class="switch">
+                <input type="checkbox" id="region-toggle" onchange="toggleRegion()">
+                <span class="slider"></span>
+            </label>
+            <span>ROW</span>
+        </div>
     </div>
 </div>
 
@@ -340,7 +304,6 @@
 </footer>
 
 <script src="scoring.js"></script>
-
 <script>
     window.onload = () => {
         if (typeof runAllCalculations === 'function') {
@@ -352,6 +315,11 @@
         }
     };
 
+    function toggleRegion() {
+        const isROW = document.getElementById('region-toggle').checked;
+        document.body.className = isROW ? "mode-row" : "mode-usa";
+    }
+
     function highlightZones(barId, scoreVal) {
         const score = parseFloat(scoreVal);
         const zones = document.querySelectorAll(`#${barId} .zone`);
@@ -361,10 +329,6 @@
             zone.classList.remove('active');
             if (score >= min && score <= max) {
                 zone.classList.add('active');
-                const range = max - min;
-                const progress = (score - min) / range;
-                const marker = zone.querySelector('.proportional-marker');
-                if (marker) marker.style.left = (progress * 100) + "%";
             }
         });
     }
