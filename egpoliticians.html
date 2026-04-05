@@ -1,253 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ6D29Q4VV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-VJ6D29Q4VV');
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2475534598881586"
             crossorigin="anonymous"></script>
-
     <meta name="google-adsense-account" content="ca-pub-2475534598881586">
-
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoliSpec | Example Politicians</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --btn-blue: #6EC4E8;
+            --btn-dark: #002145;
+            --text-main: #2d3436;
+
+            /* USA Default Colors */
+            --col-far-left: #1a3d6e;
+            --col-strong-left: #1a8cff;
+            --col-mod-left: #80bfff;
+            --col-centre-left: #a8b9ff;
+            --col-far-right: #ee2d35;
+            --col-strong-right: #ff5e5e;
+            --col-mod-right: #ffb3a1;
+            --col-centre-right: #e8b3d0;
+        }
+
+        body.mode-row {
+            --col-far-left: #ee2d35;
+            --col-strong-left: #ff5e5e;
+            --col-mod-left: #ffb3a1;
+            --col-centre-left: #e8b3d0;
+            --col-far-right: #1a3d6e;
+            --col-strong-right: #1a8cff;
+            --col-mod-right: #80bfff;
+            --col-centre-right: #a8b9ff;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
             margin: 0;
+            box-sizing: border-box;
         }
 
         .container {
             background: white;
-            padding: 40px;
+            padding: 40px 25px;
             border-radius: 24px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             width: 100%;
             max-width: 750px;
+            margin: auto;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
-            text-align: center;
-            color: #000;
-        }
+        h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 15px; text-align: center; color: #000; }
 
-        .selection-area {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
+        .selection-area { display: flex; gap: 15px; margin-bottom: 30px; }
         .input-group { flex: 1; }
         label { display: block; font-weight: 700; margin-bottom: 8px; color: #636e72; font-size: 0.9rem; }
+        select { width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #dfe6e9; font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer; background: white; outline: none; }
 
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid #dfe6e9;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            cursor: pointer;
-            background: white;
-            outline: none;
-        }
-
-        .viewing-pane {
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 16px;
-            border: 1px solid #eee;
-            text-align: center;
-        }
-
+        .viewing-pane { padding: 30px 15px; background: #f8f9fa; border-radius: 16px; border: 1px solid #eee; text-align: center; }
         .info-header { margin-bottom: 25px; }
-        .info-header h2 { margin: 0 0 10px 0; font-size: 2rem; color: #2d3436; }
-
-        .party-tag {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 20px;
-            background: #002145;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
+        .info-header h2 { margin: 0 0 10px 0; font-size: 2rem; color: var(--text-main); }
+        .party-tag { display: inline-block; padding: 6px 16px; border-radius: 20px; background: var(--btn-dark); color: white; font-size: 0.9rem; font-weight: 700; }
 
         .spectrum-container { text-align: left; margin-top: 20px; }
+        .score-display { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; }
+        .score-num { font-weight: 900; font-size: 1.2rem; color: #6c5ce7; }
 
-        .score-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 10px;
-        }
-
-        .score-num {
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: #6c5ce7; /* Updated to requested color */
-        }
-
-        .spectrum-bar {
-            display: flex;
-            width: 100%;
-            height: 45px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(0,0,0,0.1);
-            position: relative;
-            overflow: visible;
-        }
+        .spectrum-bar { display: flex; width: 100%; height: 45px; border-radius: 6px; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.1); position: relative; overflow: visible; }
 
         .zone {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: rgba(0,0,0,0.5);
-            text-align: center;
-            line-height: 1;
-            padding: 2px;
-            text-transform: uppercase;
-            position: relative;
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; font-weight: 900; color: #000000;
+            text-align: center; line-height: 1; padding: 2px; text-transform: uppercase; position: relative;
         }
 
-        /* Zone Background Colors */
-        .far-left { background-color: #1a3d6e; color: #FFFFFF; }
-        .strong-left { background-color: #1a8cff; color: #FFFFFF; }
-        .mod-left { background-color: #80bfff; color: #000000; }
-        .centre-left { background-color: #a8b9ff; color: #000000; }
-        .centre { background-color: #d1b3ff; color: #000000; }
-        .centre-right { background-color: #e8b3d0; color: #000000; }
-        .mod-right { background-color: #ffb3a1; color: #000000; }
-        .strong-right { background-color: #ff5e5e; color: #FFFFFF; }
-        .far-right { background-color: #ee2d35; color: #FFFFFF; }
+        .far-left { background-color: var(--col-far-left); color: #FFFFFF; }
+        .strong-left { background-color: var(--col-strong-left); color: #FFFFFF; }
+        .mod-left { background-color: var(--col-mod-left); }
+        .centre-left { background-color: var(--col-centre-left); }
+        .centre { background-color: #d1b3ff; }
+        .centre-right { background-color: var(--col-centre-right); }
+        .mod-right { background-color: var(--col-mod-right); }
+        .strong-right { background-color: var(--col-strong-right); color: #FFFFFF; }
+        .far-right { background-color: var(--col-far-right); color: #FFFFFF; }
 
-        /* Adjusted Active Highlighting - Removed glow and toned down yellow */
-        .zone.active {
-            outline: 5px solid #ffff00;
-            outline-offset: -2px;
-            z-index: 10;
-            transform: scale(1.05);
-        }
+        .zone.active { outline: 5px solid #ffff00; outline-offset: -2px; z-index: 10; transform: scale(1.05); }
 
-        /* Proportional Triangle Marker with black outline */
         .proportional-marker {
-            position: absolute;
-            top: -9px;
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-top: 11px solid #ffff00;
-            display: none;
-            transform: translateX(-50%);
-            z-index: 25;
-            /* Added thin black outline via drop-shadow */
+            position: absolute; top: -9px; width: 0; height: 0;
+            border-left: 7px solid transparent; border-right: 7px solid transparent;
+            border-top: 11px solid #ffff00; display: none; transform: translateX(-50%); z-index: 25;
             filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000);
         }
 
-        .zone.active .proportional-marker {
-            display: block;
-        }
+        .zone.active .proportional-marker { display: block; }
+        .axis-label { font-size: 0.8rem; font-weight: 800; color: #636e72; text-transform: uppercase; letter-spacing: 1px; }
 
-        .far-left.active, .strong-left.active, .strong-right.active, .far-right.active {
-            color: #FFFFFF !important;
-        }
+        /* Updated to align toggle to the right */
+        .toggle-container { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+        .toggle-label-main { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: black; letter-spacing: 0.5px; }
+        .toggle-switch-row { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.75rem; color: var(--text-main); }
+        .switch { position: relative; display: inline-block; width: 34px; height: 18px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--btn-dark); transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider:before { transform: translateX(16px); }
 
-        .mod-left.active, .centre-left.active, .centre.active, .centre-right.active, .mod-right.active {
-            color: #000000 !important;
-        }
-
-        .axis-label {
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: #636e72;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .disclaimer-note {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #fff9db;
-            border-left: 4px solid #f1c40f;
-            border-radius: 4px;
-            color: #856404;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            font-style: italic;
-            text-align: left;
-        }
-
-        .nav-links {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .nav-btn {
-            background-color: #6EC4E8;
-            color: #002145;
-            border: 2px solid #002145;
-            padding: 1.2rem 1.5rem;
-            font-size: 1.05rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease-out;
-            text-decoration: none;
-            flex: 1;
-            min-width: 200px;
-            max-width: 280px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .nav-btn:hover {
-            background-color: #002145;
-            color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+        .nav-links { margin-top: 3rem; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; }
+        .nav-btn { background-color: var(--btn-blue); color: var(--btn-dark); border: 2px solid var(--btn-dark); padding: 1rem 1.2rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none; flex: 1; min-width: 180px; max-width: 280px; display: flex; justify-content: center; align-items: center; }
 
         @media (max-width: 700px) {
+            body { padding: 10px; }
+            .container { padding: 25px 12px; margin: 10px 0; }
+            .viewing-pane { padding: 20px 8px; }
             .selection-area { flex-direction: column; }
             .nav-links { flex-direction: column; }
-            .nav-btn { width: 100%; max-width: 400px; }
-            .zone { font-size: 0.5rem; }
+            .nav-btn { width: 100%; max-width: 100%; }
+            .zone { font-size: 0.5rem; letter-spacing: -0.3px; }
+            .info-header h2 { font-size: 1.6rem; }
+            /* Keep toggle right-aligned on mobile */
+            .toggle-container { justify-content: flex-end; }
         }
     </style>
 </head>
-<body>
+<body class="mode-usa">
 
 <div class="container">
     <h1>Politician Profiles</h1>
@@ -267,7 +161,6 @@
                 <option value="Influencers">Influencers</option>
             </select>
         </div>
-
         <div class="input-group">
             <label>Select Politician</label>
             <select id="politicianSelect" onchange="displayPolitician()" disabled>
@@ -315,9 +208,17 @@
                 <div class="zone far-right" id="e-z9">Hard Right<div class="proportional-marker"></div></div>
             </div>
         </div>
+    </div>
 
-        <div class="disclaimer-note">
-            * All scores are generated by prompting AI to answer questions from the POV of the individual. (more in FAQ)
+    <div class="toggle-container">
+        <span class="toggle-label-main">Color Scheme</span>
+        <div class="toggle-switch-row">
+            <span>USA</span>
+            <label class="switch">
+                <input type="checkbox" id="region-toggle" onchange="toggleRegion()">
+                <span class="slider"></span>
+            </label>
+            <span>ROW</span>
         </div>
     </div>
 
@@ -327,6 +228,11 @@
         <button class="nav-btn" onclick="window.location.href='index.html'">Return Home</button>
     </div>
 </div>
+
+<footer class="site-footer" style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9rem;">
+    <p>2026 PoliSpectrumTest || <a href="about.html">About</a> || <a href="privacy.html">Privacy Policy</a> ||
+        <a href="contact.html">Contact Us</a></p>
+</footer>
 
 <script>
     const data = {
@@ -341,9 +247,9 @@
         ],
         "United Kingdom": [
             { name: "Keir Starmer", party: "Labour", social: -1.42, econ: -1.15 },
-            { name: "Rishi Sunak", party: "Conservative", social: 1.67, econ: 6.36 },
-            { name: "Kemi Badenoch", party: "Conservative", social: 2.48, econ: 6.73 },
-            { name: "Nigel Farage", party: "Reform UK", social: 5.84, econ: 6.36 },
+            { name: "Rishi Sunak", party: "Conservative", social: 2.99, econ: 5.94 },
+            { name: "Kemi Badenoch", party: "Conservative", social: 5.26, econ: 6.11 },
+            { name: "Nigel Farage", party: "Reform UK", social: 7.94, econ: 6.78 },
             { name: "Jeremy Corbyn", party: "Your Party", social: -8.71, econ: -9.15 },
             { name: "Zack Polanski", party: "Green", social: -8.54, econ: -9.15 }
         ],
@@ -371,7 +277,8 @@
         ],
         "Australia": [
             { name: "Anthony Albanese", party: "Labor", social: -3.72, econ: -2.24 },
-            { name: "Angus Taylor", party: "Liberal", social: 3.41, econ: 7.09 }
+            { name: "Angus Taylor", party: "Liberal", social: 3.41, econ: 7.09 },
+            { name: "Pauline Hanson", party: "One Nation", social: 7.10, econ: 1.64 }
         ],
         "Misc": [
             { name: "Javier Milei", party: "President of Argentina", social: 5.42, econ: 8.79 },
@@ -387,48 +294,38 @@
         ]
     };
 
+    function toggleRegion() {
+        const isROW = document.getElementById('region-toggle').checked;
+        document.body.className = isROW ? "mode-row" : "mode-usa";
+    }
+
     function updatePoliticianList() {
         const country = document.getElementById('countrySelect').value;
         const polSelect = document.getElementById('politicianSelect');
         polSelect.innerHTML = '<option value="">-- Choose a Politician --</option>';
         if (country && data[country]) {
             polSelect.disabled = false;
-            data[country].forEach((pol, index) => {
-                polSelect.innerHTML += `<option value="${index}">${pol.name}</option>`;
-            });
-        } else {
-            polSelect.disabled = true;
-        }
+            data[country].forEach((pol, index) => { polSelect.innerHTML += `<option value="${index}">${pol.name}</option>`; });
+        } else { polSelect.disabled = true; }
     }
 
     function displayPolitician() {
-        const countrySelect = document.getElementById('countrySelect');
-        const polSelect = document.getElementById('politicianSelect');
-        const country = countrySelect.value;
-        const index = polSelect.value;
-
-        if (index === "" || index === null) return;
-
+        const country = document.getElementById('countrySelect').value;
+        const index = document.getElementById('politicianSelect').value;
+        if (index === "") return;
         const pol = data[country][index];
         document.getElementById('polName').innerText = pol.name;
-
-        const partyTag = document.getElementById('polParty');
-        partyTag.innerText = pol.party;
-        partyTag.style.display = 'inline-block';
-
+        document.getElementById('polParty').innerText = pol.party;
+        document.getElementById('polParty').style.display = 'inline-block';
         document.getElementById('socialScore').innerText = (pol.social > 0 ? "+" : "") + pol.social.toFixed(2);
         document.getElementById('econScore').innerText = (pol.econ > 0 ? "+" : "") + pol.econ.toFixed(2);
-
         document.querySelectorAll('.zone').forEach(z => z.classList.remove('active'));
-
         highlightZone('s', pol.social);
         highlightZone('e', pol.econ);
     }
 
     function highlightZone(prefix, score) {
-        let zoneNum;
-        let min, max;
-
+        let zoneNum, min, max;
         if (score <= -7.50) { zoneNum = 1; min = -10; max = -7.50; }
         else if (score <= -5.00) { zoneNum = 2; min = -7.50; max = -5.00; }
         else if (score <= -2.50) { zoneNum = 3; min = -5.00; max = -2.50; }
@@ -438,23 +335,15 @@
         else if (score <= 5.00) { zoneNum = 7; min = 2.50; max = 5.00; }
         else if (score <= 7.50) { zoneNum = 8; min = 5.00; max = 7.50; }
         else { zoneNum = 9; min = 7.50; max = 10; }
-
         const target = document.getElementById(`${prefix}-z${zoneNum}`);
         if (target) {
             target.classList.add('active');
             const range = max - min;
             const progress = (score - min) / range;
             const marker = target.querySelector('.proportional-marker');
-            if (marker) {
-                marker.style.left = (progress * 100) + "%";
-            }
+            if (marker) { marker.style.left = (progress * 100) + "%"; }
         }
     }
 </script>
-
-<footer class="site-footer">
-    <p>2026 PoliSpectrumTest | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
-
 </body>
 </html>

@@ -101,6 +101,7 @@
             border-radius: 12px;
             position: relative;
             border: 1px solid rgba(0,0,0,0.1);
+            overflow: visible; /* Needed for markers to pop up */
         }
 
         .zone {
@@ -129,13 +130,14 @@
 
         .zone.active { outline: 5px solid var(--highlight-yellow); outline-offset: -2px; z-index: 5; }
 
+        /* PROPORTIONAL MARKER STYLES */
         .proportional-marker {
             position: absolute;
-            top: -10px;
+            top: -12px;
             width: 0; height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
-            border-top: 10px solid var(--highlight-yellow);
+            border-top: 11px solid var(--highlight-yellow);
             display: none;
             transform: translateX(-50%);
             z-index: 30;
@@ -143,9 +145,9 @@
         }
 
         .zone.active .proportional-marker { display: block; }
+
         .sub-labels { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; color: var(--sub-label-gray); margin-top: 15px; }
 
-        /* FOOTER BRANDING */
         .footer-branding {
             display: flex;
             justify-content: space-between;
@@ -156,7 +158,6 @@
         .version-tag { font-size: 0.9rem; color: var(--sub-label-gray); font-weight: 800; }
         .watermark { font-size: 0.9rem; color: #000000; font-weight: 900; text-decoration: none; }
 
-        /* TOGGLE STYLING - Fixed for Phone */
         .toggle-container {
             display: flex;
             align-items: center;
@@ -199,7 +200,6 @@
 
         .landscape-tip { display: none; background: #fff3cd; color: #856404; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid #ffeeba; text-align: center; width: 100%; max-width: 850px; }
 
-        /* Phone Fixes */
         @media (max-width: 600px) {
             .results-card { padding: 25px 15px; }
             h1 { font-size: 1.6rem; margin-bottom: 25px; }
@@ -235,16 +235,15 @@
             <span class="score-value" id="social-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="social-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
-            <div class="proportional-marker"></div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
         </div>
         <div class="sub-labels">
             <span>Progressive</span>
@@ -258,16 +257,15 @@
             <span class="score-value" id="econ-val">Calculating...</span>
         </div>
         <div class="spectrum-bar" id="econ-bar">
-            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT</div>
-            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT</div>
-            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT</div>
-            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT</div>
-            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE</div>
-            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT</div>
-            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT</div>
-            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT</div>
-            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT</div>
-            <div class="proportional-marker"></div>
+            <div class="zone far-left" data-min="-10" data-max="-7.50">HARD LEFT<div class="proportional-marker"></div></div>
+            <div class="zone strong-left" data-min="-7.49" data-max="-5.00">STRONG LEFT<div class="proportional-marker"></div></div>
+            <div class="zone mod-left" data-min="-4.99" data-max="-2.50">MOD. LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre-left" data-min="-2.49" data-max="-1.01">CENTRE LEFT<div class="proportional-marker"></div></div>
+            <div class="zone centre" data-min="-1.00" data-max="1.00">CENTRE<div class="proportional-marker"></div></div>
+            <div class="zone centre-right" data-min="1.01" data-max="2.50">CENTRE RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone mod-right" data-min="2.51" data-max="5.00">MOD. RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone strong-right" data-min="5.01" data-max="7.50">STRONG RIGHT<div class="proportional-marker"></div></div>
+            <div class="zone far-right" data-min="7.51" data-max="10">HARD RIGHT<div class="proportional-marker"></div></div>
         </div>
         <div class="sub-labels">
             <span>Collectivist</span>
@@ -300,7 +298,8 @@
 </div>
 
 <footer class="site-footer">
-    <p>2026 PoliSpectrumTest | <a href="privacy.html">Privacy Policy</a></p>
+    <p>2026 PoliSpectrumTest || <a href="about.html">About</a> || <a href="privacy.html">Privacy Policy</a> ||
+        <a href="contact.html">Contact Us</a></p>
 </footer>
 
 <script src="scoring.js"></script>
@@ -327,8 +326,17 @@
             const min = parseFloat(zone.dataset.min);
             const max = parseFloat(zone.dataset.max);
             zone.classList.remove('active');
+
             if (score >= min && score <= max) {
                 zone.classList.add('active');
+
+                // Calculate position of the marker within the zone
+                const range = max - min;
+                const relativePos = (score - min) / range;
+                const marker = zone.querySelector('.proportional-marker');
+                if (marker) {
+                    marker.style.left = (relativePos * 100) + "%";
+                }
             }
         });
     }

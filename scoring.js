@@ -5,23 +5,23 @@ let isCalculationComplete = false;
 let socialIndexEnd = 35;
 let econIndexStart = 36;
 let econIndexEnd = 48;
-let maxSocialScore = 71;
-let maxEconScore = 33;
+let maxSocialScore = 70;
+let maxEconScore = 36;
 
 const weightmaps = {
-    w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1 },
-    w1p: { "Strongly Disagree": 1, "Disagree": 0.6, "Agree": -0.6, "Strongly Agree": -1 },
+    w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1, "Neutral": 0},
+    w1p: { "Strongly Disagree": 1, "Disagree": 0.6, "Agree": -0.6, "Strongly Agree": -1, "Neutral": 0},
 
-    w2: { "Strongly Disagree": -2, "Disagree": -1.2, "Agree": 1.2, "Strongly Agree": 2 },
-    w2p: { "Strongly Disagree": 2, "Disagree": 1.2, "Agree": -1.2, "Strongly Agree": -2 },
+    w2: { "Strongly Disagree": -2, "Disagree": -1.2, "Agree": 1.2, "Strongly Agree": 2, "Neutral": 0},
+    w2p: { "Strongly Disagree": 2, "Disagree": 1.2, "Agree": -1.2, "Strongly Agree": -2, "Neutral": 0},
 
-    w3: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 1.8, "Strongly Agree": 3 },
-    w3p: { "Strongly Disagree": 3, "Disagree": 1.8, "Agree": -1.8, "Strongly Agree": -3 },
+    w3: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 1.8, "Strongly Agree": 3, "Neutral": 0},
+    w3p: { "Strongly Disagree": 3, "Disagree": 1.8, "Agree": -1.8, "Strongly Agree": -3, "Neutral": 0 },
 
-    w4: { "Strongly Disagree": -4, "Disagree": -2.4, "Agree": 2.4, "Strongly Agree": 4 },
-    w4p: { "Strongly Disagree": 4, "Disagree": 2.4, "Agree": -2.4, "Strongly Agree": -4 },
+    w4: { "Strongly Disagree": -4, "Disagree": -2.4, "Agree": 2.4, "Strongly Agree": 4, "Neutral": 0 },
+    w4p: { "Strongly Disagree": 4, "Disagree": 2.4, "Agree": -2.4, "Strongly Agree": -4, "Neutral": 0 },
 
-    w5: { "Strongly Disagree": -5, "Disagree": -3, "Agree": 3, "Strongly Agree": 5 },
+    w5: { "Strongly Disagree": -5, "Disagree": -3, "Agree": 3, "Strongly Agree": 5, "Neutral": 0 },
     // Special map for the 6-option abortion question
     abortMap: {
         "Never Legal": 3,
@@ -29,7 +29,8 @@ const weightmaps = {
         "12 weeks (First Trimester)": 0,
         "16 weeks (EU Average)": -1.8,
         "24 weeks (Fetal Viability)": -2.5,
-        "No gestational limit": -3
+        "No gestational limit": -3,
+        "Neutral": 0
     }
 };
 
@@ -56,35 +57,35 @@ const questionConfig = {
     "q20a": "w3",
     "q21a": "w2",
     "q22a": "w3p",
-    "q23a": "w1",
-    "q24a": "w2",
-    "q25a": "w2p",
+    "q23a": "w2",
+    "q24a": "w2p",
+    "q25a": "w1p",
     "q26a": "w1p",
-    "q27a": "w1p",
-    "q28a": "w2",
-    "q29a": "w3p",
-    "q30a": "w1p",
-    "q31a": "w2",
-    "q32a": "w1p",
-    "q33a": "w4p",
-    "q34a": "w2",
-    "q35a": "w4p",
-    "q36a": "w2",
+    "q27a": "w2",
+    "q28a": "w3p",
+    "q29a": "w1p",
+    "q30a": "w2",
+    "q31a": "w1p",
+    "q32a": "w4p",
+    "q33a": "w2",
+    "q34a": "w4p",
+    "q35a": "w2",
     // ECON
+    "q36a": "w3p",
     "q37a": "w2p",
-    "q38a": "w2p",
-    "q39a": "w1p",
-    "q40a": "w5",
+    "q38a": "w1p",
+    "q39a": "w5",
+    "q40a": "w3",
     "q41a": "w3",
-    "q42a": "w3",
-    "q43a": "w1p",
-    "q44a": "w3p",
-    "q45a": "w2p",
-    "q46a": "w1",
+    "q42a": "w1p",
+    "q43a": "w3p",
+    "q44a": "w2p",
+    "q45a": "w1",
+    "q46a": "w2",
     "q47a": "w2",
-    "q48a": "w2",
-    "q49a": "w3",
-    "q50a": "w3p"
+    "q48a": "w3p",
+    "q49a": "w2",
+    "q50a": "w3p",
 };
 
 function runAllCalculations() {
@@ -111,7 +112,7 @@ function runAllCalculations() {
 
 function calcSocialScore(answers) {
     let subtotal = 0;
-    for (let i = 1; i <= 36; i++) {
+    for (let i = 1; i <= 35; i++) {
         const qKey = `q${i}a`;
         const choice = answers[qKey];
         const mapName = questionConfig[qKey];
@@ -129,7 +130,7 @@ function calcSocialScore(answers) {
 
 function calcEconScore(answers) {
     let subtotal = 0;
-    for (let i = 37; i <= 50; i++) {
+    for (let i = 36; i <= 50; i++) {
         const qKey = `q${i}a`;
         const choice = answers[qKey];
         const mapName = questionConfig[qKey];
