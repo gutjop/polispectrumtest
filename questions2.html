@@ -73,24 +73,24 @@
 
         #options-container {
             display: flex;
-            flex-direction: row;      /* Forces buttons side-by-side */
+            flex-direction: row;      /* Forces buttons side-by-side on desktop */
             flex-wrap: nowrap;        /* Absolute rule: Never wrap to a second line */
-            justify-content: center;  /* Centers the row */
-            align-items: stretch;     /* Makes all buttons the same height */
+            justify-content: center;
+            align-items: stretch;     /* Keeps all buttons the same height */
             gap: 8px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;      /* Reduced from 50px to save vertical space */
             width: 100%;
         }
 
         .option-btn {
-            flex: 1 1 0;              /* Forces all 5 buttons to be exactly the same width */
-            min-width: 0;             /* Essential: allows buttons to shrink to fit the row */
-            padding: 12px 4px;        /* Minimal side padding to maximize text space */
+            flex: 1 1 0;              /* Forces 5 equal widths regardless of text length */
+            min-width: 0;             /* Allows shrinking to fit the row at high zoom */
+            padding: 12px 4px;
             border: 1px solid var(--btn-border);
             border-radius: 12px;
             cursor: pointer;
             background: white;
-            font-weight: 700;         /* Bolder text makes it appear larger */
+            font-weight: 700;
             color: #576574;
             transition: all 0.2s ease;
             display: flex;
@@ -98,11 +98,11 @@
             justify-content: center;
             text-align: center;
 
-            /* THE TEXT SIZE FIX */
-            font-size: 1rem;          /* Increased size as requested */
-            line-height: 1.2;         /* Tightens spacing for multi-line text */
-            min-height: 100px;        /* Increased height so larger text has room to wrap inside the button */
-            word-wrap: break-word;    /* Ensures "Strongly" can wrap above "Disagree" if needed */
+            /* Text and Height */
+            font-size: 1.05rem;       /* Larger text as requested */
+            line-height: 1.1;
+            min-height: 90px;         /* Standardized height for laptop row */
+            word-wrap: break-word;    /* Allows text to wrap inside the button */
         }
 
         .grid-layout {
@@ -148,25 +148,27 @@
                 margin: 0;
             }
 
-            #progress { top: 20px; right: 20px; }
+            #progress { top: 10px; right: 20px; padding-top: 20px; }
 
             #question-text {
-                font-size: 1.6rem;
-                margin-bottom: 30px;
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+                margin-top: 1px;
             }
 
             #options-container {
                 flex-direction: column;
-                gap: 10px;
-                margin-bottom: 30px;
+                gap: 8px;
+                margin-bottom: 15px;
             }
 
             .option-btn {
                 width: 100% !important;
                 min-width: unset;
-                padding: 18px;
-                font-size: 1.1rem;
-                flex: 1 1 100% !important;
+                padding: 20px;
+                font-size: 0.9rem;
+                flex: 0 0 100% !important;
+                min-height: 40px;
             }
 
             .grid-layout {
@@ -183,7 +185,6 @@
             .btn-nav { width: 100%; padding: 18px; }
         }
 
-        /* Updated: Styled for inside the card */
         .site-footer {
             text-align: center;
             padding: 20px 0 0 0;
