@@ -2,11 +2,8 @@
 let finalSocialScore = 0
 let finalEconScore = 0
 let isCalculationComplete = false;
-let socialIndexEnd = 35;
-let econIndexStart = 36;
-let econIndexEnd = 48;
-let maxSocialScore = 70;
-let maxEconScore = 36;
+let maxSocialScore = 68;
+let maxEconScore = 39;
 
 const weightmaps = {
     w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1, "Neutral": 0},
@@ -26,66 +23,71 @@ const weightmaps = {
     abortMap: {
         "Never Legal": 3,
         "6 weeks (Fetal Heartbeat)": 1.8,
-        "12 weeks (First Trimester)": 0,
-        "16 weeks (EU Average)": -1.8,
+        "12 weeks (First Trimester)": 0.6,
+        "16 weeks (EU Average)": -0.6,
         "24 weeks (Fetal Viability)": -2.5,
         "No gestational limit": -3,
         "Neutral": 0
-    }
+    },
+    wmaxsoc: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 1.8, "Strongly Agree": 5, "Neutral": 0 },
+    wfisccut: { "Strongly Disagree": -2, "Disagree": -1.2, "Agree": 1.2, "Strongly Agree": 3, "Neutral": 0 },
+    wcommie: { "Strongly Disagree": 1, "Disagree": 0.5, "Agree": -2, "Strongly Agree": -4, "Neutral": 0 },
+    wlabour: { "Strongly Disagree": 4, "Disagree": 2, "Agree": -1.5, "Strongly Agree": -3, "Neutral": 0 }
 };
 
 const questionConfig = {
-    "q1a": "w2p",
-    "q2a": "w2p",
-    "q3a": "w2p",
-    "q4a": "w3",
+    "q1a": "w3p",
+    "q2a": "w3",
+    "q3a": "w3",
+    "q4a": "w2p",
     "q5a": "w1p",
-    "q6a": "w2",
-    "q7a": "w2p",
-    "q8a": "w3",
-    "q9a": "w3p",
+    "q6a": "w5",
+    "q7a": "w3p",
+    "q8a": "wmaxsoc",
+    "q9a": "w3",
     "q10a": "w1p",
-    "q11a": "w1p",
+    "q11a": "abortMap",
     "q12a": "w1p",
-    "q13a": "w2",
-    "q14a": "abortMap",
+    "q13a": "w1p",
+    "q14a": "w2p",
     "q15a": "w1p",
-    "q16a": "w1p",
-    "q17a": "w1p",
+    "q16a": "w2p",
+    "q17a": "w2p",
     "q18a": "w2p",
     "q19a": "w2p",
     "q20a": "w3",
-    "q21a": "w2",
-    "q22a": "w3p",
-    "q23a": "w2",
-    "q24a": "w2p",
-    "q25a": "w1p",
-    "q26a": "w1p",
-    "q27a": "w2",
-    "q28a": "w3p",
-    "q29a": "w1p",
-    "q30a": "w2",
+    "q21a": "w1p",
+    "q22a": "w2",
+    "q23a": "w2p",
+    "q24a": "w2",
+    "q25a": "wfisccut",
+    "q26a": "wcommie",
+    "q27a": "w2p",
+    "q28a": "w1",
+    "q29a": "w3p",
+    "q30a": "w1p",
     "q31a": "w1p",
-    "q32a": "w4p",
+    "q32a": "w1p",
     "q33a": "w2",
-    "q34a": "w4p",
-    "q35a": "w2",
-    // ECON
-    "q36a": "w3p",
-    "q37a": "w2p",
-    "q38a": "w1p",
-    "q39a": "w5",
-    "q40a": "w3",
-    "q41a": "w3",
-    "q42a": "w1p",
-    "q43a": "w3p",
-    "q44a": "w2p",
-    "q45a": "w1",
+    "q34a": "w3p",
+    "q35a": "w2p",
+    "q36a": "w1",
+    "q37a": "w2",
+    "q38a": "w2p",
+    "q39a": "w2p",
+    "q40a": "w1p",
+    "q41a": "w1p",
+    "q42a": "w2p",
+    "q43a": "w2p",
+    "q44a": "w4p",
+    "q45a": "w1p",
     "q46a": "w2",
-    "q47a": "w2",
-    "q48a": "w3p",
+    "q47a": "w3",
+    "q48a": "w2p",
     "q49a": "w2",
-    "q50a": "w3p",
+    "q50a": "w2",
+    "q51a": "w1p",
+    "q52a": "w2"
 };
 
 function runAllCalculations() {
@@ -94,63 +96,47 @@ function runAllCalculations() {
 
     const userAnswers = JSON.parse(rawData);
 
-    // Calculate scores and store them in the global variables
-    finalSocialScore = calcSocialScore(userAnswers);
-    finalEconScore = calcEconScore(userAnswers);
+    finalSocialScore = calcScoreByCategory(userAnswers, "social", maxSocialScore);
+    finalEconScore = calcScoreByCategory(userAnswers, "econ", maxEconScore);
 
     isCalculationComplete = true;
 
-    // Update the HTML text
     const socialElem = document.getElementById('social-val');
     const econElem = document.getElementById('econ-val');
 
     if (socialElem) socialElem.innerText = finalSocialScore;
     if (econElem) econElem.innerText = finalEconScore;
-
-    console.log("UI Updated with scores:", finalSocialScore, finalEconScore);
-} // Fixed: Removed the extra brace that was here
-
-function calcSocialScore(answers) {
-    let subtotal = 0;
-    for (let i = 1; i <= 35; i++) {
-        const qKey = `q${i}a`;
-        const choice = answers[qKey];
-        const mapName = questionConfig[qKey];
-
-        if (choice && mapName) {
-            // Added '|| 0' to prevent NaN if a choice doesn't match the map
-            const points = weightmaps[mapName][choice] || 0;
-            subtotal += points;
-
-        }
-    }
-    console.log("Subtotal before normalization:", subtotal)
-    return normalize10(subtotal, maxSocialScore);
 }
 
-function calcEconScore(answers) {
+// Simplified function to handle jumbled order by checking the category tag
+function calcScoreByCategory(answers, targetCategory, maxPoints) {
     let subtotal = 0;
-    for (let i = 36; i <= 50; i++) {
-        const qKey = `q${i}a`;
-        const choice = answers[qKey];
-        const mapName = questionConfig[qKey];
 
-        if (choice && mapName) {
-            // Added '|| 0' to prevent NaN
-            const points = weightmaps[mapName][choice] || 0;
-            subtotal += points;
+    // We loop through the actual questions array from questions.js
+    questions.forEach(q => {
+        if (q.category === targetCategory) {
+            const qKey = `q${q.id}a`;
+            const choice = answers[qKey];
+            const mapName = questionConfig[qKey];
 
+            if (choice && mapName) {
+                const points = weightmaps[mapName][choice] || 0;
+                console.log(`q${q.id}a`, points);
+                subtotal += points;
+            }
         }
-    }
-    console.log("Econ Subtotal before normalization:", subtotal)
+    });
 
-    return normalize10(subtotal, maxEconScore);
+    return normalize10(subtotal, maxPoints);
 }
 
 function normalize10(value, max) {
-    return parseFloat(((value / max) * 10).toFixed(2));
+    let result = (value / max) * 10;
+    // Limit to range of -10 to 10
+    if (result > 10) result = 10;
+    if (result < -10) result = -10;
+    return parseFloat(result.toFixed(2));
 }
-
 
 
 

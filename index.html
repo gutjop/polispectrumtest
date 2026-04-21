@@ -143,6 +143,38 @@
         .site-footer a:hover {
             text-decoration: underline;
         }
+
+        .wide-example-card {
+            background: #ffffff;
+            width: 95%;
+            max-width: 1000px; /* This makes it nice and wide */
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin: 40px auto;
+            border: 1px solid #f0f0f0;
+        }
+
+        .card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2d3436;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            object-fit: contain; /* Keeps the whole chart visible */
+        }
+
+
     </style>
 </head>
 <body>
@@ -159,15 +191,22 @@
             The questions are designed to be thought-provoking and highly specific to gauge one's political leanings.
         </p>
 
+        <div class="wide-example-card">
+            <h3 class="card-title">Example Result</h3>
+            <div class="image-container">
+                <img src="centercentereg3.png" alt="Example Results Spectrum">
+            </div>
+        </div>
+
         <div class="highlight-box">
             <strong>Key Information:</strong>
             <ul>
-                <li><strong>Length:</strong> There are 50 questions which are intended to be direct and
+                <li><strong>Length:</strong> There are 52 questions which are intended to be direct and
                     thought-provoking. This should take around 20 minutes.</li>
-                <li><strong>No "Neutral" Option:</strong> There is no "Neutral" or "Unsure" option because the aim of the
-                    test is encourage genuinely forming opinions on key political issues. Moreover, if the neutral option
-                    is used excessively, the test will necessarily produce inaccurate results.</li>
-                <li><strong>Results:</strong> After completing all 50 questions, you will be taken to the results page where
+                <li><strong>Discouraged "Neutral" Option:</strong> The "Neutral" options is discouraged because the aim of the
+                    test is to encourage genuinely forming opinions on key political issues. Moreover, if the neutral option
+                    is used excessively, the test will necessarily produce inaccurate and meaningless results.</li>
+                <li><strong>Results:</strong> After completing all 52 questions, you will be taken to the results page where
                     there a pictographic representation of your two scores. Both scores range from -10 to 10.
                     The more negative scores indicate more left leaning positions and vice versa.</li>
                 <li><strong>Methodology:</strong> Answering each question will result in a score. A stronger position
@@ -214,6 +253,7 @@
         <p><strong>It is encouraged to not overuse the neutral option.</strong></p>
     </div>
 
+
     <div class="btn-container">
         <button class="nav-btn" onclick="window.location.href='egpoliticians.html'">Example Politician Scores</button>
         <button class="nav-btn" onclick="window.location.href='questions2.html'">Start Test</button>
@@ -225,6 +265,8 @@
             <a href="contact.html">Contact Us</a></p>
     </footer>
 </div>
+
+
 
 </body>
 </html>
