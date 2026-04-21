@@ -121,7 +121,6 @@ function calcScoreByCategory(answers, targetCategory, maxPoints) {
 
             if (choice && mapName) {
                 const points = weightmaps[mapName][choice] || 0;
-                console.log(`q${q.id}a`, points);
                 subtotal += points;
             }
         }

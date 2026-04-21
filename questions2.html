@@ -73,33 +73,36 @@
 
         #options-container {
             display: flex;
-            flex-direction: row;      /* Force horizontal alignment */
-            flex-wrap: nowrap;        /* Absolute rule: No wrapping to new lines */
-            justify-content: center;  /* Center the row of buttons */
-            align-items: stretch;     /* Keep all buttons the same height */
-            gap: 6px;                 /* Smaller gap to save horizontal space */
+            flex-direction: row;      /* Forces buttons side-by-side */
+            flex-wrap: nowrap;        /* Absolute rule: Never wrap to a second line */
+            justify-content: center;  /* Centers the row */
+            align-items: stretch;     /* Makes all buttons the same height */
+            gap: 8px;
             margin-bottom: 50px;
             width: 100%;
         }
 
         .option-btn {
-            flex: 1 1 0;              /* Force all 5 buttons to be exactly the same width */
-            min-width: 0;             /* Allow buttons to shrink as much as needed for the row */
-            padding: 12px 2px;        /* Minimal side padding to fit text on one row */
+            flex: 1 1 0;              /* Forces all 5 buttons to be exactly the same width */
+            min-width: 0;             /* Essential: allows buttons to shrink to fit the row */
+            padding: 12px 4px;        /* Minimal side padding to maximize text space */
             border: 1px solid var(--btn-border);
             border-radius: 12px;
             cursor: pointer;
             background: white;
-            font-weight: 600;
+            font-weight: 700;         /* Bolder text makes it appear larger */
             color: #576574;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 0.8rem;        /* Smaller font is necessary for 5 buttons to fit */
-            min-height: 90px;         /* Height accommodates text that wraps inside the button */
-            word-wrap: break-word;    /* Allows the text inside to break if the button is thin */
+
+            /* THE TEXT SIZE FIX */
+            font-size: 1rem;          /* Increased size as requested */
+            line-height: 1.2;         /* Tightens spacing for multi-line text */
+            min-height: 100px;        /* Increased height so larger text has room to wrap inside the button */
+            word-wrap: break-word;    /* Ensures "Strongly" can wrap above "Disagree" if needed */
         }
 
         .grid-layout {
