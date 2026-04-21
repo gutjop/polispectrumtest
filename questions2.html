@@ -74,18 +74,18 @@
         #options-container {
             display: flex;
             flex-direction: row;      /* Force horizontal alignment */
-            flex-wrap: nowrap;        /* Prevent wrapping to a new line */
-            justify-content: space-between;
-            align-items: stretch;     /* Ensure all buttons have the same height */
-            gap: 8px;                 /* Tight gap to help fit everything */
+            flex-wrap: nowrap;        /* Absolute rule: No wrapping to new lines */
+            justify-content: center;  /* Center the row of buttons */
+            align-items: stretch;     /* Keep all buttons the same height */
+            gap: 6px;                 /* Smaller gap to save horizontal space */
             margin-bottom: 50px;
-            width: 100%;              /* Fill the width of the card */
+            width: 100%;
         }
 
         .option-btn {
-            flex: 1;                  /* Force each button to take up equal width */
-            padding: 15px 5px;        /* Reduced side padding to prevent overflow */
-            min-width: 0;             /* Allows buttons to shrink smaller than their text if needed */
+            flex: 1 1 0;              /* Force all 5 buttons to be exactly the same width */
+            min-width: 0;             /* Allow buttons to shrink as much as needed for the row */
+            padding: 12px 2px;        /* Minimal side padding to fit text on one row */
             border: 1px solid var(--btn-border);
             border-radius: 12px;
             cursor: pointer;
@@ -93,12 +93,13 @@
             font-weight: 600;
             color: #576574;
             transition: all 0.2s ease;
-            display: flex;            /* Center text vertically and horizontally */
+            display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 0.85rem;       /* Slightly smaller font to fit 5 buttons side-by-side */
-            min-height: 80px;         /* Standardizes height for buttons with wrapping text */
+            font-size: 0.8rem;        /* Smaller font is necessary for 5 buttons to fit */
+            min-height: 90px;         /* Height accommodates text that wraps inside the button */
+            word-wrap: break-word;    /* Allows the text inside to break if the button is thin */
         }
 
         .grid-layout {
