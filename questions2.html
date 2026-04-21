@@ -18,7 +18,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoliSpectrumTest</title>
+    <title>PoliSpectrumTest Questions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -43,7 +43,7 @@
 
         .test-container {
             background: white;
-            padding: 60px 40px;
+            padding: 30px 40px;
             border-radius: 20px;
             box-shadow: var(--card-shadow);
             width: 90%;
@@ -58,7 +58,7 @@
             position: absolute;
             top: 30px;
             right: 40px;
-            color: #bdc3c7;
+            color: #002145;
             font-size: 1.1rem;
             font-weight: 600;
         }
@@ -73,16 +73,19 @@
 
         #options-container {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: row;      /* Force horizontal alignment */
+            flex-wrap: nowrap;        /* Prevent wrapping to a new line */
+            justify-content: space-between;
+            align-items: stretch;     /* Ensure all buttons have the same height */
+            gap: 8px;                 /* Tight gap to help fit everything */
             margin-bottom: 50px;
+            width: 100%;              /* Fill the width of the card */
         }
 
         .option-btn {
-            flex: 1;
-            min-width: 160px;
-            padding: 25px 15px;
+            flex: 1;                  /* Force each button to take up equal width */
+            padding: 15px 5px;        /* Reduced side padding to prevent overflow */
+            min-width: 0;             /* Allows buttons to shrink smaller than their text if needed */
             border: 1px solid var(--btn-border);
             border-radius: 12px;
             cursor: pointer;
@@ -90,10 +93,12 @@
             font-weight: 600;
             color: #576574;
             transition: all 0.2s ease;
-            display: flex;
+            display: flex;            /* Center text vertically and horizontally */
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            text-align: center;
+            font-size: 0.85rem;       /* Slightly smaller font to fit 5 buttons side-by-side */
+            min-height: 80px;         /* Standardizes height for buttons with wrapping text */
         }
 
         .grid-layout {
@@ -232,10 +237,6 @@
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt;
-
-            if (q.id === 14) {
-                btn.classList.add('grid-layout');
-            }
 
             if (userAnswers[qKey] === opt) {
                 btn.classList.add('selected');
