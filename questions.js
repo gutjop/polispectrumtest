@@ -26,7 +26,7 @@
     {
         id: 5, //25
         category: "social",
-        text: "Public Infrastructure projects should do as much as possible to not disrupt the environment/local population, even if it means massively adding to the costs.",
+        text: "Public Infrastructure projects should do as much as possible to not disrupt the local population, even if it means massively adding to the costs.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
