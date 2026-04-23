@@ -68,13 +68,13 @@
     {
         id: 12, //15
         category: "social",
-        text: "Abortion laws should have greater flexibility in cases of rape or incest.",
+        text: "If there were term limits on abortion, the law should have greater flexibility in cases of rape or incest.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
         id: 13, //16
         category: "social",
-        text: "Abortion laws should have greater flexibility in the case of medical danger to the mother.",
+        text: "If there were term limits on abortion, the law should have greater flexibility in the case of medical danger to the mother.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
