@@ -200,6 +200,72 @@
 
         .landscape-tip { display: none; background: #fff3cd; color: #856404; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid #ffeeba; text-align: center; width: 100%; max-width: 850px; }
 
+        .kofi-card-container {
+            margin-top: 25px; /* Space between results and donation card */
+            padding: 30px 40px !important;
+            text-align: left;
+        }
+
+        .kofi-layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .kofi-title {
+            font-size: 1.4rem !important;
+            font-weight: 800;
+            margin: 0 0 5px 0 !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .kofi-p {
+            font-size: 0.95rem;
+            color: var(--sub-label-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .kofi-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #29abe0; /* Official Ko-fi Blue */
+            color: white !important;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(41, 171, 224, 0.3);
+        }
+
+        .kofi-button:hover {
+            transform: translateY(-2px);
+            background-color: #2499c9;
+            box-shadow: 0 6px 18px rgba(41, 171, 224, 0.4);
+        }
+
+        .kofi-img {
+            width: 22px;
+            margin-right: 10px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Mobile Responsiveness for Ko-Fi Card */
+        @media (max-width: 600px) {
+            .kofi-layout {
+                flex-direction: column;
+                text-align: center;
+            }
+            .kofi-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 600px) {
             .results-card { padding: 25px 15px; }
             h1 { font-size: 1.6rem; margin-bottom: 25px; }
@@ -295,6 +361,19 @@
     <a href="egpoliticians.html" class="btn">Politician Scores</a>
     <a href="faq.html" class="btn">FAQ</a>
     <a href="index.html" class="btn">Retake Test</a>
+</div>
+
+<div class="results-card kofi-card-container">
+    <div class="kofi-layout">
+        <div class="kofi-text">
+            <h2 class="kofi-title">Enjoyed the test?</h2>
+            <p class="kofi-p">Consider supporting.</p>
+        </div>
+        <a href="https://ko-fi.com/polispectrumtest" target="_blank" class="kofi-button">
+            <img src="https://ko-fi.com/img/cup-border.png" alt="Ko-fi" class="kofi-img">
+            Support on Ko-fi
+        </a>
+    </div>
 </div>
 
 <footer class="site-footer">
