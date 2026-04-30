@@ -14,7 +14,7 @@
     {
         id: 3, //21
         category: "social",
-        text: "The move towards a more environmentally friendly society should be achieved more through investments in technology than regulation. ",
+        text: "The primary driver of the environmental transition should be technological advancement, so environmental regulation should be kept to a minimum.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -80,7 +80,7 @@
     {
         id: 14, //32
         category: "social",
-        text: "It is an acceptable infringement on free speech to prohibit hate speech.",
+        text: "It is an acceptable limit free speech by prohibiting hate speech.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -98,7 +98,7 @@
     {
         id: 17, // 1
         category: "social",
-        text: "My country should promote legal economic migration.",
+        text: "The amount of legal economic migrants coming to my country is too high and should be reduced.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -152,13 +152,13 @@
     {
         id: 26, //51
         category: "econ",
-        text: "A state planned economy would solve many of societies' problems.",
+        text: "Capitalism should be replaced for a system where the government manages the economy more as an architect than a referee. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
         id: 27, //51
         category: "econ",
-        text: "The tax system should be structured so that no one can be a billionaire.",
+        text: "The ultra-wealthy pose an existential threat to society. To remedy this threat, the government should tax wealth. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -206,7 +206,7 @@
     {// If my standard of living is low, the government is mostly to blame.
         id: 35, //44
         category: "econ",
-        text: "It is likely that if someone's standard of living is low, it is more the result of inadequate government policy than individual choices.",
+        text: "The government should place legal restrictions on the compensation package of a CEO.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -218,7 +218,7 @@
     {
         id: 37, //49
         category: "econ",
-        text: "When the government spends money to reduce poverty, the primary aim should be to provide opportunity not equality.",
+        text: "When the government spends money to reduce poverty, the primary aim should to provide equality of opportunity not outcome.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -272,7 +272,7 @@
     {
         id: 46, //23
         category: "social",
-        text: "My government should incentivize students towards higher value degrees such as STEM, business, and law.",
+        text: "There are some degrees that offer little value to students or society, so the government should discourage students from these degrees.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -302,7 +302,7 @@
     {
         id: 51, //29
         category: "social",
-        text: "Being born in a country should be sufficient to become a citizen of that country.",
+        text: "Being born in a country should be sufficient to becoming a citizen of that country.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {

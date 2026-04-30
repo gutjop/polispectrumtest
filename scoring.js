@@ -2,8 +2,8 @@
 let finalSocialScore = 0
 let finalEconScore = 0
 let isCalculationComplete = false;
-let maxSocialScore = 68;
-let maxEconScore = 39;
+let maxSocialScore = 70;
+let maxEconScore = 38;
 
 const weightmaps = {
     w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1, "Neutral": 0},
@@ -26,17 +26,21 @@ const weightmaps = {
         "12 weeks (First Trimester)": 0.6,
         "16 weeks (EU Average)": -0.6,
         "24 weeks (Fetal Viability)": -2.5,
-        "No gestational limit": -3,
+        "No gestational limit": -4,
         "Neutral": 0
     },
-    wmaxsoc: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 1.8, "Strongly Agree": 5, "Neutral": 0 },
+    wmaxsoc: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 3, "Strongly Agree": 5, "Neutral": 0 },
     wfisccut: { "Strongly Disagree": -2, "Disagree": -1.2, "Agree": 1.2, "Strongly Agree": 3, "Neutral": 0 },
     wcommie: { "Strongly Disagree": 1, "Disagree": 0.5, "Agree": -2, "Strongly Agree": -4, "Neutral": 0 },
-    wlabour: { "Strongly Disagree": 4, "Disagree": 2, "Agree": -1.5, "Strongly Agree": -3, "Neutral": 0 }
+    wlabour: { "Strongly Disagree": 4, "Disagree": 2, "Agree": -1.5, "Strongly Agree": -3, "Neutral": 0 },
+    wrace: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 3.6, "Strongly Agree": 6, "Neutral": 0 },
+    wwest: { "Strongly Disagree": 2, "Disagree": 1.2, "Agree": -1.8, "Strongly Agree": -3, "Neutral": 0 },
+    wenv: { "Strongly Disagree": 3, "Disagree": 1.8, "Agree": -2.4, "Strongly Agree": -4, "Neutral": 0 },
+
 };
 
 const questionConfig = {
-    "q1a": "w3p",
+    "q1a": "wenv",
     "q2a": "w3",
     "q3a": "w3",
     "q4a": "w2p",
@@ -52,7 +56,7 @@ const questionConfig = {
     "q14a": "w2p",
     "q15a": "w1p",
     "q16a": "w2p",
-    "q17a": "w2p",
+    "q17a": "w2",
     "q18a": "w2p",
     "q19a": "w2p",
     "q20a": "w3",
@@ -64,13 +68,13 @@ const questionConfig = {
     "q26a": "wcommie",
     "q27a": "w2p",
     "q28a": "w1",
-    "q29a": "w3p",
+    "q29a": "w2p",
     "q30a": "w1p",
     "q31a": "w1p",
     "q32a": "w1p",
     "q33a": "w2",
     "q34a": "w3p",
-    "q35a": "w2p",
+    "q35a": "w1p",
     "q36a": "w1",
     "q37a": "w2",
     "q38a": "w2p",
@@ -78,11 +82,11 @@ const questionConfig = {
     "q40a": "w1p",
     "q41a": "w1p",
     "q42a": "w2p",
-    "q43a": "w2p",
+    "q43a": "wwest",
     "q44a": "w4p",
     "q45a": "w1p",
     "q46a": "w2",
-    "q47a": "w3",
+    "q47a": "wrace",
     "q48a": "w2p",
     "q49a": "w2",
     "q50a": "w2",
@@ -122,6 +126,7 @@ function calcScoreByCategory(answers, targetCategory, maxPoints) {
             if (choice && mapName) {
                 const points = weightmaps[mapName][choice] || 0;
                 subtotal += points;
+                console.log(`Question ID: ${q.id} | Points: ${points}`);
             }
         }
     });
