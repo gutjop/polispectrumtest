@@ -126,7 +126,6 @@ function calcScoreByCategory(answers, targetCategory, maxPoints) {
             if (choice && mapName) {
                 const points = weightmaps[mapName][choice] || 0;
                 subtotal += points;
-                console.log(`Question ID: ${q.id} | Points: ${points}`);
             }
         }
     });
