@@ -1,12 +1,12 @@
   const questions = [
     {
-        id: 1, //22
+        id: 1,
         category: "social",
         text: "My government should prioritize environmental protection and climate action, even if it results in slower economic growth.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 2, //20
+        id: 2,
         category: "social",
         text: "My country has just found a vast oil deposit. It is imperative that my country should start drilling and selling oil on the global markets.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
@@ -236,7 +236,7 @@
     {
         id: 40, //39
         category: "econ",
-        text: "Foreign nationals residing in my country should receive a similar level of social welfare from the government.",
+        text: "Foreign nationals residing in my country should receive a similar level of social welfare from the government as citizens and permanent residents.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
