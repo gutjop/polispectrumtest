@@ -32,7 +32,7 @@
     {
         id: 6, //39
         category: "econ",
-        text: "The overall population benefits when businesses have lower corporate taxation and deregulation.",
+        text: "The overall population benefits when businesses are subject to less regulations and lower corporate tax rates.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -152,7 +152,7 @@
     {
         id: 26, //51
         category: "econ",
-        text: "Capitalism should be replaced for a system where the government manages the economy more as an architect than a referee. ",
+        text: "Capitalism should be replaced with a system where the government manages the economy more as an architect than a referee. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
