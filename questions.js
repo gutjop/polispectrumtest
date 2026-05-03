@@ -80,7 +80,7 @@
     {
         id: 14, //32
         category: "social",
-        text: "It is an acceptable to limitation of free speech to prohibit hate speech.",
+        text: "It is an acceptable limitation of free speech to prohibit hate speech.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
