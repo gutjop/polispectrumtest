@@ -44,7 +44,7 @@
     {
         id: 8, //40
         category: "econ",
-        text: "More often than not, society benefits when corporations maximise value for their shareholders.",
+        text: "More often than not, society ultimately benefits when corporations maximise value for their shareholders.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
@@ -72,248 +72,234 @@
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 13, //16
-        category: "social",
-        text: "If there were term limits on abortion, the law should have greater flexibility in the case of medical danger to the mother.",
-        options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
-    },
-    {
-        id: 14, //32
+        id: 13, //32
         category: "social",
         text: "It is an acceptable limitation of free speech to prohibit hate speech.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 15, //31
+        id: 14, //31
         category: "social",
         text: "Alongside merit, diversity should also be taken into account for an individual's acceptance into an institution.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 16, //26
+        id: 15, //26
         category: "social",
         text: "Prostitution should be legal.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 17, // 1
+        id: 16, // 1
         category: "social",
         text: "The amount of legal economic migrants coming to my country is too high and should be reduced.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 18, // 2
+        id: 17, // 2
         category: "social",
         text: "My country has a moral responsibility to accept refugees fleeing from dangerous countries.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     }, // Added comma here
     {
-        id: 19, // 3
+        id: 18, // 3
         category: "social",
         text: "My country benefits from having unauthorized immigrants/refugees.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 20, // 4
+        id: 19, // 4
         category: "social",
         text: "If a migrant is in my country, I expect them to assimilate into my country by learning the language and meaningfully integrating with the community.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     { //Immigrants should be given the same access to social services as citizens/PRs.
-        id: 21, //5
+        id: 20, //5
         category: "social",
         text: "The government should provide support to refugees in my country.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 22, //6
+        id: 21, //6
         category: "social",
         text: "If a migrant entered my country without proper authorization today, I would want them deported as soon as possible.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 23, //7
+        id: 22, //7
         category: "social",
         text: "An unauthorized immigrant who has already integrated themselves in my country and has not caused any serious issues should be given a path to citizenship.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 24, //46
+        id: 23, //46
         category: "econ",
         text: "A top priority of the government should be to avoid sustained large fiscal deficits and taking on public debt.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 25, //47
+        id: 24, //47
         category: "econ",
         text: "Social services should be reduced during periods of overwhelming fiscal deficit.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 26, //51
+        id: 25, //51
         category: "econ",
         text: "Capitalism should be replaced with a system where the government manages the economy more as an architect than a referee. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 27, //51
+        id: 26, //51
         category: "econ",
-        text: "The ultra-wealthy pose an existential threat to society. To remedy this threat, the government should tax wealth. ",
+        text: "The existence of an ultra-wealthy class pose an existential threat to society. To remedy this threat, the government should tax wealth. ",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 28, //52
+        id: 27, //52
         category: "econ",
         text: "Social welfare should only be available to those who need it.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 29, //9
+        id: 28, //9
         category: "social",
         text: "Same sex marriage should be legal.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 30, //10
+        id: 29, //10
         category: "social",
         text: "Medical gender transitioning care should be permissible for minors.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 31, //11
+        id: 30, //11
         category: "social",
         text: "Transgender women should be allowed to compete in women's sports.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 32, //12
+        id: 31, //12
         category: "social",
         text: "Government money should be used to support gender transitioning care for individuals.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 33, //13
+        id: 32, //13
         category: "social",
         text: "Society has been too accommodating towards ideas around gender fluidity.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     }, // Added comma here
     {
-        id: 34, //43
+        id: 33, //43
         category: "econ",
         text: "The first step to solving many of societies' problems is to increase tax revenue from the rich.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {// If my standard of living is low, the government is mostly to blame.
-        id: 35, //44
+        id: 34, //44
         category: "econ",
         text: "The government should place legal restrictions on the compensation package of a CEO.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 36, //45
+        id: 35, //45
         category: "econ",
         text: "Inheritance tax should be low.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 37, //49
+        id: 36, //49
         category: "econ",
         text: "When the government spends money to reduce poverty, the primary aim should to provide equality of opportunity not outcome.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 38, //36
-        category: "econ",
-        text: "Healthcare should be primarily funded and run by the government.",
+        id: 37, //36
+        category: "econ", //Healthcare should be free
+        text: "Healthcare should be primarily funded by the government.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 39, //37
+        id: 38, //37
         category: "econ",
         text: "The government should substantially fund post-secondary education for the public.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 40, //39
+        id: 39, //39
         category: "econ",
         text: "Foreign nationals residing in my country should receive a similar level of social welfare from the government as citizens and permanent residents.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 41, //17
+        id: 40, //17
         category: "social",
         text: "My country should issue an official apology for any past transgressions/injustices that it took part in.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 42, //18
+        id: 41, //18
         category: "social",
         text: "Financial reparations are necessary to make peace with past transgressions and injustices that may have persisted through society.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 43, //19
+        id: 42, //19
         category: "social",
         text: "The Western world has too much influence on global politics.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 44, //34
+        id: 43, //34
         category: "social",
         text: "Cooperation and compliance with international organisations (such as the United Nations) is beneficial for the overall population of my country.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 45, //Nil
+        id: 44, //Nil
         category: "social",
         text: "My country should provide aid to poorer countries.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 46, //23
+        id: 45, //23
         category: "social",
         text: "There are some degrees that offer little value to students or society, so the government should discourage students from these degrees.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 47, //27
+        id: 46, //27
         category: "social",
         text: "In my country there are particular communities (race or religion) who cause too many problems to the community.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 48, //28
+        id: 47, //28
         category: "social",
         text: "Individual ownership of firearms should be heavily regulated by the state.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 49, //33
+        id: 48, //33
         category: "social",
         text: "The death penalty is a just punishment for certain crimes.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 50, //30
+        id: 49, //30
         category: "social",
         text: "Society would be better off if more people were religious.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     },
     {
-        id: 51, //29
-        category: "social",
-        text: "Being born in a country should be sufficient to becoming a citizen of that country.",
-        options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
-    },
-    {
-        id: 52, //35
+        id: 50, //35
         category: "social",
         text: "It is beneficial for public safety when the criminal justice system focuses on punishing criminals more than rehabilitating them.",
         options: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree", "Neutral"]
     }
 ];
-
-
 
 
 
