@@ -2,7 +2,7 @@
 let finalSocialScore = 0
 let finalEconScore = 0
 let isCalculationComplete = false;
-let maxSocialScore = 68;
+let maxSocialScore = 69;
 let maxEconScore = 38;
 
 const weightmaps = {
@@ -71,7 +71,7 @@ const questionConfig = {
     "q29a": "w1p",
     "q30a": "w1p",
     "q31a": "w1p",
-    "q32a": "w2",
+    "q32a": "w3",
     "q33a": "w3p",
     "q34a": "w1p",
     "q35a": "w1",
