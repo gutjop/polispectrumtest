@@ -56,7 +56,7 @@
     {
         id: 10, //42
         category: "econ",
-        text: "Strong anti-trust regulations for large corporations are ultimately beneficial for the consumer.",
+        text: "My country allocates too much money towards military spending.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -152,7 +152,7 @@
     {
         id: 26, //51
         category: "econ",
-        text: "The existence of an ultra-wealthy class pose an existential threat to society. To remedy this threat, the government should tax wealth. ",
+        text: "The existence of an ultra-wealthy class poses an existential threat to society. To remedy this threat, the government should tax wealth. ",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -212,7 +212,7 @@
     {
         id: 36, //49
         category: "econ",
-        text: "When the government spends money to reduce poverty, the primary aim should to provide equality of opportunity not outcome.",
+        text: "When the government spends money to reduce poverty, the primary aim should be to provide equality of opportunity not outcome.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {

@@ -2,8 +2,8 @@
 let finalSocialScore = 0
 let finalEconScore = 0
 let isCalculationComplete = false;
-let maxSocialScore = 69;
-let maxEconScore = 38;
+let maxSocialScore = 72;
+let maxEconScore = 37;
 
 const weightmaps = {
     w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1, "Neutral": 0},
@@ -49,7 +49,7 @@ const questionConfig = {
     "q7a": "w3p",
     "q8a": "wmaxsoc",
     "q9a": "w3",
-    "q10a": "w1p",
+    "q10a": "w3p",
     "q11a": "abortMap",
     "q12a": "w1p",
     "q13a": "w2p",
