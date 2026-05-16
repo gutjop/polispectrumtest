@@ -110,7 +110,7 @@
     { //Immigrants should be given the same access to social services as citizens/PRs.
         id: 19, //5
         category: "social",
-        text: "The government should provide support to unauthorized migrants in my country.",
+        text: "The government should provide material support to unauthorized migrants in my country.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -140,7 +140,7 @@
     {
         id: 24, //51
         category: "econ",
-        text: "Capitalism should be replaced with a system where the government manages the economy more as an architect than a referee. ",
+        text: "Capitalism should be replaced with a system where the government manages the economy more as an architect than a referee, assuming that the government is one that I agree with. ",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -200,7 +200,7 @@
     {
         id: 34, //45
         category: "econ",
-        text: "Inheritance tax should be low.",
+        text: "Inheritance tax should be low for everyone, including the wealthy.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -266,7 +266,7 @@
     {
         id: 45, //27
         category: "social",
-        text: "In my country there are particular communities (race or religion) who cause too many problems to the community.",
+        text: "In my country, there are particular racial or religious minority groups who cause too many problems to society.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
