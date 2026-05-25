@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliSpec | Data Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002145;
+            --bg: #f0f2f5;
+            /* Spectral Colors from your results page */
+            --sa-color: #1a3d6e; /* Strongly Agree */
+            --a-color: #80bfff;  /* Agree */
+            --n-color: #d1b3ff;  /* Neutral */
+            --d-color: #ffb3a1;  /* Disagree */
+            --sd-color: #ee2d35; /* Strongly Disagree */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .explorer-container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        .explorer-card {
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            box-sizing: border-box;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 30px;
+            line-height: 1.5;
+            border-left: 5px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        .histogram-table {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .histogram-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .label-cell {
+            width: 160px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bar-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar {
+            height: 32px;
+            border-radius: 8px;
+            min-width: 5px; /* Ensures a sliver shows even for low % */
+            transition: width 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        .percentage {
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--primary);
+            width: 50px;
+        }
+
+        /* Color assignments */
+        .sa { background-color: var(--sa-color); }
+        .a  { background-color: var(--a-color); }
+        .n  { background-color: var(--n-color); }
+        .d  { background-color: var(--d-color); }
+        .sd { background-color: var(--sd-color); }
+
+        @media (max-width: 600px) {
+            .histogram-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .label-cell { width: 100%; }
+            .bar-container { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="explorer-container">
+
+    <div class="explorer-card">
+        <div class="question-text">"The government should prioritize environmental protection and climate action, even if it results in slower economic growth."</div>
+        <div class="histogram-table">
+            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 42%;"></div><span class="percentage">42%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 28%;"></div><span class="percentage">28%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 12%;"></div><span class="percentage">12%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 10%;"></div><span class="percentage">10%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 8%;"></div><span class="percentage">8%</span></div></div>
+        </div>
+    </div>
+
+    <div class="explorer-card">
+        <div class="question-text">"My country has just found a vast oil deposit. It is imperative that my country should start drilling and selling oil on the global markets."</div>
+        <div class="histogram-table">
+            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 15%;"></div><span class="percentage">15%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 18%;"></div><span class="percentage">18%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 10%;"></div><span class="percentage">10%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 22%;"></div><span class="percentage">22%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 35%;"></div><span class="percentage">35%</span></div></div>
+        </div>
+    </div>
+
+    <div class="explorer-card">
+        <div class="question-text">"The primary driver of the environmental transition should be technological advancement, so environmental regulation should be kept to a minimum."</div>
+        <div class="histogram-table">
+            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 20%;"></div><span class="percentage">20%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 35%;"></div><span class="percentage">35%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 25%;"></div><span class="percentage">25%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 15%;"></div><span class="percentage">15%</span></div></div>
+            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 5%;"></div><span class="percentage">5%</span></div></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
