@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ6D29Q4VV"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-      gtag('config', 'G-VJ6D29Q4VV');
+        gtag('config', 'G-VJ6D29Q4VV');
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2475534598881586"
@@ -26,12 +25,24 @@
         :root {
             --bg-color: #f0f2f5;
         }
+        /* NAVIGATION BAR CSS */
+        nav { width: 100%; background: white; border-bottom: 2px solid #e2e8f0; padding: 20px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: #002145; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #002145; }
+        @media (max-width: 900px) {
+            nav { justify-content: space-between; padding: 15px 20px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; border-bottom: 2px solid #e2e8f0; text-align: center; gap: 20px; }
+            .nav-links.active { display: flex; }
+        }
+
+        /* ORIGINAL STYLING */
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -87,23 +98,23 @@
         }
 
         .nav-btn {
-          background-color: #6EC4E8;
-          color: #002145;
-          border: 2px solid #002145;
-          padding: 1.2rem 1.5rem;
-          font-size: 1.05rem;
-          font-weight: 700;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: all 0.3s ease-out;
-          text-decoration: none;
-          flex: 1;
-          min-width: 200px;
-          max-width: 300px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          white-space: nowrap;
+            background-color: #6EC4E8;
+            color: #002145;
+            border: 2px solid #002145;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            text-decoration: none;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
         }
 
         .nav-btn:hover {
@@ -123,7 +134,6 @@
             }
         }
 
-        /* Updated: Now styled for inside the container */
         .site-footer {
             text-align: center;
             padding: 20px 0 0 0;
@@ -147,7 +157,7 @@
         .wide-example-card {
             background: #ffffff;
             width: 95%;
-            max-width: 1000px; /* This makes it nice and wide */
+            max-width: 1000px;
             padding: 30px;
             border-radius: 24px;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
@@ -171,13 +181,66 @@
             height: auto;
             border-radius: 12px;
             display: block;
-            object-fit: contain; /* Keeps the whole chart visible */
+            object-fit: contain;
         }
 
+        /* Methodology Box Styling */
+        .methodology-box {
+            background-color: #fff9db;
+            border: 2px solid #ffe066;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
 
+        .methodology-box h2 {
+            margin-top: 0;
+            color: #002145;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .methodology-box p {
+            color: #4a4a4a;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .methodology-box .image-container {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .methodology-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .methodology-box .caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</div>
+    <div class="nav-links">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="explorer.html" onclick="closeMenu()">Data Explorer</a>
+        <a href="results.html" onclick="closeMenu()">Results</a>
+        <a href="egpoliticians.html" onclick="closeMenu()">Politicians</a>
+        <a href="faq.html" onclick="closeMenu()">FAQ</a>
+        <a href="donate.html" onclick="closeMenu()">Donate</a>
+    </div>
+</nav>
 
 <div class="container">
     <h1>Political Spectrum Test BETA</h1>
@@ -191,27 +254,34 @@
             The questions are designed to be thought-provoking and highly specific to gauge one's political leanings.
         </p>
 
-        <div class="wide-example-card">
-            <h3 class="card-title">Example Result</h3>
-            <div class="image-container">
-                <img src="centercentereg3.png" alt="Example Results Spectrum">
+        <div style="background-color: #fff9db; border: 2px solid #ffe066; padding: 30px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <h2 style="margin-top: 0; color: #002145; text-align: center; font-size: 2rem;">Methodology</h2>
+            <p>This test deliberately chooses to use the terms "left" and "right" on two key axes: social and economic.
+                This is for the purpose of interpretability and communicability. It has become ingrained in modern discourse to
+                refer to politicians being left or right and political movements to be described as "moving further to the left" or
+                "moving further to the right." This test is designed to take the user responses to the questions and produce a result
+                that is on the same scale, so that the user can easily compare themselves to other political figures (explained further in FAQ).</p>
+            <p style="color: #4a4a4a; line-height: 1.6; font-size: 1.1rem; text-align: center;">
+
+            </p>
+
+            <div style="margin-top: 25px; text-align: center;">
+                <img src="centercentereg3.png" alt="Example Results Spectrum" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">Example: How your results appear on the final spectrum.</p>
             </div>
         </div>
 
         <div class="highlight-box">
             <strong>Key Information:</strong>
             <ul>
-                <li><strong>Length:</strong> There are 50 questions which are intended to be direct and
+                <li><strong>Length:</strong> There are 49 questions which are intended to be direct and
                     thought-provoking. This should take around 15 minutes.</li>
                 <li><strong>Results:</strong> After completing all 50 questions, you will be taken to the results page where
                     there a pictographic representation of your two scores. Both scores range from -10 to 10.
                     The more negative scores indicate more left leaning positions and vice versa.</li>
-                <li><strong>Methodology:</strong> Answering each question will result in a score. A stronger position
-                    will result in a score with larger magnitude. More pertinent questions will have a bear a larger weight
-                    than others. After completing the test, the scores are aggregated to produce your final score. </li>
                 <li><strong>Note:</strong> These prompts are deliberately designed to be slightly vague. Don't overthink
-                the prompt. The purpose of these prompts is to cause emotional reactions to the statement, which should
-                act as a guiding force to your answers.</li>
+                    the prompt. The purpose of these prompts is to cause emotional reactions to the statement, which should
+                    act as a guiding force to your answers.</li>
             </ul>
         </div>
 
@@ -229,30 +299,12 @@
             market failures and propose interventions to correct them.
         </p>
 
-        <p><strong> The results of this test rates the user from left to right on two separate axes: social and economic. </strong></p>
-
-        <p>This test exclusively categorizes political leanings on the two axes (social and economic), using the terms left and
-        right. Of course, political thought is highly qualitative and can be indicated on many other axes. Some people may want
-        more globalism, others may want stronger protections of nationalism. Some people may prefer a more secular
-        government, while others may want a more theocratic government. Suffice to see there are many axes that
-        can be used to produce an ever more granular metric of a user's political leaning. </p>
-
-        <p>However, this test deliberately chooses to use the terms "left" and "right" on two key axes: social and economic.
-        This is for the purpose of interpretability and communicability. It has become ingrained in modern discourse to
-        refer to politicians being left or right and political movements to be described as "moving further to the left" or
-        "moving further to the right." This test is designed to take the user responses to the questions and produce a result
-        that is on the same scale, so that the user can easily compare themselves to other political figures. It's also much simpler
-        to communicate results to peers as varying levels of left and right. Generality necessarily comes at the cost of
-            specificity.(explained further in FAQ).</p>
-
-        <p>You can also click below to see where major global figures would score on this test.</p>
+        <p>You can also navigate to the menu to see where your peers and major political figures would score on this test.</p>
     </div>
 
 
     <div class="btn-container">
-        <button class="nav-btn" onclick="window.location.href='egpoliticians.html'">Example Politician Scores</button>
         <button class="nav-btn" onclick="window.location.href='questions2.html'">Start Test</button>
-        <button class="nav-btn" onclick="window.location.href='faq.html'">FAQ Section</button>
     </div>
 
     <footer class="site-footer">
@@ -261,7 +313,9 @@
     </footer>
 </div>
 
-
+<script>
+    function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+</script>
 
 </body>
 </html>

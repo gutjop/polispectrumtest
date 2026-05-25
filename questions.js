@@ -140,7 +140,7 @@
     {
         id: 24, //51
         category: "econ",
-        text: "Capitalism should be replaced with a system where the government manages the economy more as an architect than a referee, assuming that the government is one that I agree with. ",
+        text: "We should move towards a system where traditional corporate structures are abolished in favor of a system where workers own their means of production and vote collectively on business decisions.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
@@ -174,127 +174,121 @@
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 30, //12
-        category: "social",
-        text: "Government money should be used to support gender transitioning care for individuals.",
-        options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
-    },
-    {
-        id: 31, //13
+        id: 30, //13
         category: "social",
         text: "Society has been too accommodating towards ideas around gender fluidity.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     }, // Added comma here
     {
-        id: 32, //43
+        id: 31, //43
         category: "econ",
         text: "The first step to solving many of societies' problems is to increase tax revenue from the rich.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {// If my standard of living is low, the government is mostly to blame.
-        id: 33, //44
+        id: 32, //44
         category: "econ",
         text: "The government should place legal restrictions on the compensation package of a CEO.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 34, //45
+        id: 33, //45
         category: "econ",
         text: "Inheritance tax should be low for everyone, including the wealthy.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 35, //49
+        id: 34, //49
         category: "econ",
         text: "When the government spends money to reduce poverty, the primary aim should be to provide equality of opportunity not outcome.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 36, //36
+        id: 35, //36
         category: "econ", //Healthcare should be free
         text: "Healthcare should be primarily funded by the government.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 37, //37
+        id: 36, //37
         category: "econ",
         text: "The government should substantially fund post-secondary education for the public.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 38, //39
+        id: 37, //39
         category: "econ",
         text: "Foreign nationals residing in my country should receive a similar level of social welfare from the government as citizens and permanent residents.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 39, //17
+        id: 38, //17
         category: "social",
         text: "My country should issue an official apology for any past transgressions/injustices that it took part in.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 40, //18
+        id: 39, //18
         category: "social",
         text: "Financial reparations are necessary to make peace with past transgressions and injustices that may have persisted through society.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 41, //19
+        id: 40, //19
         category: "social",
         text: "The Western world has too much influence on global politics.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 42, //34
+        id: 41, //34
         category: "social",
         text: "Cooperation and compliance with international organisations (such as the United Nations) is beneficial for the overall population of my country.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 43, //Nil
+        id: 42, //Nil
         category: "social",
         text: "My country should provide aid to poorer countries.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 44, //23
+        id: 43, //23
         category: "social",
         text: "There are some degrees that offer little value to students or society, so the government should discourage students from these degrees.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 45, //27
+        id: 44, //27
         category: "social",
         text: "In my country, there are particular racial or religious minority groups who cause too many problems to society.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 46, //28
+        id: 45, //28
         category: "social",
         text: "Individual ownership of firearms should be heavily regulated by the state.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 47, //33
+        id: 46, //33
         category: "social",
         text: "The death penalty should be legal as a sentencing option for certain crimes. ",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 48, //30
+        id: 47, //30
         category: "social",
         text: "Society would be better off if more people were religious.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 49, //30
+        id: 48, //30
         category: "social",
         text: "The government should treat the consumption of recreational drugs more as a public health issue than a criminal matter.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
     },
     {
-        id: 50, //35
+        id: 49, //35
         category: "social",
         text: "It is beneficial for public safety when the criminal justice system focuses on punishing criminals more than rehabilitating them.",
         options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]

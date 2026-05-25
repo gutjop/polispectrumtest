@@ -223,6 +223,7 @@
 </div>
 
 <script src="questions.js"></script>
+<script src="scoring.js"></script>
 
 <script>
     let currentIndex = 0;
@@ -294,8 +295,35 @@
     }
 
     function submitFinal() {
+        // 1. Clear out old stale scores from browser cache
+        localStorage.removeItem('userSocialScore');
+        localStorage.removeItem('userEconScore');
+        localStorage.removeItem('userAnswers');
+        localStorage.removeItem('poliTestAnswers');
+
+        // 2. DUPLICATE THE KEYWAYS: Save under BOTH names so scoring.js AND demo.html remain perfectly satisfied
+        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
         localStorage.setItem('poliTestAnswers', JSON.stringify(userAnswers));
-        window.location.href = 'results.html';
+
+        // 3. Fire your global calculation script right here on the quiz page!
+        if (typeof runAllCalculations === "function") {
+            try {
+                runAllCalculations();
+            } catch (e) {
+                console.error("Calculation execution failed inside scoring.js:", e);
+            }
+        }
+
+        // 4. Safely read and verify the freshly calculated numbers from your script scope
+        const socialResult = (typeof finalSocialScore !== 'undefined') ? finalSocialScore : 0;
+        const econResult = (typeof finalEconScore !== 'undefined') ? finalEconScore : 0;
+
+        // 5. Save those globally calculated numbers into localStorage so they survive the trip!
+        localStorage.setItem('userSocialScore', socialResult.toString());
+        localStorage.setItem('userEconScore', econResult.toString());
+
+        // 6. Now safely change pages
+        window.location.href = 'demo.html';
     }
 
     window.onload = () => {

@@ -54,10 +54,34 @@
             padding: 10px 20px;
             border-radius: 5px;
         }
+        /* Navigation Bar */
+        nav { width: 100%; background: white; border-bottom: 2px solid #e2e8f0; padding: 20px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: #002145; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #002145; }
+        @media (max-width: 900px) {
+            nav { justify-content: space-between; padding: 15px 20px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; border-bottom: 2px solid #e2e8f0; text-align: center; gap: 20px; }
+            .nav-links.active { display: flex; }
+        }
+
         footer { margin-top: 40px; font-size: 0.8rem; color: #666; }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</div>
+    <div class="nav-links">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="explorer.html" onclick="closeMenu()">Data Explorer</a>
+        <a href="results.html" onclick="closeMenu()">Results</a>
+        <a href="egpoliticians.html" onclick="closeMenu()">Politicians</a>
+        <a href="faq.html" onclick="closeMenu()">FAQ</a>
+        <a href="donate.html" onclick="closeMenu()">Donate</a>
+    </div>
+</nav>
 
 <div class="container">
     <h1>About PoliSpectrumTest</h1>
@@ -94,6 +118,10 @@
             <a href="contact.html">Contact Us</a></p>
     </footer>
 </div>
+
+<script>
+    function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ6D29Q4VV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VJ6D29Q4VV');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Us | PoliSpectrumTest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+
+    .donation-card { background: white; padding: 60px 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 500px; width: 100%; margin-top: 50px; }
+
+    h1 { color: #002145; margin-bottom: 20px; }
+    p { color: #555; line-height: 1.6; margin-bottom: 40px; }
+
+    .kofi-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      background-color: #29abe0; color: white !important;
+      text-decoration: none; padding: 18px 32px; border-radius: 12px;
+      font-weight: 800; font-size: 1.2rem; transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(41, 171, 224, 0.3);
+    }
+    .kofi-button:hover { transform: translateY(-3px); }
+    .kofi-img { width: 25px; margin-right: 12px; filter: brightness(0) invert(1); }
+
+    /* Navigation Bar */
+    nav { width: 100%; background: white; border-bottom: 2px solid #e2e8f0; padding: 20px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { text-decoration: none; color: #002145; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #002145; }
+    @media (max-width: 900px) {
+      nav { justify-content: space-between; padding: 15px 20px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; border-bottom: 2px solid #e2e8f0; text-align: center; gap: 20px; }
+      .nav-links.active { display: flex; }
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 20px;
+      font-family: sans-serif;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .site-footer a {
+      color: #0055B7;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</div>
+  <div class="nav-links">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="explorer.html" onclick="closeMenu()">Data Explorer</a>
+    <a href="results.html" onclick="closeMenu()">Results</a>
+    <a href="egpoliticians.html" onclick="closeMenu()">Politicians</a>
+    <a href="faq.html" onclick="closeMenu()">FAQ</a>
+    <a href="donate.html" onclick="closeMenu()">Donate</a>
+  </div>
+</nav>
+
+<div class="donation-card">
+  <h1>Support the Project</h1>
+  <p>If you found this test insightful, please consider supporting the ongoing development and hosting of PoliSpectrumTest. Every bit helps keep the site free and ad-light.</p>
+
+  <a href="https://ko-fi.com/polispectrumtest" target="_blank" class="kofi-button">
+    <img src="https://ko-fi.com/img/cup-border.png" alt="Ko-fi" class="kofi-img">
+    Donate on Ko-fi
+  </a>
+</div>
+
+<script>
+  function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+</script>
+
+<footer class="site-footer">
+  <p>2026 PoliSpectrumTest || <a href="about.html">About</a> || <a href="privacy.html">Privacy Policy</a> ||
+    <a href="contact.html">Contact Us</a></p>
+</footer>
+
+</body>
+</html>

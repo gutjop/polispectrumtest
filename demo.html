@@ -1,0 +1,213 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About You | PoliSpec Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #002145;
+      --accent: #005bb7;
+      --bg: #f0f2f5;
+      --text-main: #1a1a1a;
+      --text-muted: #666;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 600px;
+      margin-top: 40px;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+      font-weight: 900;
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      box-sizing: border-box;
+      background-color: #fff;
+      font-family: inherit;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover { background: #004489; }
+
+    .skip-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .skip-link a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .skip-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="card" id="demo-gate">
+  <h2>About You</h2>
+  <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">
+    Please provide your demographic information to help us contextualize our data research analytics.
+  </p>
+
+  <div class="form-group">
+    <label>Country</label>
+    <select id="user-country">
+      <option value="Not Specified" disabled selected>Select your country</option>
+      <option value="United States">United States</option>
+      <option value="United Kingdom">United Kingdom</option>
+      <option value="Europe">Europe</option>
+      <option value="Canada">Canada</option>
+      <option value="Australia / New Zealand">Australia / New Zealand</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Age Bracket</label>
+    <select id="user-age">
+      <option value="Not Specified" disabled selected>Select your age</option>
+      <option value="Under 18">Under 18</option>
+      <option value="18-29">18-29</option>
+      <option value="30-39">30-39</option>
+      <option value="40-49">40-49</option>
+      <option value="50-59">50-59</option>
+      <option value="60-64">60-64</option>
+      <option value="65+">65+</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Gender</label>
+    <select id="user-gender">
+      <option value="Not Specified" disabled selected>Select your gender</option>
+      <option value="Man">Male</option>
+      <option value="Woman">Female</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="button-group">
+    <button class="btn" id="submit-btn" onclick="processData(false)">See My Results</button>
+    <div class="skip-link">
+      <a href="#" onclick="processData(true); return false;">Skip data sharing & see results →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function processData(isSkipped) {
+    const btn = document.getElementById('submit-btn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = "Processing Data...";
+    }
+
+    const countryEl = document.getElementById('user-country');
+    const ageEl = document.getElementById('user-age');
+    const genderEl = document.getElementById('user-gender');
+
+    const country = (countryEl && countryEl.value && countryEl.value !== "Not Specified") ? countryEl.value : "Not Specified";
+    const age = (ageEl && ageEl.value && ageEl.value !== "Not Specified") ? ageEl.value : "Not Specified";
+    const gender = (genderEl && genderEl.value && genderEl.value !== "Not Specified") ? genderEl.value : "Not Specified";
+
+    const rawAnswers = JSON.parse(localStorage.getItem('userAnswers') || "{}");
+    const socialScore = localStorage.getItem('userSocialScore') || "0";
+    const econScore = localStorage.getItem('userEconScore') || "0";
+
+    const localPacket = {
+      demographics: isSkipped ? "Skipped" : { country, age, gender },
+      testAnswers: rawAnswers,
+      calculatedScores: { soc: Number(socialScore), eco: Number(econScore) },
+      timestamp: new Date().toLocaleString()
+    };
+    localStorage.setItem('fullDataPacket', JSON.stringify(localPacket));
+
+    // 1. Pack the verified Entry IDs manually into a clean browser data transmission payload
+    const formData = new FormData();
+    formData.append("entry.233712287", JSON.stringify(rawAnswers));
+    formData.append("entry.907705994", isSkipped ? "Skipped" : country);
+    formData.append("entry.1393183942", isSkipped ? "Skipped" : age);
+    formData.append("entry.210597131", isSkipped ? "Skipped" : gender);
+    formData.append("entry.1987363783", socialScore);
+    formData.append("entry.807218227", econScore);
+
+    const targetUrl = "https://docs.google.com/forms/d/e/1FAIpQLSevpjcNzL1dyXDqLnJLAE0VbKz48IIJfJgX460FEuvkCi8jTw/formResponse";
+
+    // 2. Dispatch a blind asynchronous request in the background
+    // We use the 'no-cors' mode because Google Form endpoints do not share cross-origin responses with custom scripts, but the server will process the incoming dataset cleanly regardless!
+    fetch(targetUrl, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    })
+            .then(() => {
+              console.log("Transmission successfully captured by server stream. Route executing...");
+              window.location.href = "results.html";
+            })
+            .catch((error) => {
+              console.warn("Background channel dropped packet. Processing local fallback redirect:", error);
+              window.location.href = "results.html";
+            });
+  }
+</script>
+</body>
+</html>

@@ -79,9 +79,33 @@
             text-decoration: none;
             margin: 0 10px;
         }
+
+        /* Navigation Bar */
+        nav { width: 100%; background: white; border-bottom: 2px solid #e2e8f0; padding: 20px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: #002145; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #002145; }
+        @media (max-width: 900px) {
+            nav { justify-content: space-between; padding: 15px 20px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; border-bottom: 2px solid #e2e8f0; text-align: center; gap: 20px; }
+            .nav-links.active { display: flex; }
+        }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</div>
+    <div class="nav-links">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="explorer.html" onclick="closeMenu()">Data Explorer</a>
+        <a href="results.html" onclick="closeMenu()">Results</a>
+        <a href="egpoliticians.html" onclick="closeMenu()">Politicians</a>
+        <a href="faq.html" onclick="closeMenu()">FAQ</a>
+        <a href="donate.html" onclick="closeMenu()">Donate</a>
+    </div>
+</nav>
 
 <div class="container">
     <h1>Privacy Policy</h1>
@@ -93,9 +117,9 @@
             information is used by the website.</p>
 
         <h2>1. Data Privacy Note</h2>
-        <p>To provide you with your test results, we use browser "Local Storage" to temporarily hold your progress and
-            final scores. This data stays on your device and is not transmitted to us. You can clear this data at any
-            time by clearing your browser cache.
+        <p> Should you choose to provide demographic information, a copy of the test results will be sent to us. We do
+            NOT ever collect any identifying information including but not limited to email, IP addresses, etc...
+            This is purely for data aggregation for our data explorer page.
         </p>
 
         <h2>2. Google AdSense and DoubleClick Cookie</h2>
@@ -145,6 +169,10 @@
     <p>2026 PoliSpectrumTest || <a href="about.html">About</a> || <a href="privacy.html">Privacy Policy</a> ||
         <a href="contact.html">Contact Us</a></p>
 </footer>
+
+<script>
+    function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+</script>
 
 </body>
 </html>

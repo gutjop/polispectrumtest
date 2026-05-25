@@ -2,8 +2,8 @@
 let finalSocialScore = 0
 let finalEconScore = 0
 let isCalculationComplete = false;
-let maxSocialScore = 75;
-let maxEconScore = 37;
+let maxSocialScore = 74;
+let maxEconScore = 39;
 
 const weightmaps = {
     w1: { "Strongly Disagree": -1, "Disagree": -0.6, "Agree": 0.6, "Strongly Agree": 1, "Neutral": 0},
@@ -31,11 +31,12 @@ const weightmaps = {
     },
     wmaxsoc: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 3, "Strongly Agree": 5, "Neutral": 0 },
     wfisccut: { "Strongly Disagree": -2, "Disagree": -1.2, "Agree": 1.2, "Strongly Agree": 3, "Neutral": 0 },
-    wcommie: { "Strongly Disagree": 1, "Disagree": 0.5, "Agree": -2, "Strongly Agree": -4, "Neutral": 0 },
+    wcommie: { "Strongly Disagree": 1, "Disagree": 0.5, "Agree": -3.6, "Strongly Agree": -6, "Neutral": 0 },
     wlabour: { "Strongly Disagree": 4, "Disagree": 2, "Agree": -1.5, "Strongly Agree": -3, "Neutral": 0 },
     wrace: { "Strongly Disagree": -3, "Disagree": -1.8, "Agree": 3.6, "Strongly Agree": 6, "Neutral": 0 },
     wwest: { "Strongly Disagree": 2, "Disagree": 1.2, "Agree": -1.8, "Strongly Agree": -3, "Neutral": 0 },
     wenv: { "Strongly Disagree": 3, "Disagree": 1.8, "Agree": -2.4, "Strongly Agree": -4, "Neutral": 0 },
+    whealtheduc: { "Strongly Disagree": 3, "Disagree": 1.8, "Agree": -1.2, "Strongly Agree": -2, "Neutral": 0 },
 
 };
 
@@ -69,27 +70,26 @@ const questionConfig = {
     "q27a": "w2p",
     "q28a": "w1p",
     "q29a": "w1p",
-    "q30a": "w1p",
-    "q31a": "w3",
-    "q32a": "w3p",
-    "q33a": "w1p",
-    "q34a": "w1",
-    "q35a": "w2",
+    "q30a": "w3",
+    "q31a": "w3p",
+    "q32a": "w1p",
+    "q33a": "w1",
+    "q34a": "w2",
+    "q35a": "w2p",
     "q36a": "w2p",
-    "q37a": "w2p",
+    "q37a": "w1p",
     "q38a": "w1p",
-    "q39a": "w1p",
-    "q40a": "w2p",
-    "q41a": "wwest",
-    "q42a": "w4p",
-    "q43a": "w1p",
-    "q44a": "w2",
-    "q45a": "wrace",
-    "q46a": "w2p",
+    "q39a": "w2p",
+    "q40a": "wwest",
+    "q41a": "w4p",
+    "q42a": "w1p",
+    "q43a": "w2",
+    "q44a": "wrace",
+    "q45a": "w2p",
+    "q46a": "w2",
     "q47a": "w2",
-    "q48a": "w2",
-    "q49a": "w3p",
-    "q50a": "w2"
+    "q48a": "w3p",
+    "q49a": "w2"
 };
 
 function runAllCalculations() {

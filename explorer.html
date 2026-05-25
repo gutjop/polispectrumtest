@@ -7,145 +7,146 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #002145;
-            --bg: #f0f2f5;
-            /* Spectral Colors from your results page */
-            --sa-color: #1a3d6e; /* Strongly Agree */
-            --a-color: #80bfff;  /* Agree */
-            --n-color: #d1b3ff;  /* Neutral */
-            --d-color: #ffb3a1;  /* Disagree */
-            --sd-color: #ee2d35; /* Strongly Disagree */
+            --primary: #002145; --bg: #f0f2f5;
+            --sa: #1a3d6e; --a: #80bfff; --n: #d1b3ff; --d: #ffb3a1; --sd: #ee2d35;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; }
+
+        /* Navigation */
+        nav { width: 100%; background: white; border-bottom: 2px solid #e2e8f0; padding: 20px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: var(--primary); }
+
+        .explorer-container { width: 100%; max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+        @media (max-width: 900px) {
+            nav { justify-content: space-between; padding: 15px 20px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; border-bottom: 2px solid #e2e8f0; text-align: center; gap: 20px; }
+            .nav-links.active { display: flex; }
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .page-title { text-align: center; color: var(--primary); margin-bottom: 30px; }
+        .filter-bar { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-bubble { background: white; border: 2px solid #cbd5e1; padding: 10px 20px; border-radius: 50px; font-weight: 700; color: var(--primary); cursor: pointer; }
 
-        .explorer-container {
-            width: 100%;
-            max-width: 850px;
-        }
+        .explorer-card { background: white; padding: 25px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .question-text { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 18px; border-left: 4px solid var(--primary); padding-left: 12px; }
 
-        .explorer-card {
-            background: white;
-            padding: 35px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            box-sizing: border-box;
-        }
+        .histogram-row { display: grid; grid-template-columns: 140px 1fr 50px; align-items: center; margin-bottom: 8px; gap: 12px; }
+        .label-cell { font-weight: 700; font-size: 0.75rem; color: #555; text-transform: uppercase; text-align: right; }
+        .bar { height: 28px; border-radius: 5px; }
+        .percentage { font-weight: 900; font-size: 0.85rem; color: var(--primary); }
 
-        .question-text {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 30px;
-            line-height: 1.5;
-            border-left: 5px solid var(--primary);
-            padding-left: 20px;
-        }
-
-        .histogram-table {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .histogram-row {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-
-        .label-cell {
-            width: 160px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .bar-container {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .bar {
-            height: 32px;
-            border-radius: 8px;
-            min-width: 5px; /* Ensures a sliver shows even for low % */
-            transition: width 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-        }
-
-        .percentage {
-            font-weight: 900;
-            font-size: 1rem;
-            color: var(--primary);
-            width: 50px;
-        }
-
-        /* Color assignments */
-        .sa { background-color: var(--sa-color); }
-        .a  { background-color: var(--a-color); }
-        .n  { background-color: var(--n-color); }
-        .d  { background-color: var(--d-color); }
-        .sd { background-color: var(--sd-color); }
-
+        .short-label { display: none; }
         @media (max-width: 600px) {
-            .histogram-row { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .label-cell { width: 100%; }
-            .bar-container { width: 100%; }
+            .full-label { display: none; }
+            .short-label { display: inline; }
+            .histogram-row { grid-template-columns: 60px 1fr 40px; }
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 20px;
+            font-family: sans-serif;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .site-footer a {
+            color: #0055B7;
+            text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
+<nav>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</div>
+    <div class="nav-links">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="explorer.html" style="color: var(--a);" onclick="closeMenu()">Data Explorer</a>
+        <a href="results.html" onclick="closeMenu()">Results</a>
+        <a href="egpoliticians.html" onclick="closeMenu()">Politicians</a>
+        <a href="faq.html" onclick="closeMenu()">FAQ</a>
+        <a href="donate.html" onclick="closeMenu()">Donate</a>
+    </div>
+</nav>
+
 <div class="explorer-container">
-
-    <div class="explorer-card">
-        <div class="question-text">"The government should prioritize environmental protection and climate action, even if it results in slower economic growth."</div>
-        <div class="histogram-table">
-            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 42%;"></div><span class="percentage">42%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 28%;"></div><span class="percentage">28%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 12%;"></div><span class="percentage">12%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 10%;"></div><span class="percentage">10%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 8%;"></div><span class="percentage">8%</span></div></div>
-        </div>
+    <div class="page-title"><h1>EXAMPLE Data Explorer (real data coming soon)</h1></div>
+    <div class="filter-bar">
+        <select class="filter-bubble"><option>🌍 Country</option>
+            <option>🇺🇸 USA</option>
+            <option>🇬🇧 UK</option>
+            <option>🇨🇦 Canada</option>
+            <option>🇪🇺 Europe</option>
+            <option>🇦🇺 AU / NZ</option>
+            <option>🌐 ROW</option>
+        </select>
+        <select class="filter-bubble"><option>👥 Age</option>
+            <option>Under 18</option>
+            <option>18-29</option>
+            <option>30-39</option>
+            <option>40-49</option>
+            <option>50-64</option>
+            <option>65+</option>
+        </select>
+        <select class="filter-bubble"><option>⚧ Gender</option><option>Male</option></select>
     </div>
-
-    <div class="explorer-card">
-        <div class="question-text">"My country has just found a vast oil deposit. It is imperative that my country should start drilling and selling oil on the global markets."</div>
-        <div class="histogram-table">
-            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 15%;"></div><span class="percentage">15%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 18%;"></div><span class="percentage">18%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 10%;"></div><span class="percentage">10%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 22%;"></div><span class="percentage">22%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 35%;"></div><span class="percentage">35%</span></div></div>
-        </div>
-    </div>
-
-    <div class="explorer-card">
-        <div class="question-text">"The primary driver of the environmental transition should be technological advancement, so environmental regulation should be kept to a minimum."</div>
-        <div class="histogram-table">
-            <div class="histogram-row"><div class="label-cell">Strongly Agree</div><div class="bar-container"><div class="bar sa" style="width: 20%;"></div><span class="percentage">20%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Agree</div><div class="bar-container"><div class="bar a" style="width: 35%;"></div><span class="percentage">35%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Neutral</div><div class="bar-container"><div class="bar n" style="width: 25%;"></div><span class="percentage">25%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Disagree</div><div class="bar-container"><div class="bar d" style="width: 15%;"></div><span class="percentage">15%</span></div></div>
-            <div class="histogram-row"><div class="label-cell">Strongly Disagree</div><div class="bar-container"><div class="bar sd" style="width: 5%;"></div><span class="percentage">5%</span></div></div>
-        </div>
-    </div>
-
+    <div id="main-container"></div>
 </div>
 
+<script src="questions.js"></script>
+<script>
+    function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+
+    const container = document.getElementById('main-container');
+    const colorMap = ['var(--sa)', 'var(--a)', 'var(--n)', 'var(--d)', 'var(--sd)', '#444'];
+    const shortLabels = ["SD", "D", "N", "A", "SA"];
+    const abortionLabels = ["Never", "6", "12", "16", "24", "No Limit"];
+
+    function seededRandom(seed) {
+        const x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+    }
+
+    questions.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'explorer-card';
+        let weights = q.options.map((_, i) => seededRandom(index + i) * 100);
+        let total = weights.reduce((a, b) => a + b, 0);
+        let normalized = weights.map(w => Math.round((w / total) * 100));
+
+        let rowsHtml = '';
+        q.options.forEach((opt, optIdx) => {
+            let short;
+            if (q.options.length === 6) {
+                short = abortionLabels[optIdx];
+            } else {
+                short = q.options.length === 5 ? shortLabels[optIdx] : opt.substring(0, 4) + '...';
+            }
+
+            rowsHtml += `
+                <div class="histogram-row">
+                    <div class="label-cell">
+                        <span class="full-label">${opt}</span>
+                        <span class="short-label">${short}</span>
+                    </div>
+                    <div class="bar" style="width: ${normalized[optIdx]}%; background-color: ${colorMap[optIdx % colorMap.length]};"></div>
+                    <div class="percentage">${normalized[optIdx]}%</div>
+                </div>`;
+        });
+        card.innerHTML = `<div class="question-text">Q${index + 1}. "${q.text}"</div>${rowsHtml}`;
+        container.appendChild(card);
+    });
+</script>
+<footer class="site-footer">
+    <p>2026 PoliSpectrumTest || <a href="about.html">About</a> || <a href="privacy.html">Privacy Policy</a> ||
+        <a href="contact.html">Contact Us</a></p>
+</footer>
 </body>
 </html>
