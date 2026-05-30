@@ -76,8 +76,17 @@
     </div>
 </nav>
 
+
+
 <div class="explorer-container">
-    <div class="page-title"><h1>EXAMPLE Data Explorer (real data coming soon)</h1></div>
+    <div class="page-title"><h1>Data Explorer (n = 1042)</h1></div>
+
+    <div style="text-align: center; margin: 10px 0;">
+        <div style="display: inline-block; background-color: #ffebee; color: #d32f2f; padding: 6px 12px; border: 1px solid #ffcdd2; border-radius: 16px; font-size: 0.85em; font-weight: 500;">
+            ℹ️ Percentages may not add up to 100% ||| Filters are currently not active.
+        </div>
+    </div>
+
     <div class="filter-bar">
         <select class="filter-bubble"><option>🌍 Country</option>
             <option>🇺🇸 USA</option>
@@ -100,9 +109,63 @@
     <div id="main-container"></div>
 </div>
 
+
+
 <script src="questions.js"></script>
 <script>
     function closeMenu() { document.querySelector('.nav-links').classList.remove('active'); }
+
+    const liveGlobalCounts = {
+        "q1a": { "Strongly Agree": 38, "Agree": 34, "Neutral": 12, "Disagree": 10, "Strongly Disagree": 5 },
+        "q2a": { "Strongly Agree": 9, "Agree": 28, "Neutral": 24, "Disagree": 21, "Strongly Disagree": 17 },
+        "q3a": { "Strongly Agree": 5, "Agree": 12, "Neutral": 12, "Disagree": 37, "Strongly Disagree": 35 },
+        "q4a": { "Strongly Agree": 19, "Agree": 39, "Neutral": 22, "Disagree": 17, "Strongly Disagree": 4 },
+        "q5a": { "Strongly Agree": 6, "Agree": 13, "Neutral": 10, "Disagree": 24, "Strongly Disagree": 46 },
+        "q6a": { "Strongly Agree": 52, "Agree": 31, "Neutral": 9, "Disagree": 6, "Strongly Disagree": 3 },
+        "q7a": { "Strongly Agree": 3, "Agree": 9, "Neutral": 12, "Disagree": 25, "Strongly Disagree": 51 },
+        "q8a": { "Strongly Agree": 16, "Agree": 26, "Neutral": 23, "Disagree": 20, "Strongly Disagree": 13 },
+        "q9a": { "Strongly Agree": 23, "Agree": 30, "Neutral": 25, "Disagree": 14, "Strongly Disagree": 9},
+        "q10a": { "No gestational limit": 34, "24 weeks (Fetal Viability)": 22, "Neutral": 4, "16 weeks (EU Average)": 22, "12 weeks (First Trimester)": 6, "Never Legal": 6, "6 weeks (Fetal Heartbeat)": 5},
+        "q11a": { "Strongly Agree": 65, "Agree": 22, "Neutral": 6, "Disagree": 4, "Strongly Disagree": 3},
+        "q12a": { "Strongly Agree": 19, "Agree": 28, "Neutral": 15, "Disagree": 19, "Strongly Disagree": 18},
+        "q13a": { "Strongly Agree": 8, "Agree": 29, "Neutral": 20, "Disagree": 20, "Strongly Disagree": 23},
+        "q14a": { "Strongly Agree": 14, "Agree": 20, "Neutral": 22, "Disagree": 25, "Strongly Disagree": 19},
+        "q15a": { "Strongly Agree": 13, "Agree": 13, "Neutral": 19, "Disagree": 29, "Strongly Disagree": 26},
+        "q16a": { "Strongly Agree": 24, "Agree": 31, "Neutral": 15, "Disagree": 15, "Strongly Disagree": 16},
+        "q17a": { "Strongly Agree": 17, "Agree": 25, "Neutral": 21, "Disagree": 15, "Strongly Disagree": 22},
+        "q18a": { "Strongly Agree": 31, "Agree": 37, "Neutral": 17, "Disagree": 9, "Strongly Disagree": 5},
+        "q19a": { "Strongly Agree": 12, "Agree": 27, "Neutral": 24, "Disagree": 18, "Strongly Disagree": 20},
+        "q20a": { "Strongly Agree": 32, "Agree": 21, "Neutral": 17, "Disagree": 20, "Strongly Disagree": 10},
+        "q21a": { "Strongly Agree": 42, "Agree": 33, "Neutral": 10, "Disagree": 7, "Strongly Disagree": 7},
+        "q22a": { "Strongly Agree": 15, "Agree": 38, "Neutral": 26, "Disagree": 16, "Strongly Disagree": 6},
+        "q23a": { "Strongly Agree": 5, "Agree": 16, "Neutral": 12, "Disagree": 33, "Strongly Disagree": 34},
+        "q24a": { "Strongly Agree": 24, "Agree": 23, "Neutral": 15, "Disagree": 19, "Strongly Disagree": 19},
+        "q25a": { "Strongly Agree": 57, "Agree": 20, "Neutral": 9, "Disagree": 8, "Strongly Disagree": 7},
+        "q26a": { "Strongly Agree": 31, "Agree": 16, "Neutral": 24, "Disagree": 14, "Strongly Disagree": 15},
+        "q27a": { "Strongly Agree": 78, "Agree": 10, "Neutral": 4, "Disagree": 2, "Strongly Disagree": 4},
+        "q28a": { "Strongly Agree": 21, "Agree": 23, "Neutral": 17, "Disagree": 14, "Strongly Disagree": 25},
+        "q29a": { "Strongly Agree": 19, "Agree": 17, "Neutral": 23, "Disagree": 16, "Strongly Disagree": 27},
+        "q30a": { "Strongly Agree": 14, "Agree": 12, "Neutral": 13, "Disagree": 22, "Strongly Disagree": 39},
+        "q31a": { "Strongly Agree": 45, "Agree": 25, "Neutral": 9, "Disagree": 13, "Strongly Disagree": 7},
+        "q32a": { "Strongly Agree": 37, "Agree": 25, "Neutral": 13, "Disagree": 15, "Strongly Disagree": 11},
+        "q33a": { "Strongly Agree": 13, "Agree": 18, "Neutral": 20, "Disagree": 29, "Strongly Disagree": 20},
+        "q34a": { "Strongly Agree": 23, "Agree": 37, "Neutral": 21, "Disagree": 15, "Strongly Disagree": 5},
+        "q35a": { "Strongly Agree": 58, "Agree": 29, "Neutral": 7, "Disagree": 4, "Strongly Disagree": 3},
+        "q36a": { "Strongly Agree": 45, "Agree": 34, "Neutral": 11, "Disagree": 6, "Strongly Disagree": 4},
+        "q37a": { "Strongly Agree": 14, "Agree": 26, "Neutral": 17, "Disagree": 25, "Strongly Disagree": 17},
+        "q38a": { "Strongly Agree": 29, "Agree": 28, "Neutral": 16, "Disagree": 10, "Strongly Disagree": 17},
+        "q39a": { "Strongly Agree": 13, "Agree": 23, "Neutral": 21, "Disagree": 18, "Strongly Disagree": 25},
+        "q40a": { "Strongly Agree": 17, "Agree": 23, "Neutral": 24, "Disagree": 20, "Strongly Disagree": 16},
+        "q41a": { "Strongly Agree": 40, "Agree": 37, "Neutral": 11, "Disagree": 7, "Strongly Disagree": 6},
+        "q42a": { "Strongly Agree": 22, "Agree": 42, "Neutral": 19, "Disagree": 10, "Strongly Disagree": 8},
+        "q43a": { "Strongly Agree": 9, "Agree": 17, "Neutral": 14, "Disagree": 30, "Strongly Disagree": 30},
+        "q44a": { "Strongly Agree": 16, "Agree": 21, "Neutral": 14, "Disagree": 22, "Strongly Disagree": 28},
+        "q45a": { "Strongly Agree": 41, "Agree": 24, "Neutral": 12, "Disagree": 13, "Strongly Disagree": 10},
+        "q46a": { "Strongly Agree": 14, "Agree": 19, "Neutral": 10, "Disagree": 17, "Strongly Disagree": 39},
+        "q47a": { "Strongly Agree": 4, "Agree": 8, "Neutral": 14, "Disagree": 20, "Strongly Disagree": 54},
+        "q48a": { "Strongly Agree": 47, "Agree": 32, "Neutral": 8, "Disagree": 8, "Strongly Disagree": 4},
+        "q49a": { "Strongly Agree": 6, "Agree": 12, "Neutral": 13, "Disagree": 30, "Strongly Disagree": 39}
+    };
 
     const container = document.getElementById('main-container');
     const colorMap = ['var(--sa)', 'var(--a)', 'var(--n)', 'var(--d)', 'var(--sd)', '#444'];
@@ -117,29 +180,30 @@
     questions.forEach((q, index) => {
         const card = document.createElement('div');
         card.className = 'explorer-card';
-        let weights = q.options.map((_, i) => seededRandom(index + i) * 100);
-        let total = weights.reduce((a, b) => a + b, 0);
-        let normalized = weights.map(w => Math.round((w / total) * 100));
+
+        // Look up your pre-calculated percentages
+        const qKey = `q${index + 1}a`;
+        const percentages = liveGlobalCounts[qKey] || {};
 
         let rowsHtml = '';
-        q.options.forEach((opt, optIdx) => {
-            let short;
-            if (q.options.length === 6) {
-                short = abortionLabels[optIdx];
-            } else {
-                short = q.options.length === 5 ? shortLabels[optIdx] : opt.substring(0, 4) + '...';
-            }
+        q.options.reverse().forEach((opt, optIdx) => {
+            // Use the value from your object, or default to 0 if missing
+            let val = percentages[opt] || 0;
+
+            // ... (Keep your label logic here)
+            let short = q.options.length === 6 ? abortionLabels[optIdx] : (q.options.length === 5 ? shortLabels[optIdx] : opt.substring(0, 4) + '...');
 
             rowsHtml += `
-                <div class="histogram-row">
-                    <div class="label-cell">
-                        <span class="full-label">${opt}</span>
-                        <span class="short-label">${short}</span>
-                    </div>
-                    <div class="bar" style="width: ${normalized[optIdx]}%; background-color: ${colorMap[optIdx % colorMap.length]};"></div>
-                    <div class="percentage">${normalized[optIdx]}%</div>
-                </div>`;
+            <div class="histogram-row">
+                <div class="label-cell">
+                    <span class="full-label">${opt}</span>
+                    <span class="short-label">${short}</span>
+                </div>
+                <div class="bar" style="width: ${val}%; background-color: ${colorMap[optIdx % colorMap.length]};"></div>
+                <div class="percentage">${val}%</div>
+            </div>`;
         });
+
         card.innerHTML = `<div class="question-text">Q${index + 1}. "${q.text}"</div>${rowsHtml}`;
         container.appendChild(card);
     });
